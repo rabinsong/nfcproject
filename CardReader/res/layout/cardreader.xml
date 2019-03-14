@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:background="@color/bg_default">
+
+	<ScrollView
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_alignParentLeft="true"
+	    android:layout_alignParentRight="true"
+	    android:layout_alignParentTop="true"
+	    android:layout_margin="@dimen/pnl_margin"
+	    android:fillViewport="true"
+	    android:scrollbars="none" >
+
+		<TextView android:id="@+id/board" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" />
+	</ScrollView>
+</RelativeLayout>

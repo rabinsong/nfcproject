@@ -1,0 +1,1341 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+
+<channel>
+	<title>Planet Eclipse</title>
+	<link>http://planeteclipse.org/planet/</link>
+	<language>en</language>
+	<description>Planet Eclipse - http://planeteclipse.org/planet/</description>
+
+<item>
+	<title>EclipseCon Europe 2018: Download the Conference App!</title>
+	<guid isPermaLink="false">https://www.eclipsecon.org/news/749 at https://www.eclipsecon.org</guid>
+	<link>https://www.eclipsecon.org/europe2018/news/download-conference-app</link>
+	<description>&lt;div class=&quot;field field-name-body field-type-text-with-summary field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;p&gt;Thanks to &lt;a href=&quot;https://eclipsesource.com/&quot; target=&quot;_blank&quot;&gt;EclipseSource&lt;/a&gt; and their &lt;a href=&quot;http://tabris.com/&quot; target=&quot;_blank&quot;&gt;Tabris framework&lt;/a&gt;, the EclipseCon Europe conference app is ready for download. Browse the schedule, save your favorite talks to your personal list, read the talk descriptions, and see the speaker bios. If you're looking for a room, follow the maps and you won't get lost!&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Download the &lt;a href=&quot;https://play.google.com/store/apps/details?id=com.eclipsesource.eclipsecon&quot; target=&quot;_blank&quot;&gt;Android&lt;/a&gt;  version&lt;/li&gt;
+&lt;li&gt;Download the &lt;a href=&quot;https://itunes.apple.com/us/app/eclipsecon-europe/id1280396790?ls=1&amp;amp;mt=8&quot; target=&quot;_blank&quot;&gt;iOS&lt;/a&gt; version&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-field-news-image field-type-image field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;a href=&quot;https://www.eclipsecon.org/europe2018/news/download-conference-app&quot;&gt;&lt;img alt=&quot;&quot; class=&quot;img-responsive block-center&quot; height=&quot;250&quot; src=&quot;https://www.eclipsecon.org/sites/default/files/styles/solstice_news_-_default_-_thumbnail/public/news/App%20screens_1.png?itok=624AA68h&quot; width=&quot;250&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description>
+	<pubDate>Wed, 17 Oct 2018 20:18:44 +0000</pubDate>
+</item>
+<item>
+	<title>EclipseCon Europe 2018: Download the Conference App!</title>
+	<guid isPermaLink="false">https://www.eclipsecon.org/news/748 at https://www.eclipsecon.org</guid>
+	<link>https://www.eclipsecon.org/europe2018/news/download-conference-app</link>
+	<description>&lt;div class=&quot;field field-name-body field-type-text-with-summary field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;p&gt;Thanks to EclipseSource and their Tabris framework, the EclipseCon Europe conference app is ready for download.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://play.google.com/store/apps/details?id=com.eclipsesource.eclipsecon&quot; target=&quot;_blank&quot;&gt;Android&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://itunes.apple.com/us/app/eclipsecon-europe/id1280396790?ls=1&amp;amp;mt=8&quot; target=&quot;_blank&quot;&gt;iOS&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-field-news-image field-type-image field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;a href=&quot;https://www.eclipsecon.org/europe2018/news/download-conference-app&quot;&gt;&lt;img alt=&quot;&quot; class=&quot;img-responsive block-center&quot; height=&quot;250&quot; src=&quot;https://www.eclipsecon.org/sites/default/files/styles/solstice_news_-_default_-_thumbnail/public/news/app_image_square_0.png?itok=itBXZCK4&quot; width=&quot;250&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description>
+	<pubDate>Wed, 17 Oct 2018 19:34:17 +0000</pubDate>
+</item>
+<item>
+	<title>Niko Stotz: Xtext Editors within Sirius Diagrams – the Best of both Worlds!</title>
+	<guid isPermaLink="false">https://www.nikostotz.de/blog/?p=406</guid>
+	<link>https://www.nikostotz.de/blog/xtext-editors-within-sirius-diagrams/</link>
+	<description>&lt;p&gt;&lt;strong&gt;tl;dr:&lt;/strong&gt; Altran’s &lt;strong&gt;Xtext / Sirius Integration&lt;/strong&gt; provides the full Xtext experience for Sirius direct editors (a.k.a. pressing F2 in diagram) and properties editors. It’s &lt;a href=&quot;https://github.com/altran-mde/xtext-sirius-integration/&quot;&gt;highly configurable&lt;/a&gt;, &lt;a href=&quot;https://altran-mde.github.io/xtext-sirius-integration.io/userguide/&quot;&gt;well-documented&lt;/a&gt;, and &lt;a href=&quot;https://github.com/altran-mde/xtext-sirius-integration/&quot;&gt;released under EPL 2&lt;/a&gt;. I’ll &lt;a href=&quot;https://www.eclipsecon.org/europe2018/sessions/textual-and-graphical-modeling-xtext-editors-within-sirius-diagrams&quot;&gt;present it at EclipseCon 2018&lt;/a&gt; next week in Ludwigsburg. We intend to contribute this to the Sirius project.&lt;/p&gt;
+&lt;div class=&quot;wp-caption aligncenter&quot; id=&quot;attachment_423&quot; style=&quot;width: 662px;&quot;&gt;&lt;img alt=&quot;&quot; class=&quot;size-full wp-image-423&quot; height=&quot;196&quot; src=&quot;https://www.nikostotz.de/blog/wp-content/uploads/2018/10/AllFeatures.png&quot; width=&quot;652&quot; /&gt;&lt;p class=&quot;wp-caption-text&quot;&gt;Example of Xtext’s error checking and auto-completion support within Sirius diagram figure&lt;/p&gt;&lt;/div&gt;
+&lt;p&gt;&lt;span id=&quot;more-406&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Both textual and graphical modeling have their well-known strengths and weaknesses – obviously, we want the best of both worlds!&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.eclipse.org/Xtext/&quot;&gt;Xtext&lt;/a&gt; and &lt;a href=&quot;https://www.eclipse.org/sirius/&quot;&gt;Sirius&lt;/a&gt; are among the most-used Eclipse Modeling Framework technologies, covering textual and graphical modeling, respectively. &lt;a href=&quot;https://www.eclipsecon.org/france2014/session/sirius-xtext.html&quot;&gt;Previous&lt;/a&gt;   &lt;a href=&quot;https://www.eclipsecon.org/france2017/session/integrating-xtext-and-sirius-strategies-and-pitfalls&quot;&gt;EclipseCon&lt;/a&gt; talks discussed the different usage scenarios and difficulties of integrating these technologies. We focused on the “Xtext editors within Sirius diagrams and properties view” scenario and could solve most of the integration difficulties. The result is called Xtext / Sirius Integration.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Our main goals were to be a good Sirius citizen, i.e. configuring all details in the Odesign model, and to support as much of Xtext’s features as possible without requiring changes to the Xtext language.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;We would like to contribute the code to the Sirius project. Initial discussions already started, so stay tuned.&lt;/p&gt;
+&lt;p&gt;I’m very happy to discuss any questions or ideas at the &lt;a href=&quot;https://www.eclipsecon.org/europe2018/sessions/textual-and-graphical-modeling-xtext-editors-within-sirius-diagrams&quot;&gt;EclipseCon 2018&lt;/a&gt; next week in Ludwigsburg – please approach me! I’ll present Xtext / Sirius Integration at Wednesday, Oct. 24th, 10:25 am on Theater Stage. See you there!&lt;/p&gt;
+&lt;h2&gt;Main Features&lt;/h2&gt;
+&lt;p&gt;Use Cases&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Use Xtext as direct editor for Sirius diagram figures and connections&lt;/li&gt;
+&lt;li&gt;Use Xtext in Sirius property editors&lt;/li&gt;
+&lt;li&gt;Edit parts of the Sirius editor’s model with Xtext&lt;/li&gt;
+&lt;li&gt;Edit text stored in the model with Xtext&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Configuration Options&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Single-line or multi-line Xtext editor&lt;/li&gt;
+&lt;li&gt;Limit the editable features&lt;/li&gt;
+&lt;li&gt;Configure pre-selected features&lt;/li&gt;
+&lt;li&gt;Prepend or append text to model contents in order to provide a valid Xtext document&lt;/li&gt;
+&lt;li&gt;Ignore selected nested features&lt;/li&gt;
+&lt;li&gt;Use a different Xtext grammar for persisting and editing a model&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Examples&lt;/h2&gt;
+&lt;p&gt;The &lt;a href=&quot;https://github.com/altran-mde/xtext-sirius-integration/tree/master/demo&quot;&gt;source code of all examples&lt;/a&gt; is available at github.&lt;/p&gt;
+&lt;p&gt;The github readme provides &lt;a href=&quot;https://github.com/altran-mde/xtext-sirius-integration/&quot;&gt;more details on the examples&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Smart UML Class Attributes&lt;/h3&gt;
+&lt;p&gt;Assume a model and diagram akin to UML class diagrams.&lt;/p&gt;
+&lt;p&gt;Each attribute has a visibility, a name, a type, a multiplicity with lower and upper bounds, and a (possibly long) description text. We can edit these features in one line with full Xtext support.&lt;/p&gt;
+&lt;div class=&quot;wp-caption aligncenter&quot; id=&quot;attachment_412&quot; style=&quot;width: 236px;&quot;&gt;&lt;img alt=&quot;&quot; class=&quot;size-full wp-image-412&quot; height=&quot;95&quot; src=&quot;https://www.nikostotz.de/blog/wp-content/uploads/2018/10/InvalidVisibility.png&quot; width=&quot;226&quot; /&gt;&lt;p class=&quot;wp-caption-text&quot;&gt;Xtext reports invalid visibility&lt;/p&gt;&lt;/div&gt;
+&lt;div class=&quot;wp-caption aligncenter&quot; id=&quot;attachment_410&quot; style=&quot;width: 452px;&quot;&gt;&lt;img alt=&quot;&quot; class=&quot;size-full wp-image-410&quot; height=&quot;122&quot; src=&quot;https://www.nikostotz.de/blog/wp-content/uploads/2018/10/ConstantAutoComplete.png&quot; width=&quot;442&quot; /&gt;&lt;p class=&quot;wp-caption-text&quot;&gt;Xtext provides auto-completion for referenced constants&lt;/p&gt;&lt;/div&gt;
+&lt;p&gt;Xtext / Sirius Integration allows to edit all the visible features of the attribute just as we see them, without fiddling around in property editors. It automatically checks for valid input (i.e. does not accept &lt;tt&gt;~&lt;/tt&gt; as visibility) and provides auto-completion for references to declared constants.&lt;/p&gt;
+&lt;div class=&quot;wp-caption aligncenter&quot; id=&quot;attachment_409&quot; style=&quot;width: 236px;&quot;&gt;&lt;img alt=&quot;&quot; class=&quot;size-full wp-image-409&quot; height=&quot;72&quot; src=&quot;https://www.nikostotz.de/blog/wp-content/uploads/2018/10/AttributeNamePreSelected.png&quot; width=&quot;226&quot; /&gt;&lt;p class=&quot;wp-caption-text&quot;&gt;Pre-selecting the most edited part&lt;/p&gt;&lt;/div&gt;
+&lt;p&gt;We hide the description feature from the Xtext editor, as it makes no sense to edit it in-line. Also, we pre-select only the attribute’s name. This way, we changed only the name without touching the other features, if the user pressed F2, typed something, and pressed enter.&lt;/p&gt;
+&lt;p&gt;We can still edit all of the features separately in the properties view.&lt;/p&gt;
+&lt;h3&gt;Markup Language for Descriptions&lt;/h3&gt;
+&lt;p&gt;Assume a model where every element can have a description. Formally, the description is just a string feature of the element. However, the user may use HTML-like tags in the description. A build server task collects the descriptions of all elements of one model and combines them into one HTML page. We’d have an Xtext grammar for HTML.&lt;/p&gt;
+&lt;div class=&quot;wp-caption aligncenter&quot; id=&quot;attachment_411&quot; style=&quot;width: 713px;&quot;&gt;&lt;img alt=&quot;&quot; class=&quot;size-full wp-image-411&quot; height=&quot;149&quot; src=&quot;https://www.nikostotz.de/blog/wp-content/uploads/2018/10/DescriptionProperties.png&quot; width=&quot;703&quot; /&gt;&lt;p class=&quot;wp-caption-text&quot;&gt;HTML-like documentation language with Xtext support in Properties View&lt;/p&gt;&lt;/div&gt;
+&lt;p&gt;As HTML goes, we need to start with a &lt;tt&gt;&amp;lt;html&amp;gt;&lt;/tt&gt; tag, followed by a &lt;tt&gt;&amp;lt;head&amp;gt;&lt;/tt&gt; section, and only in the &lt;tt&gt;&amp;lt;body&amp;gt;&lt;/tt&gt; the user may add their description text. Also, we need to finish the text by closing both &lt;tt&gt;&amp;lt;body&amp;gt;&lt;/tt&gt; and &lt;tt&gt;&amp;lt;html&amp;gt;&lt;/tt&gt;. We don’t want the user to add this boilerplate to every description, as it’s cumbersome, error-prone, and we’d need to remove it in the build step. Still, we’d like to use our Xtext grammar.&lt;/p&gt;
+&lt;p&gt;With Xtext / Sirius Integration, we define a prefix (&lt;tt&gt;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;&amp;lt;title&amp;gt;dummy&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;&lt;/tt&gt;) and suffix (&lt;tt&gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&lt;/tt&gt;). This way, the model contains only the actual description, and the user still benefits from all the goodies of our Xtext HTML language, like using only valid tags, or closing them in the correct order.&lt;/p&gt;
+&lt;p&gt;We can provide such an editor to the user within the diagram and/or in the properties view.&lt;/p&gt;
+&lt;h3&gt;Smart UML Class Associations&lt;/h3&gt;
+&lt;p&gt;Assume a model and diagram akin to UML class diagrams. Each class is represented by a rectangle, associations between classes are shown as connections.&lt;/p&gt;
+&lt;p&gt;The model is persisted with Xtext. Example:&lt;/p&gt;
+&lt;pre&gt;constant MAX_ROOMS = 23
+constant MAX_PEOPLE = 42
+constant MORE_CONSTANT = MAX_ROOMS
+
+class House {
+  public inhabitants: string[1..MAX_PEOPLE]
+}
+class Room {
+  public size: integer[2..2]
+}
+
+association rooms House --&amp;gt; Room[1..MAX_ROOMS]
+&lt;/pre&gt;
+&lt;p&gt;The Xtext grammar might be:&lt;/p&gt;
+&lt;pre&gt;grammar com.example.classes with org.eclipse.xtext.common.Terminals
+
+generate classes &quot;http://example.com/Classes&quot;
+
+ClassModel:
+	content+=Content*
+;
+
+Content:
+	Constant
+	| Class
+	| Association
+;
+
+Constant:
+	'constant'
+	name=ID
+	'=' initial=Value
+
+// omitting Class, Value, ...
+
+Association:
+	'association'
+	name=ID
+	source=[Class] '--&amp;gt;' target=[Class]
+	'[' lowerBound=Value '..' upperBound=Value ']' 
+&lt;/pre&gt;
+&lt;p&gt;We want to display and edit the name and multiplicity of the association as connection label. We want to get full Xtext support (e.g. auto-completion for referenced constants in multiplicity).&lt;/p&gt;
+&lt;p&gt;However, for technical reasons, we can only hide features at the beginning and/or end of the element’s text. To solve this issue, we create another Xtext language and use this one in our diagrams:&lt;/p&gt;
+&lt;pre&gt;grammar com.example.classes.edit with com.example.classes
+
+import &quot;http://example.com/Classes&quot;
+
+EditClassModel returns ClassModel:
+	ClassModel
+;
+
+@Override
+Association:
+	'association'
+	name=ID
+	'[' lowerBound=Value '..' upperBound=Value ']' 
+	source=[Class] '--&amp;gt;' target=[Class]
+;
+&lt;/pre&gt;
+&lt;p&gt;We extend the original grammar and override the Association grammar rule. All other grammar rules remain untouched. We move the &lt;tt&gt;source&lt;/tt&gt; and &lt;tt&gt;target&lt;/tt&gt; features to the end of the element’s text. This way, we can hide them from the user: They should edit the source and target by dragging the connection.&lt;/p&gt;
+&lt;div class=&quot;wp-caption aligncenter&quot; id=&quot;attachment_413&quot; style=&quot;width: 345px;&quot;&gt;&lt;img alt=&quot;&quot; class=&quot;size-full wp-image-413&quot; height=&quot;202&quot; src=&quot;https://www.nikostotz.de/blog/wp-content/uploads/2018/10/OriginalGrammar.png&quot; width=&quot;335&quot; /&gt;&lt;p class=&quot;wp-caption-text&quot;&gt;Model in original grammar. Note the association’s source and target are in-between its name and multiplicity.&lt;/p&gt;&lt;/div&gt;
+&lt;div class=&quot;wp-caption aligncenter&quot; id=&quot;attachment_408&quot; style=&quot;width: 499px;&quot;&gt;&lt;img alt=&quot;&quot; class=&quot;size-full wp-image-408&quot; height=&quot;195&quot; src=&quot;https://www.nikostotz.de/blog/wp-content/uploads/2018/10/ConnectionAlternativeGrammar.png&quot; width=&quot;489&quot; /&gt;&lt;p class=&quot;wp-caption-text&quot;&gt;Xtext editor using the alternative grammar, hiding the association’s source and target features.&lt;/p&gt;&lt;/div&gt;
+&lt;h2&gt;Complications&lt;/h2&gt;
+&lt;p&gt;We spent more than six months on this development, and had to overcome quite a few hurdles. Please read about some of them below.&lt;/p&gt;
+&lt;h3&gt;Deep Technology Stack&lt;/h3&gt;
+&lt;div class=&quot;wp-caption aligncenter&quot; id=&quot;attachment_427&quot; style=&quot;width: 867px;&quot;&gt;&lt;img alt=&quot;&quot; class=&quot;size-full wp-image-427&quot; height=&quot;409&quot; src=&quot;https://www.nikostotz.de/blog/wp-content/uploads/2018/10/StackedAbstractions.png&quot; width=&quot;857&quot; /&gt;&lt;p class=&quot;wp-caption-text&quot;&gt;Deep technology stack&lt;/p&gt;&lt;/div&gt;
+&lt;p&gt;Both Xtext and Sirius are very mature, flexible, and complex frameworks. It’s not surprising they both stand on the shoulder of giants, i.e. re-use lots of other technologies. Xtext / Sirius Integration balances on top of these behemoths standing on other giants. In this height, the air is thin and we feel the &lt;a href=&quot;https://en.wikipedia.org/wiki/Leaky_abstraction&quot;&gt;Law of Leaky Abstractions&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To achieve our goal of best possible integration, we have to weave together both technology stacks on various levels, leading to lots of gory gut work.&lt;/p&gt;
+&lt;p&gt;Sirius follows a very rigorous “separation of concerns” approach (partially because it seems to be required by underlying technologies). As a result, for each “thing” in Sirius (e.g. a node, connection, or tool), there is one class in each concern. As soon as we required even the slightest adjustment on any aspect, we had to duplicate this whole thread of classes throughout all concerns.&lt;/p&gt;
+&lt;h3&gt;Graphical / Event Integration&lt;/h3&gt;
+&lt;p&gt;I was most scared about the graphical and event integration, as my previous experience in this field suggested. Luckily, there is another Open Source project called &lt;a href=&quot;https://github.com/Yakindu/statecharts&quot;&gt;Yakindu Statecharts&lt;/a&gt;. It provides, among lots of other features, graphical state machine modeling. It’s not based on Sirius, but shares the same base (&lt;a href=&quot;https://www.eclipse.org/gef/&quot;&gt;Graphical Editing Framework GEF&lt;/a&gt;, to be precise). Yakindu Statecharts also provides Xtext editors within the diagram – jackpot! We could re-use most of the drawing, sizing, and event integration.&lt;/p&gt;
+&lt;p&gt;As a sidenote, I think this is a prime example of Open Source’s power: Xtext is Open Source, Sirius is Open Source, and so is Yakindu Statecharts. This whole integration would never have been possible without access to the source code! Statecharts happily accepted a pull request to improve re-usability of their code. Thanks again!&lt;/p&gt;
+&lt;h3&gt;Model Integration&lt;/h3&gt;
+&lt;p&gt;Both Xtext and Sirius edit a model, but in very different ways. Integrating them was the biggest technical challenge – as we knew from &lt;a href=&quot;https://www.eclipsecon.org/france2014/session/sirius-xtext.html&quot;&gt;previous&lt;/a&gt; &lt;a href=&quot;https://www.eclipsecon.org/france2017/session/integrating-xtext-and-sirius-strategies-and-pitfalls&quot;&gt;EclipseCon&lt;/a&gt; talks.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; The following discussion touches quite intricate issues; explaining them with text only is tough. If you’re lost, visit my talk at EclipseCon or view it’s video recording (I’ll link to it once it’s online).&lt;/p&gt;
+&lt;p&gt;Xtext / Sirius Integration can work on two different bases:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Storing the Xtext-edited model as text in the Sirius model&lt;/li&gt;
+&lt;li&gt;Editing the same model with Xtext and Sirius&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Base 1) is not that hard: When the user presses F2, we open an Xtext editor, read the text attribute from the Sirius model, Xtext parses it and creates its own, independent model. The user edits the Xtext model, and when the editor is closed, we ask Xtext for the changed text and write it back to the text attribute in the Sirius model.&lt;/p&gt;
+&lt;p&gt;Base 2) is much more challenging. To understand why, we have to look at some details.&lt;/p&gt;
+&lt;p&gt;(We assume the Sirius model is persisted via Xtext. At Altran, this is the most common use-case, as this allows sensible diff/merge on models without taming EMFCompare. Anyways, most of the discussion applies equally to other persistence formats.)&lt;/p&gt;
+&lt;p&gt;Let’s have a look at the lifecycle of a Sirius diagram persisted via Xtext:&lt;/p&gt;
+&lt;div class=&quot;wp-caption aligncenter&quot; id=&quot;attachment_426&quot; style=&quot;width: 863px;&quot;&gt;&lt;img alt=&quot;&quot; class=&quot;size-full wp-image-426&quot; height=&quot;382&quot; src=&quot;https://www.nikostotz.de/blog/wp-content/uploads/2018/10/EmfLifecycle.png&quot; width=&quot;853&quot; /&gt;&lt;p class=&quot;wp-caption-text&quot;&gt;Lifecycle of a Sirius diagram&lt;/p&gt;&lt;/div&gt;
+&lt;ol&gt;
+&lt;li&gt;The user opens a Sirius diagram.&lt;/li&gt;
+&lt;li&gt;Sirius figures out the diagram is based on a model that’s persisted via Xtext. Sirius asks Xtext to read the model.&lt;/li&gt;
+&lt;li&gt;Xtext reads the model text file.&lt;/li&gt;
+&lt;li&gt;Xtext parses the file contents and creates an read-only Abstract Syntax Tree (AST).&lt;/li&gt;
+&lt;li&gt;Xtext converts the AST into a model instance.&lt;/li&gt;
+&lt;li&gt;The model instance is ready to use. Sirius uses the model instance to display the diagram.&lt;/li&gt;
+&lt;li&gt;The user changes the diagram, e.g. they add some connections or remove some elements.&lt;/li&gt;
+&lt;li&gt;Sirius changes the underlying model without saving it. At this point, the contents of the file and the model instance differ.&lt;/li&gt;
+&lt;li&gt;The user saves the diagram.&lt;/li&gt;
+&lt;li&gt;Sirius asks Xtext to persist the current state of the model instance.&lt;/li&gt;
+&lt;li&gt;Xtext serializes the model into text. Xtext does not change the AST.&lt;/li&gt;
+&lt;li&gt;Xtext writes the text into the text file.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;So what changes if the user didn’t use Sirius to change the model, but the Xtext / Sirius Integration?&lt;/p&gt;
+&lt;div class=&quot;wp-caption aligncenter&quot; id=&quot;attachment_425&quot; style=&quot;width: 928px;&quot;&gt;&lt;img alt=&quot;&quot; class=&quot;size-full wp-image-425&quot; height=&quot;423&quot; src=&quot;https://www.nikostotz.de/blog/wp-content/uploads/2018/10/XtextLifecycle.png&quot; width=&quot;918&quot; /&gt;&lt;p class=&quot;wp-caption-text&quot;&gt;Lifecycle of Xtext edit within Sirius diagram&lt;/p&gt;&lt;/div&gt;
+&lt;p&gt;We should only show to the user the interesting part of the underlying model. If they pressed F2 on one UML Class Attribute (as an example), they should only edit this Attribute, not the whole model.&lt;br /&gt;
+We cannot use the existing AST, as it might be outdated. Also, for fundamental technical reasons, Xtext cannot parse/serialize parts of a model file.&lt;br /&gt;
+Thus, we ask Xtext to serialize the complete model instance into a memory buffer. We create a dummy Xtext file and copy the text there. Xtext does its usual work of parsing and creating the dummy model instance (which, at this point, is identical to Sirius’ model instance).&lt;br /&gt;
+We hide all text from the user they should not edit. Again for technical reasons, we can only hide text &lt;i&gt;before&lt;/i&gt; or &lt;i&gt;after&lt;/i&gt; the visible text, not somewhere in between. This allows also to hide some features of the edited attribute: If the UML Class Attribute’s description was the first feature in the model text, we can hide it – and the user cannot edit it any more.&lt;/p&gt;
+&lt;p&gt;The user changed the text to their wishes. As Xtext flags any issues directly, we assume the user did not introduce any errors. But all these changes happened in the dummy Xtext file; we have to get them back into the Sirius model instance.&lt;/p&gt;
+&lt;p&gt;We could try to merge the changed text from Xtext into the model’s text. But we all know text merge is not reliable on big changes, so we prefer to merge on a model basis. Given the known restrictions, model merge works mostly ok. It gets complicated if the user changed names or similar attributes that are part of an element’s URI.&lt;/p&gt;
+&lt;p&gt;Even more complicated are cross-references. Assume our model instance contains Constants and Classes with Attributes. The Attributes’ initial values can refer to the Constants. If the user pressed F2 on the Attribute, we create a complete copy into a dummy model instance. The user asks auto-complete for available Constants, and auto-complete proposes the Constants from the dummy model instance.&lt;br /&gt;
+Once the user is finished, we merge their changes back into the Sirius model instance. But we only merge the edited Attribute and throw away the rest of the model – including the referenced Constant!&lt;/p&gt;
+&lt;p&gt;Luckily, both Xtext and Sirius are based on EMF, and EMF knows a concept called proxies. If EMF loads a model and finds a reference to an element outside of this model, it only creates a placeholder, a.k.a. proxy, for the external element. This placeholder stores the URI of the external element. Once required, EMF loads the external resource and replaces the proxy with the real thing.&lt;br /&gt;
+We abuse this mechanism a bit to solve our dangling reference problem: Before merging the Attribute back into the Sirius model instance, we check the Attribute for any references to the dummy model. If we find one, we convert the target into a proxy. After finishing the merge we ask EMF to resolve all proxies in the Sirius model instance. As the target was there in the copied dummy model instance, and we didn’t change anything outside the merged part, we can be sure these proxies will be resolved.&lt;/p&gt;
+&lt;p&gt;We can follow a similar approach for references from the Sirius model instance to element merged back from the dummy model instance.&lt;/p&gt;
+&lt;h3&gt;odesign Integration&lt;/h3&gt;
+&lt;p&gt;The developer defines all aspects of a Sirius diagram in a odesign file. We wanted to keep this approach. Thankfully, Sirius provides all the necessary hooks – but they are hard to find. Interestingly, the hooks work very different for seemingly similar aspects: Adding context menu entries to the Properties part of the odesign file requires a completely different approach than adding context menu entries to the Diagram part of the odesign file.&lt;/p&gt;
+&lt;p&gt;I’m quite satisfied with the result: Only the most advanced use cases require coding outside the odesign file.&lt;/p&gt;
+&lt;h2&gt;Further Reading&lt;/h2&gt;
+&lt;p&gt;Please refer to the &lt;a href=&quot;https://altran-mde.github.io/xtext-sirius-integration.io/userguide/&quot;&gt;extensive user guide&lt;/a&gt; (also available as &lt;a href=&quot;https://altran-mde.github.io/xtext-sirius-integration.io/userguide/xtext-sirius-userguide.pdf&quot;&gt;PDF&lt;/a&gt;) for more details and known issues.&lt;/p&gt;
+&lt;p&gt;The github readme provides &lt;a href=&quot;https://github.com/altran-mde/xtext-sirius-integration/&quot;&gt;more details on the examples&lt;/a&gt; and information about required dependencies.&lt;/p&gt;
+&lt;p&gt;Xtext / Sirius integration is &lt;a href=&quot;https://github.com/altran-mde/xtext-sirius-integration/&quot;&gt;released under EPL 2&lt;/a&gt; at github.&lt;/p&gt;
+&lt;p&gt;We provide an &lt;a href=&quot;https://altran-mde.github.io/xtext-sirius-integration.io/p2/&quot;&gt;update site&lt;/a&gt;.&lt;/p&gt;</description>
+	<pubDate>Wed, 17 Oct 2018 13:55:12 +0000</pubDate>
+        <enclosure url="https://www.nikostotz.de/blog/wp-content/uploads/2018/10/AllFeatures.png" length="2854" type="image/png"/>
+</item>
+<item>
+	<title>N4JS: Short-Circuit Evaluation in N4JS</title>
+	<guid isPermaLink="false">tag:blogger.com,1999:blog-7569987920628430132.post-761854849853353188</guid>
+	<link>https://n4js.blogspot.com/2018/10/short-circuit-evaluation-in-n4js_17.html</link>
+	<description>&lt;h4&gt;Short-circuit evaluation is a popular feature of many programming languages and also part of N4JS. In this post, we show how the control-flow analysis of the N4JS-IDE deals with short-circuit evaluation, since it can have a substantial effect on the data flow and execution of a program.&lt;/h4&gt;&lt;br /&gt;&lt;br /&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;a href=&quot;https://4.bp.blogspot.com/-g6wjXUt3sao/W8buQnfTrcI/AAAAAAAAADk/kAsgHzdkJ1UFfWKwj-MvMgyk5_d09iwtACLcBGAs/s1600/introduction.png&quot; style=&quot;clear: left; float: left; margin-bottom: 1em; margin-right: 1em;&quot;&gt;&lt;img border=&quot;0&quot; src=&quot;https://4.bp.blogspot.com/-g6wjXUt3sao/W8buQnfTrcI/AAAAAAAAADk/kAsgHzdkJ1UFfWKwj-MvMgyk5_d09iwtACLcBGAs/s1600/introduction.png&quot; width=&quot;575&quot; /&gt;&lt;/a&gt;&lt;/div&gt;Short circuit evaluation is a means to improve runtime performance when evaluating boolean expressions. This improvement is a result of skipping code execution. The example above shows an &lt;span&gt;if&lt;/span&gt;-statement whose condition consists of two boolean expressions that combine the values of &lt;span&gt;1&lt;/span&gt;, &lt;span&gt;2&lt;/span&gt; and &lt;span&gt;3,&lt;/span&gt; and its control flow graph. Note that the number literals are placeholders for more meaningful subexpressions.&lt;br /&gt;&lt;br /&gt;First the &lt;i&gt;logical and&lt;/i&gt;, then the &lt;i&gt;logical or&lt;/i&gt; gets evaluated: &lt;span&gt;(1 &amp;amp;&amp;amp; 2) || 3&lt;/span&gt;. In case the expression &lt;span&gt;1 &amp;amp;&amp;amp; 2&lt;/span&gt; evaluates to true, the evaluation of the subclause &lt;span&gt;3&lt;/span&gt; will be skipped and the evaluation of the entire condition results to true. This skipping of nested boolean expressions is called &lt;i&gt;short circuit evaluation&lt;/i&gt;.&lt;br /&gt;&lt;br /&gt;However, instead of skipping expression &lt;span&gt;3&lt;/span&gt;, expression &lt;span&gt;2&lt;/span&gt; might be skipped. In case condition &lt;span&gt;1&lt;/span&gt; does not hold, the control flow will continue with condition &lt;span&gt;3&lt;/span&gt; right away. This control flow completely takes places within the if-condition, whereas the former short circuit targets the then block.&lt;br /&gt;&lt;br /&gt;The reasoning behind short circuit evaluation is  that the skipped code does not affect the result of the whole boolean  expression. If the left hand side of the logical or expression evaluates  to true, the whole or expression also does. Only if the left hand side  is false, the right hand side will be evaluated. Complementary, the  right hand side of a logical and expression is skipped in case the left  hand side evaluates to false.&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;h4&gt;Side Effects&lt;/h4&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;Risks of short circuit evaluation might arise in case a subexpression has side effects: These side effects will not occur if the subexpression is skipped. However, a program that relies on side effects of expressions inside an &lt;span&gt;if&lt;/span&gt;-condition can be called fragile (or adventurous). In any case it is recommended to write side-effect free conditions.&lt;/div&gt;&lt;br /&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;a href=&quot;https://2.bp.blogspot.com/-0JcnBeJ-1Rk/W8buRqUWCvI/AAAAAAAAADw/zYwwORwyclEdUHm5HQex4aKR5UPHlATIACLcBGAs/s1600/side_effects.png&quot; style=&quot;clear: left; float: left; margin-bottom: 1em; margin-right: 1em;&quot;&gt;&lt;img border=&quot;0&quot; src=&quot;https://2.bp.blogspot.com/-0JcnBeJ-1Rk/W8buRqUWCvI/AAAAAAAAADw/zYwwORwyclEdUHm5HQex4aKR5UPHlATIACLcBGAs/s1600/side_effects.png&quot; width=&quot;575&quot; /&gt;&lt;/a&gt;&lt;/div&gt;Have a look at the example above. In case variable &lt;span&gt;i&lt;/span&gt; has a value of zero, the right hand side expression &lt;span&gt;i++&lt;/span&gt; is executed, otherwise, it is skipped. The side effect here is the post-increment the value of &lt;span&gt;i&lt;/span&gt;. If the value of &lt;span&gt;i&lt;/span&gt; is other than zero, this value will be printed out. Otherwise, the value will be incremented but not printed. The control flow shows this behavior with the edge starting at &lt;span&gt;i&lt;/span&gt; and targeting the symbol &lt;span&gt;console&lt;/span&gt;.&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;h4&gt;Loops&lt;/h4&gt;&lt;br /&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;a href=&quot;https://2.bp.blogspot.com/-1L_PrkVxmYg/W8buQulSsEI/AAAAAAAAADc/Dh9U1bA9ZboCQP52QjjPIync_DTyJL2AQCLcBGAs/s1600/loops.png&quot; style=&quot;clear: left; float: left; margin-bottom: 1em; margin-right: 1em;&quot;&gt;&lt;img border=&quot;0&quot; src=&quot;https://2.bp.blogspot.com/-1L_PrkVxmYg/W8buQulSsEI/AAAAAAAAADc/Dh9U1bA9ZboCQP52QjjPIync_DTyJL2AQCLcBGAs/s1600/loops.png&quot; width=&quot;575&quot; /&gt;&lt;/a&gt;&lt;/div&gt;Loop conditions also benefit from short circuit evaluation. This is important to know when reasoning about the all possible control flow paths through the loop: Each short circuit will introduce another path. Combining all of them makes data flow in loops difficult to understand in case of side effects in the subconditions.&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;h4&gt;Creative use of short circuit evaluation&lt;/h4&gt;&lt;div&gt;&lt;br /&gt;Misusing short circuit evaluation can mimic if-statements by using  expressions but without using  the language feature of conditional expressions (i.e. &lt;span&gt;condition() ? then() : else()&lt;/span&gt;). This could be used when if-statements should be executed e.g. when passing  arguments to method calls, or when computing the update part of  for-loops.&lt;/div&gt;&lt;br /&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;a href=&quot;https://2.bp.blogspot.com/-bQAq2BWre9s/W8buRTY5OJI/AAAAAAAAADo/uzZ-OqHynNcfrh1k6jYMVbN2MkhiI9xtQCLcBGAs/s1600/modelling.png&quot; style=&quot;clear: left; float: left; margin-bottom: 1em; margin-right: 1em;&quot; width=&quot;575&quot;&gt;&lt;img border=&quot;0&quot; src=&quot;https://2.bp.blogspot.com/-bQAq2BWre9s/W8buRTY5OJI/AAAAAAAAADo/uzZ-OqHynNcfrh1k6jYMVbN2MkhiI9xtQCLcBGAs/s1600/modelling.png&quot; width=&quot;575&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;The picture above shows the two versions: the first uses an if-statement and the second uses an  expression statement. These two statements call the functions &lt;span&gt;condition&lt;/span&gt;, &lt;span&gt;then&lt;/span&gt; and &lt;span&gt;end&lt;/span&gt;. Depending on the return value of &lt;span&gt;condition&lt;/span&gt;, the function &lt;span&gt;then&lt;/span&gt; is  executed or not. Consequently, the printouts are either &quot;condition then  end&quot; or &quot;condition end&quot;, depending on the control flow.&lt;br /&gt;&lt;br /&gt;The corresponding control flows are depicted on the right: The upper three lines refer to the if-statement, and the lower three lines to the expression statement. They reveal that the expression statement  behaves similar to the if-statement. Note that the control flow edge  in the last line that skips the nodes &lt;span&gt;end&lt;/span&gt; and &lt;span&gt;end()&lt;/span&gt; is never traversed since the logical or expression always evaluates to true.&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;div style=&quot;text-align: right;&quot;&gt;&lt;span style=&quot;font-size: x-small;&quot;&gt;by Marcus Mews&lt;/span&gt;&lt;/div&gt;&lt;br /&gt;</description>
+	<pubDate>Wed, 17 Oct 2018 09:28:18 +0000</pubDate>
+	<author>noreply@blogger.com (Project N4JS)</author>
+</item>
+<item>
+	<title>Mike Milinkovich: Introducing the Jakarta EE Specification Process</title>
+	<guid isPermaLink="false">http://mmilinkov.wordpress.com/?p=1466</guid>
+	<link>https://eclipse-foundation.blog/2018/10/16/jakarta-spec-process/</link>
+	<description>&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;I am very happy to announce that we are publishing a draft of the &lt;/span&gt;&lt;a href=&quot;https://docs.google.com/document/d/1ongNUyGvZPtrcuxA7RQNV2qBESFcAphQbzdk3pUIQ5s/edit&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;Eclipse Foundation Specification Process&lt;/a&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt; for community review and feedback. This specification process will be used by Jakarta EE as the new open specification process, replacing the JCP process previously used for Java EE. It is also expected that this new process will be of interest to other Eclipse working groups. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;We are really looking forward to your feedback, which you can do via the Jakarta EE Community &lt;/span&gt;&lt;a href=&quot;https://accounts.eclipse.org/mailing-list/jakarta.ee-community&quot;&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;mailing list&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt; (preferred), or on the &lt;/span&gt;&lt;a href=&quot;https://docs.google.com/document/d/1ongNUyGvZPtrcuxA7RQNV2qBESFcAphQbzdk3pUIQ5s/edit&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;document comments&lt;/a&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;.  The feedback provided will be used as input to finalizing a first version of the specification process and its adoption by Jakarta EE and other working groups at the Eclipse Foundation.  &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;As you are reviewing this draft specification process, please keep in mind the following key points about the approach that was taken by the Specification Committee. &lt;/span&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li style=&quot;font-weight: 400;&quot;&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;We want to design a specification process to replace the JCP. While there are many differences with the JCP, the key objective was to make the whole process as lightweight as possible. &lt;/span&gt;&lt;/li&gt;
+&lt;li style=&quot;font-weight: 400;&quot;&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;We want the specification process to be as close to open source development as possible. This is actually not a trivial exercise, as by its very nature drafting specifications is a somewhat different process.&lt;/span&gt;&lt;/li&gt;
+&lt;li style=&quot;font-weight: 400;&quot;&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;This is the &lt;/span&gt;&lt;b&gt;Eclipse&lt;/b&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt; Spec Process, so we want to reuse the &lt;/span&gt;&lt;a href=&quot;https://www.eclipse.org/projects/dev_process/development_process.php&quot;&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;Eclipse Development Process&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt; wherever possible, and we want to ensure that the general flow and tone of the EDP is followed. &lt;/span&gt;&lt;/li&gt;
+&lt;li style=&quot;font-weight: 400;&quot;&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;We want to create a process that allows code-first development. Specifically, we want to enable a culture where experimentation can happen in open source and then have specifications be based on those experiences. &lt;/span&gt;&lt;/li&gt;
+&lt;li style=&quot;font-weight: 400;&quot;&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;We want the specifications that result from this process to be as high quality as possible. In particular, this means that we need to take care of the intellectual property flows, and to protect the community’s work from bad actors. This requirement manifests as two fundamentally important differences from the EDP: &lt;/span&gt;
+&lt;ul&gt;
+&lt;li style=&quot;font-weight: 400;&quot;&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;Specification Committee approval is required for releases from Spec Projects, in addition to the normal PMC approval; and &lt;/span&gt;&lt;/li&gt;
+&lt;li style=&quot;font-weight: 400;&quot;&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;We introduce the notion of “Participants” who are committers who represent specific member companies on a Spec Project. This is necessary to ensure that the IP contributions (particularly patents) from companies are properly captured by the process.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;All of us at the Eclipse Foundation would like to recognize the tireless efforts of the members of the Specification Committee. A lot of hard work has gone into this document, and it’s very much appreciated. We are certain that Jakarta EE, and many other Eclipse technologies, benefit from the thoughtful efforts of this Committee.  In particular, we would like to thank the following Specification Committee members and alternates: &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;padding-left: 60px;&quot;&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;Fujitsu: Kenji Kazumura​, Mikel DeNicola&lt;br /&gt;
+&lt;/span&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;IBM: Dan Bandera​, Kevin Sutter&lt;br /&gt;
+&lt;/span&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;Oracle: Bill Shannon​, Ed Bratt​, Dmitry Kornilov&lt;br /&gt;
+&lt;/span&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;Payara: Steve Millidge​, Arjan Tijms&lt;br /&gt;
+&lt;/span&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;Red Hat: Scott Stark, Mark Little&lt;br /&gt;
+&lt;/span&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;Tomitribe: David Blevins​, Richard Monson-Haefel&lt;br /&gt;
+&lt;/span&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;PMC Representative: Ivar Grimstad&lt;br /&gt;
+&lt;/span&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;Elected Members: Alex Theedom, Werner Keil​ &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;I also wish to recognize Tanja Obradovic and Wayne Beaton from the Eclipse Foundation team who have driven the process throughout – many thanks to you both!&lt;/span&gt;&lt;/p&gt;</description>
+	<pubDate>Tue, 16 Oct 2018 19:18:07 +0000</pubDate>
+</item>
+<item>
+	<title>Eclipse Ditto: Example demonstrating connectivity to an MQTT broker</title>
+	<guid isPermaLink="true">https://www.eclipse.org/ditto/2018-10-16-example-mqtt-bidirectional.html</guid>
+	<link>https://www.eclipse.org/ditto/2018-10-16-example-mqtt-bidirectional.html</link>
+	<description>&lt;p&gt;Eclipse Ditto can now connect to MQTT 3.1.1 brokers.&lt;/p&gt;
+
+&lt;p&gt;Perfect timing to happily welcome a new colleague to our team behind Eclipse Ditto: &lt;a href=&quot;https://github.com/joosdavid&quot;&gt;David&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In order to get familiar with Ditto and the development with digital twins, David was assigned with one of his first 
+tasks to get his hands on one of our newest features, &lt;a href=&quot;https://www.eclipse.org/ditto/connectivity-protocol-bindings-mqtt.html&quot;&gt;MQTT connectivity&lt;/a&gt; 
+which was released recently with milestone &lt;a href=&quot;https://www.eclipse.org/ditto/2018-09-27-milestone-announcement-080-M2.html&quot;&gt;0.8.0-M2&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;On his journey into digital twin land he made a great example with an ESP8266 powered board connected via an MQTT broker
+to Ditto and published it to the 
+&lt;a href=&quot;https://github.com/eclipse/ditto-examples/tree/master/mqtt-bidirectional&quot;&gt;Eclipse Ditto examples repository&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This example is about how to communicate between device and solution in a two way pattern through Ditto using MQTT. 
+  This means we will add a policy, a thing and a MQTT connection to Ditto. 
+  When Ditto ist set up and working, we will create real world device (“octopus board”) and connect it to it’s 
+  digital twin via MQTT.
+  &lt;br /&gt;&lt;br /&gt;
+  At the end, we will create a basic frontend webapp. 
+  The webapp will automatically connect to Ditto when you type in your credentials, automatically pull your things 
+  and show them in a list.
+  &lt;br /&gt;
+  You can create, modify and delete devices in the webapp and if there is a real world device connected to the thing 
+  in the list, you can send it a command message to control any feature on it. 
+  The list of things will always be up-to-date when you listen to server-sent-events, which you can activate easily 
+  with pressing a button.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;figure&gt;&lt;img alt=&quot;Eclipse Ditto bidirectional MQTT diagram&quot; class=&quot;docimage&quot; src=&quot;https://raw.githubusercontent.com/eclipse/ditto-examples/master/mqtt-bidirectional/img/diagram.jpg&quot; /&gt;Source: https://github.com/eclipse/ditto-examples&lt;/figure&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;We will use an Octopus-board with an ESP8266 on it. It has several sensors built in, but for simplicity we will
+ just use it’s temperature and altitude sensor. 
+ &lt;br /&gt;
+ To show the functionality of Eclipse Ditto messages, we will switch on/off a LED on the Octopus-board through it.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;If you have any wishes, improvements, are missing something
+or just want to get in touch with us, you can use one of
+our &lt;a href=&quot;https://eclipse.org/ditto/feedback.html&quot;&gt;feedback channels&lt;/a&gt;.&lt;/p&gt;
+
+&lt;figure&gt;&lt;img alt=&quot;Ditto&quot; class=&quot;docimage&quot; src=&quot;https://www.eclipse.org/ditto/images/ditto.svg&quot; /&gt;&lt;/figure&gt;
+
+&lt;p&gt;–&lt;br /&gt;
+The Eclipse Ditto team&lt;/p&gt;</description>
+	<pubDate>Tue, 16 Oct 2018 04:00:00 +0000</pubDate>
+</item>
+<item>
+	<title>EclipseCon Europe 2018: Smart Home Day</title>
+	<guid isPermaLink="false">https://www.eclipsecon.org/news/746 at https://www.eclipsecon.org</guid>
+	<link>https://www.eclipsecon.org/europe2018/news/smart-home-day</link>
+	<description>&lt;div class=&quot;field field-name-body field-type-text-with-summary field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;p&gt;Join us for the second installment of &lt;a href=&quot;https://www.eclipsecon.org/europe2018/smarthome&quot; rel=&quot;nofollow&quot; target=&quot;_blank&quot;&gt;Smart Home Day&lt;/a&gt; on 21 October, the Sunday before EclipseCon Europe.&lt;/p&gt;
+&lt;p&gt;The Smart Home Day focuses specifically on &lt;a href=&quot;https://www.eclipse.org/smarthome&quot; rel=&quot;nofollow&quot; target=&quot;_blank&quot;&gt;Eclipse SmartHome&lt;/a&gt;-based solutions such as &lt;a href=&quot;https://www.openhab.org/&quot; rel=&quot;nofollow&quot; target=&quot;_blank&quot;&gt;openHAB&lt;/a&gt; and &lt;a href=&quot;https://www.qivicon.com/&quot; rel=&quot;nofollow&quot; target=&quot;_blank&quot;&gt;QIVICON&lt;/a&gt;. It is an awesome opportunity for all community members to meet and exchange ideas.&lt;/p&gt;
+&lt;p&gt;There will be great talks from core project maintainers, solution providers, and other community members. The agenda has been carefully compiled to addresses developers, tech-savvy users, and other smart home enthusiasts alike.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-field-news-image field-type-image field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;a href=&quot;https://www.eclipsecon.org/europe2018/news/smart-home-day&quot;&gt;&lt;img alt=&quot;&quot; class=&quot;img-responsive block-center&quot; height=&quot;250&quot; src=&quot;https://www.eclipsecon.org/sites/default/files/styles/solstice_news_-_default_-_thumbnail/public/news/shd_logo_square.png?itok=4AOOs8lA&quot; width=&quot;250&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description>
+	<pubDate>Sat, 13 Oct 2018 16:30:47 +0000</pubDate>
+</item>
+<item>
+	<title>Donald Raab: Ten reasons to use Eclipse Collections</title>
+	<guid isPermaLink="false">https://medium.com/p/91593104af9d</guid>
+	<link>https://medium.com/oracledevs/ten-reasons-to-use-eclipse-collections-91593104af9d?source=rss-df39b86e9f04------2</link>
+	<description>&lt;p&gt;You may only need one.&lt;/p&gt;&lt;figure&gt;&lt;img alt=&quot;&quot; src=&quot;https://cdn-images-1.medium.com/max/1024/1*CLFvYwgK9DI_NMtLu8rwFg.png&quot; /&gt;It’s a sign&lt;/figure&gt;&lt;h3&gt;Top Ten Reasons to use &lt;a href=&quot;http://www.eclipse.org/collections/&quot;&gt;Eclipse collections&lt;/a&gt;&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;Rich, fluent, and functional APIs with good &lt;a href=&quot;https://medium.com/@donraab/symmetric-sympathy-2c59d4541d60&quot;&gt;symmetry&lt;/a&gt; (productivity)&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://medium.com/oracledevs/unifiedset-the-memory-saver-25b830745959&quot;&gt;Memory Efficiency&lt;/a&gt; (performance)&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://medium.com/@donraab/the-4am-jamestown-scotland-ferry-and-other-optimization-strategies-66365ac415ef&quot;&gt;Optimized Eager APIs &lt;/a&gt;(performance)&lt;/li&gt;&lt;li&gt;Primitive Collections (productivity &amp;amp; performance)&lt;/li&gt;&lt;li&gt;Immutable Collections (predictability and performance)&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://medium.com/@donraab/lazy-and-inexhaustible-f41ffda857dc&quot;&gt;Lazy API&lt;/a&gt;s (performance)&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://www.infoq.com/presentations/java-streams-scala-parallel-collections&quot;&gt;Parallel APIs &lt;/a&gt;(performance)&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://medium.com/oracledevs/multimap-how-it-works-a3430f549d35&quot;&gt;Multimaps&lt;/a&gt; (productivity and type safety)&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://medium.com/oracledevs/bag-the-counter-2689e901aadb&quot;&gt;Bags&lt;/a&gt; (productivity and type safety)&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://medium.com/@donraab/as-a-matter-of-factory-part-1-mutable-75cc2c5d72d9&quot;&gt;Mutable&lt;/a&gt; and &lt;a href=&quot;https://medium.com/@donraab/as-a-matter-of-factory-part-2-immutable-8cb72ff897ee&quot;&gt;Immutable&lt;/a&gt; Collection Factories (productivity)&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;If the collection framework(s) you are using today is (are) missing one or more of these features, and you need them, then it would really be worth your time to check out and try &lt;a href=&quot;https://github.com/eclipse/eclipse-collections&quot;&gt;Eclipse Collections&lt;/a&gt;.&lt;/p&gt;&lt;h3&gt;Additional Reasons to try Eclipse Collections&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;It’s open source and &lt;a href=&quot;https://projects.eclipse.org/projects/technology.collections&quot;&gt;managed at the Eclipse Foundation&lt;/a&gt; and you can contribute to the library if there is something you need&lt;/li&gt;&lt;li&gt;Eclipse Collections &lt;a href=&quot;http://eclipse.github.io/eclipse-collections-kata/api-design/#/5/2&quot;&gt;9.0&lt;/a&gt;, &lt;a href=&quot;http://eclipse.github.io/eclipse-collections-kata/api-design/#/5/1&quot;&gt;9.1&lt;/a&gt; and &lt;a href=&quot;http://eclipse.github.io/eclipse-collections-kata/api-design/#/5&quot;&gt;9.2 &lt;/a&gt;were released with a lot useful features that were contributed by 30 members of the open source community&lt;/li&gt;&lt;li&gt;There are fun &lt;a href=&quot;https://medium.com/@donraab/a-tale-of-two-katas-ec956410d26d&quot;&gt;code katas&lt;/a&gt; to get you started&lt;/li&gt;&lt;li&gt;Easy to understand and &lt;a href=&quot;https://www.infoq.com/articles/Refactoring-to-Eclipse-Collections&quot;&gt;refactor to&lt;/a&gt; if you already know lambdas/ streams&lt;/li&gt;&lt;li&gt;The Eclipse Collections &lt;a href=&quot;http://www.eclipse.org/collections/&quot;&gt;website&lt;/a&gt; is available in seven different languages&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/eclipse/eclipse-collections&quot;&gt;&lt;em&gt;Eclipse Collections&lt;/em&gt;&lt;/a&gt;&lt;em&gt; is open for &lt;/em&gt;&lt;a href=&quot;https://github.com/eclipse/eclipse-collections/blob/master/CONTRIBUTING.md&quot;&gt;&lt;em&gt;contributions&lt;/em&gt;&lt;/a&gt;&lt;em&gt;. If you like the library, you can let us know by starring it on GitHub.&lt;/em&gt;&lt;/p&gt;&lt;img height=&quot;1&quot; src=&quot;https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=91593104af9d&quot; width=&quot;1&quot; /&gt;&lt;hr /&gt;&lt;p&gt;&lt;a href=&quot;https://medium.com/oracledevs/ten-reasons-to-use-eclipse-collections-91593104af9d&quot;&gt;Ten reasons to use Eclipse Collections&lt;/a&gt; was originally published in &lt;a href=&quot;https://medium.com/oracledevs&quot;&gt;Oracle Developers&lt;/a&gt; on Medium, where people are continuing the conversation by highlighting and responding to this story.&lt;/p&gt;</description>
+	<pubDate>Fri, 12 Oct 2018 02:37:52 +0000</pubDate>
+</item>
+<item>
+	<title>InfoQ Eclipse feed: Presentation: &quot;Yo... Ask Me Anything&quot; - Panel of NY Senior Java Developers</title>
+	<guid isPermaLink="true">https://www.infoq.com/presentations/panel-java-ny?utm_campaign=infoq_content&amp;utm_source=infoq&amp;utm_medium=feed&amp;utm_term=Eclipse</guid>
+	<link>https://www.infoq.com/presentations/panel-java-ny?utm_campaign=infoq_content&amp;utm_source=infoq&amp;utm_medium=feed&amp;utm_term=Eclipse</link>
+	<description>&lt;img src=&quot;https://res.infoq.com/presentations/panel-java-ny/en/headerimage/ask-me-anything-h-1539606845177.jpeg&quot; /&gt;&lt;p&gt;The panelists discuss thoughts on the latest trends in Java, the new release model, modules, modern garbage collectors, Kotlin for the enterprise, Eclipse stewardship of JEE and the rising complexity of the Java source language.&lt;/p&gt; &lt;i&gt;By Justin Lee, Don Raab, Chandra Guntur, Sai Sharan Donthi, Jeanne Boyarsky&lt;/i&gt;</description>
+	<pubDate>Thu, 11 Oct 2018 03:28:00 +0000</pubDate>
+</item>
+<item>
+	<title>Scott Lewis: ECF 3.14.3 released</title>
+	<guid isPermaLink="false">tag:blogger.com,1999:blog-20358640.post-960976162722054014</guid>
+	<link>http://eclipseecf.blogspot.com/2018/10/ecf-3143-released.html</link>
+	<description>ECF 3.14.3 has been &lt;a href=&quot;http://www.eclipse.org/ecf/downloads.php&quot;&gt;released&lt;/a&gt;.  This is a bug fix release, but in addition to the fixes a number of usage examples have been created:&lt;br /&gt;&lt;br /&gt;&lt;a href=&quot;http://eclipseecf.blogspot.com/2018/08/osgi-remote-services-between-python-and.html&quot;&gt;Remote Services Between Java and Python&lt;/a&gt; and Python for &lt;a href=&quot;http://eclipseecf.blogspot.com/2018/08/python-for-osgi-remote-services.html&quot;&gt;OSGi Remote Services&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;&lt;a href=&quot;http://eclipseecf.blogspot.com/2018/07/rest-remote-services-with-karaf-and.html&quot;&gt;RESTful Remote Services Using either CXF or Jersey&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;&lt;a href=&quot;http://eclipseecf.blogspot.com/2018/06/ecf-photon-supports-osgi-r7-async.html&quot;&gt;Using OSGi R7 Async Remote Services&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;&lt;a href=&quot;http://eclipseecf.blogspot.com/2018/04/ecf-photon-adds-gogo-commands.html&quot;&gt;Using Gogo Commands and RSA for Controlling Remote Services&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;&lt;a href=&quot;http://eclipseecf.blogspot.com/2018/04/ecf-photon-supports-bndtools.html&quot;&gt;Using BndTools 4 for Developing OSGi Remote Services&lt;/a&gt;</description>
+	<pubDate>Wed, 10 Oct 2018 00:26:57 +0000</pubDate>
+	<author>noreply@blogger.com (Scott Lewis)</author>
+</item>
+<item>
+	<title>JBoss Tools Team: JBoss Tools and Red Hat Developer Studio for Eclipse 2018-09</title>
+	<guid isPermaLink="true">https://tools.jboss.org/blog/12.9.0.html</guid>
+	<link>https://tools.jboss.org/blog/12.9.0.html</link>
+	<description>&lt;div&gt;&lt;div id=&quot;preamble&quot;&gt;
+      &lt;div class=&quot;sectionbody&quot;&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://tools.jboss.org/downloads/jbosstools/2018-09/4.9.0.Final.html&quot;&gt;JBoss Tools 4.9.0&lt;/a&gt; and &lt;a href=&quot;https://tools.jboss.org/downloads/devstudio/2018-09/12.9.0.GA.html&quot;&gt;Red Hat Developer Studio 12.9&lt;/a&gt; for Eclipse 2018-09 are here waiting for you. Check it out!&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;devstudio12&quot; src=&quot;https://tools.jboss.org/blog/images/devstudio12.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect1&quot;&gt;
+      &lt;h2 id=&quot;installation&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#installation&quot;&gt;&lt;/a&gt;Installation&lt;/h2&gt;
+      &lt;div class=&quot;sectionbody&quot;&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Red Hat Developer Studio comes with everything pre-bundled in its installer. Simply download it from our &lt;a href=&quot;https://developers.redhat.com/products/devstudio/overview/&quot;&gt;Red Hat Developer product page&lt;/a&gt; and run it like this:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;literalblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;pre&gt;java -jar devstudio-&amp;lt;installername&amp;gt;.jar&lt;/pre&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;JBoss Tools or Bring-Your-Own-Eclipse (BYOE) Developer Studio require a bit more:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;This release requires at least Eclipse 4.9 (2018-09) but we recommend
+      using the latest &lt;a href=&quot;http://www.eclipse.org/downloads/packages/release/2018-09/r/eclipse-ide-java-ee-developers&quot;&gt;Eclipse 4.9 2018-09 JEE Bundle&lt;/a&gt; since then you get most of the dependencies preinstalled.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Once you have installed Eclipse, you can either find us on the Eclipse Marketplace under &quot;JBoss Tools&quot; or &quot;Red Hat Developer Studio&quot;.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;For JBoss Tools, you can also use our update site directly.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;literalblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;pre&gt;http://download.jboss.org/jbosstools/photon/stable/updates/&lt;/pre&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect1&quot;&gt;
+      &lt;h2 id=&quot;what-is-new&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#what-is-new&quot;&gt;&lt;/a&gt;What is new?&lt;/h2&gt;
+      &lt;div class=&quot;sectionbody&quot;&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Our main focus for this release was on adoption of Java11, improvements for container based development and bug fixing.
+      Eclipse 2018-09 itself has a lot of new cool stuff but let me highlight just a few updates in both Eclipse 2018-09 and JBoss Tools plugins that I think are worth mentioning.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect2&quot;&gt;
+      &lt;h3 id=&quot;openshift-3&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#openshift-3&quot;&gt;&lt;/a&gt;OpenShift 3&lt;/h3&gt;
+      &lt;div class=&quot;sect3&quot;&gt;
+      &lt;h4 id=&quot;inner-loop-for-spring-boot-applications&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#inner-loop-for-spring-boot-applications&quot;&gt;&lt;/a&gt;Inner loop for Spring Boot applications&lt;/h4&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Although Spring Boot applications were already supported by the OpenShift server adapter,
+      the global developer experience has been enhanced. Let’s complete the full workflow.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect4&quot;&gt;
+      &lt;h5 id=&quot;bootstrapping-your-spring-boot-applications&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#bootstrapping-your-spring-boot-applications&quot;&gt;&lt;/a&gt;Bootstrapping your Spring Boot applications&lt;/h5&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;A new generator (wizard) has been added to JBoss Tools. It’s called the Launcher
+      application as it’s based on the fabric8-launcher project. When you launch JBoss
+      Tools, you should see this in Red Hat Central:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;spring boot inner loop&quot; src=&quot;https://tools.jboss.org/documentation/whatsnew/openshift/images/spring-boot-inner-loop.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Click on the &lt;code&gt;&lt;code&gt;Launcher application&lt;/code&gt;&lt;/code&gt; link and the following wizard will appear:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;spring boot inner loop1&quot; src=&quot;https://tools.jboss.org/documentation/whatsnew/openshift/images/spring-boot-inner-loop1.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Switch the &lt;code&gt;&lt;code&gt;Mission&lt;/code&gt;&lt;/code&gt; field to &lt;code&gt;&lt;code&gt;rest-http &lt;/code&gt;&lt;/code&gt; as we want to generate a simple
+      REST application and switch the &lt;code&gt;&lt;code&gt;Runtime&lt;/code&gt;&lt;/code&gt; field to &lt;code&gt;&lt;code&gt;spring-boot current-community&lt;/code&gt;&lt;/code&gt;
+      as we want to generate a Spring Boot based application.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Then set the &lt;code&gt;&lt;code&gt;Project name&lt;/code&gt;&lt;/code&gt; field to &lt;code&gt;&lt;code&gt;myfirstrestapp&lt;/code&gt;&lt;/code&gt; and leave other fields as-is.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;spring boot inner loop2&quot; src=&quot;https://tools.jboss.org/documentation/whatsnew/openshift/images/spring-boot-inner-loop2.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Click the &lt;code&gt;&lt;code&gt;Finish&lt;/code&gt;&lt;/code&gt; button. A new project will be added to your local workspace.
+      It may takes some times as Maven will resolve all the Spring Boot dependencies and
+      thus need to download them from the Internet.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;When the project is build and if you expand the &lt;code&gt;&lt;code&gt;myfirstrestapp&lt;/code&gt;&lt;/code&gt; in the &lt;code&gt;&lt;code&gt;Project explorer&lt;/code&gt;&lt;/code&gt;
+      window, you should see this:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;spring boot inner loop3&quot; src=&quot;https://tools.jboss.org/documentation/whatsnew/openshift/images/spring-boot-inner-loop3.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect4&quot;&gt;
+      &lt;h5 id=&quot;storing-your-source-code-on-github&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#storing-your-source-code-on-github&quot;&gt;&lt;/a&gt;Storing your source code on GitHub&lt;/h5&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;As OpenShift builder images retrieves code on a Git repository, we first need to push
+      the just generated application code to GitHub. The following section assumes that you
+      created a repository called &lt;code&gt;&lt;code&gt;myfirstrestapp&lt;/code&gt;&lt;/code&gt; under your GitHub account.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;We will first create a local Git repository for our application code then push it to
+      GitHub.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Select the &lt;code&gt;&lt;code&gt;myfirstrestapp&lt;/code&gt;&lt;/code&gt; project and right click the &lt;code&gt;&lt;code&gt;Team → Share project…​&lt;/code&gt;&lt;/code&gt;
+      menu item:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;spring boot inner loop4&quot; src=&quot;https://tools.jboss.org/documentation/whatsnew/openshift/images/spring-boot-inner-loop4.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Then select the &lt;code&gt;&lt;code&gt;Git&lt;/code&gt;&lt;/code&gt; repository type and click the &lt;code&gt;&lt;code&gt;Next&lt;/code&gt;&lt;/code&gt; button:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;spring boot inner loop5&quot; src=&quot;https://tools.jboss.org/documentation/whatsnew/openshift/images/spring-boot-inner-loop5.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Select the &lt;code&gt;&lt;code&gt;Use or create repository in parent folder of project&lt;/code&gt;&lt;/code&gt; checkbox
+      then select the &lt;code&gt;&lt;code&gt;myfirstrestapp&lt;/code&gt;&lt;/code&gt; project:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;spring boot inner loop6&quot; src=&quot;https://tools.jboss.org/documentation/whatsnew/openshift/images/spring-boot-inner-loop6.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Click on the &lt;code&gt;&lt;code&gt;Create repository&lt;/code&gt;&lt;/code&gt; button and the on the &lt;code&gt;&lt;code&gt;Finish&lt;/code&gt;&lt;/code&gt; button.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;The &lt;code&gt;&lt;code&gt;Project explorer&lt;/code&gt;&lt;/code&gt; view is updated:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;spring boot inner loop7&quot; src=&quot;https://tools.jboss.org/documentation/whatsnew/openshift/images/spring-boot-inner-loop7.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Select the &lt;code&gt;&lt;code&gt;myfirstrestapp&lt;/code&gt;&lt;/code&gt; project and right click
+      the &lt;code&gt;&lt;code&gt;Team → Show in Repositories View&lt;/code&gt;&lt;/code&gt; menu item. A new view
+      called &lt;code&gt;&lt;code&gt;Git Repositories&lt;/code&gt;&lt;/code&gt; will be added to the perspective:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;spring boot inner loop8&quot; src=&quot;https://tools.jboss.org/documentation/whatsnew/openshift/images/spring-boot-inner-loop8.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Inside this view, select the &lt;code&gt;&lt;code&gt;Remotes&lt;/code&gt;&lt;/code&gt; node and right click
+      the &lt;code&gt;&lt;code&gt;Create Remote…​&lt;/code&gt;&lt;/code&gt; menu item. The following dialog will be displayed:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;spring boot inner loop9&quot; src=&quot;https://tools.jboss.org/documentation/whatsnew/openshift/images/spring-boot-inner-loop9.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Click on the &lt;code&gt;&lt;code&gt;OK&lt;/code&gt;&lt;/code&gt; button, the following dialog will be displayed:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;spring boot inner loop10&quot; src=&quot;https://tools.jboss.org/documentation/whatsnew/openshift/images/spring-boot-inner-loop10.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Click on the &lt;code&gt;&lt;code&gt;Change…​&lt;/code&gt;&lt;/code&gt; button and enter &lt;code&gt;&lt;code&gt;git@github.com:GITHUB_USER/myfirstrestapp&lt;/code&gt;&lt;/code&gt;
+      in the &lt;code&gt;&lt;code&gt;URI&lt;/code&gt;&lt;/code&gt; field, replacing &lt;code&gt;&lt;code&gt;GITHUB_USER&lt;/code&gt;&lt;/code&gt; by your real GitHub user name.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Then click the &lt;code&gt;&lt;code&gt;Finish&lt;/code&gt;&lt;/code&gt; button and then on the &lt;code&gt;&lt;code&gt;Save&lt;/code&gt;&lt;/code&gt; button.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect5&quot;&gt;
+      &lt;h6 id=&quot;pushing-code-to-github&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#pushing-code-to-github&quot;&gt;&lt;/a&gt;Pushing code to GitHub&lt;/h6&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;We are now ready to push our application code to GitHub. Select the &lt;code&gt;&lt;code&gt;myfirstrestapp&lt;/code&gt;&lt;/code&gt; project
+      in the &lt;code&gt;&lt;code&gt;Project explorer&lt;/code&gt;&lt;/code&gt; view, right click the &lt;code&gt;&lt;code&gt;Team → Commit&lt;/code&gt;&lt;/code&gt; menu item. A new view
+      call &lt;code&gt;&lt;code&gt;Git Staging&lt;/code&gt;&lt;/code&gt; will open:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;spring boot inner loop11&quot; src=&quot;https://tools.jboss.org/documentation/whatsnew/openshift/images/spring-boot-inner-loop11.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Double click on the view title to maximize it:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;spring boot inner loop12&quot; src=&quot;https://tools.jboss.org/documentation/whatsnew/openshift/images/spring-boot-inner-loop12.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Select all the files listed in the &lt;code&gt;&lt;code&gt;Unstaged changes&lt;/code&gt;&lt;/code&gt; list and click the &amp;amp;apos+&amp;amp;apos button. The
+      files will then move to the &lt;code&gt;&lt;code&gt;Staged Changes&lt;/code&gt;&lt;/code&gt; list:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;spring boot inner loop13&quot; src=&quot;https://tools.jboss.org/documentation/whatsnew/openshift/images/spring-boot-inner-loop13.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Enter a commit message (ex &amp;amp;aposInitial version&amp;amp;apos) and click the &lt;code&gt;&lt;code&gt;Commit and Push…​&lt;/code&gt;&lt;/code&gt; button.
+      the following dialog will be displayed:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;spring boot inner loop14&quot; src=&quot;https://tools.jboss.org/documentation/whatsnew/openshift/images/spring-boot-inner-loop14.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Click on the &lt;code&gt;&lt;code&gt;Next&lt;/code&gt;&lt;/code&gt; button:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;spring boot inner loop15&quot; src=&quot;https://tools.jboss.org/documentation/whatsnew/openshift/images/spring-boot-inner-loop15.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Click on the &lt;code&gt;&lt;code&gt;Finish&lt;/code&gt;&lt;/code&gt; button to start the push operation.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;A dialog with the result of the push operation will be displayed. Click the &lt;code&gt;&lt;code&gt;OK&lt;/code&gt;&lt;/code&gt; to
+      dismiss it.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect5&quot;&gt;
+      &lt;h6 id=&quot;add-spring-boot-devtools-to-the-packaged-application&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#add-spring-boot-devtools-to-the-packaged-application&quot;&gt;&lt;/a&gt;Add Spring Boot Devtools to the packaged application&lt;/h6&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;In order to support live update on an OpenShift cluster, we must add Spring Boot
+      DevTools to our Spring Boot application.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Open the &lt;code&gt;&lt;code&gt;pom.xml&lt;/code&gt;&lt;/code&gt; in the  &lt;code&gt;&lt;code&gt;myfirstrestapp&lt;/code&gt;&lt;/code&gt;. Locate the &lt;code&gt;&lt;code&gt;spring-boot-maven-plugin&lt;/code&gt;&lt;/code&gt;
+      and add the following section:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;listingblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;pre class=&quot;prettyprint highlight&quot;&gt;&lt;code class=&quot;language-xml&quot;&gt;            &amp;lt;configuration&amp;gt;
+                    &amp;lt;excludeDevtools&amp;gt;false&amp;lt;/excludeDevtools&amp;gt;
+                  &amp;lt;/configuration&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;The whole &lt;code&gt;&lt;code&gt;spring-boot-maven-plugin&lt;/code&gt;&lt;/code&gt; section is given below:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;listingblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;pre class=&quot;prettyprint highlight&quot;&gt;&lt;code class=&quot;language-xml&quot;&gt;      &amp;lt;plugin&amp;gt;
+              &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+              &amp;lt;artifactId&amp;gt;spring-boot-maven-plugin&amp;lt;/artifactId&amp;gt;
+              &amp;lt;executions&amp;gt;
+                &amp;lt;execution&amp;gt;
+                  &amp;lt;goals&amp;gt;
+                    &amp;lt;goal&amp;gt;repackage&amp;lt;/goal&amp;gt;
+                  &amp;lt;/goals&amp;gt;
+                  &amp;lt;configuration&amp;gt;
+                    &amp;lt;excludeDevtools&amp;gt;false&amp;lt;/excludeDevtools&amp;gt;
+                  &amp;lt;/configuration&amp;gt;
+                &amp;lt;/execution&amp;gt;
+              &amp;lt;/executions&amp;gt;
+            &amp;lt;/plugin&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Close and save the &lt;code&gt;&lt;code&gt;pom.xml&lt;/code&gt;&lt;/code&gt; file.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Push the change to GitHub: select the &lt;code&gt;&lt;code&gt;Team → Commit…​&lt;/code&gt;&lt;/code&gt; with a new commit
+      message (ex &amp;amp;aposWith DevTools&amp;amp;apos)&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect4&quot;&gt;
+      &lt;h5 id=&quot;deploy-the-application-on-openshift&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#deploy-the-application-on-openshift&quot;&gt;&lt;/a&gt;Deploy the application on OpenShift&lt;/h5&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Before we can deploy the application on OpenShift, we must first create an ImageStream on
+      our OpenShift cluster. The reason is that the Spring Boot support relies on S2I builds
+      that will explode the Spring Boot uber JAR when Spring Boot DevTools is present. As this
+      is not supported by all Java based S2I images, we will use one that supports it, ie fabric8/s2i-java:2.2&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;First, in the &lt;code&gt;&lt;code&gt;myfirstrestapp&lt;/code&gt;&lt;/code&gt; project, create a new JSON file called &lt;code&gt;&lt;code&gt;springboot.json&lt;/code&gt;&lt;/code&gt;
+      and set the content of this file to:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;listingblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;pre class=&quot;prettyprint highlight&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;{
+          &quot;apiVersion&quot;: &quot;image.openshift.io/v1&quot;,
+          &quot;kind&quot;: &quot;ImageStream&quot;,
+      	&quot;metadata&quot;: {
+      		&quot;name&quot;: &quot;springboot&quot;
+      	},
+          &quot;spec&quot;: {
+              &quot;lookupPolicy&quot;: {
+                  &quot;local&quot;: false
+              },
+              &quot;tags&quot;: [
+                  {
+                      &quot;annotations&quot;: {
+      					&quot;tags&quot;: &quot;builder,java&quot;
+      				},
+                      &quot;from&quot;: {
+                          &quot;kind&quot;: &quot;DockerImage&quot;,
+                          &quot;name&quot;: &quot;registry.access.redhat.com/fuse7/fuse-java-openshift:1.1&quot;
+                      },
+                      &quot;importPolicy&quot;: {},
+                      &quot;name&quot;: &quot;1.1&quot;,
+                      &quot;referencePolicy&quot;: {
+                          &quot;type&quot;: &quot;Source&quot;
+                      }
+                  }
+              ]
+          }
+      }&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Then, from the OpenShift explorer view, select the OpenShift connection for your cluster (if you don’t have
+      one already defined, you must define it), right click on the &lt;code&gt;&lt;code&gt;New → Resource…​&lt;/code&gt;&lt;/code&gt; menu item and the
+      following dialog will be displayed:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;spring boot inner loop16&quot; src=&quot;https://tools.jboss.org/documentation/whatsnew/openshift/images/spring-boot-inner-loop16.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;You can select the OpenShift project you want to work with and then click on
+      the &lt;code&gt;&lt;code&gt;Browse Workspace…​&lt;/code&gt;&lt;/code&gt; button and select the &lt;code&gt;&lt;code&gt;springboot.json&lt;/code&gt;&lt;/code&gt; file
+      in the &lt;code&gt;&lt;code&gt;myfirstrestapp&lt;/code&gt;&lt;/code&gt; project:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;spring boot inner loop17&quot; src=&quot;https://tools.jboss.org/documentation/whatsnew/openshift/images/spring-boot-inner-loop17.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Click the &lt;code&gt;&lt;code&gt;OK&lt;/code&gt;&lt;/code&gt; and &lt;code&gt;&lt;code&gt;Finish&lt;/code&gt;&lt;/code&gt; buttons. The new ImageStream will be created and a status
+      dialog will be displayed:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;spring boot inner loop18&quot; src=&quot;https://tools.jboss.org/documentation/whatsnew/openshift/images/spring-boot-inner-loop18.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect5&quot;&gt;
+      &lt;h6 id=&quot;create-the-application-on-openshift&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#create-the-application-on-openshift&quot;&gt;&lt;/a&gt;Create the application on OpenShift&lt;/h6&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;We’re now ready to create the application on the OpenShift cluster. Select the OpenShift
+      connection, right click the &lt;code&gt;&lt;code&gt;New → Application…​&lt;/code&gt;&lt;/code&gt; menu item. If you scroll down the
+      list, you should see the &lt;code&gt;&lt;code&gt;springboot&lt;/code&gt;&lt;/code&gt; ImageStream we just created:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;spring boot inner loop19&quot; src=&quot;https://tools.jboss.org/documentation/whatsnew/openshift/images/spring-boot-inner-loop19.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Select this ImageStream and click the &lt;code&gt;&lt;code&gt;Next&lt;/code&gt;&lt;/code&gt; button:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;spring boot inner loop20&quot; src=&quot;https://tools.jboss.org/documentation/whatsnew/openshift/images/spring-boot-inner-loop20.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Enter &lt;code&gt;&lt;code&gt;`myfirstrestapp&lt;/code&gt;&lt;/code&gt; in the &lt;code&gt;&lt;code&gt;`Name&lt;/code&gt;&lt;code&gt;
+      field, &lt;/code&gt;`https://github.com/GITHUB_USER/myfirstrestapp&lt;code&gt;&lt;/code&gt; in the &lt;/code&gt;&lt;code&gt;Git Repository URL&lt;code&gt;&lt;/code&gt;
+      field, replacing &lt;/code&gt;&lt;code&gt;GITHUB_USER&lt;code&gt;&lt;/code&gt; by your real GitHub user name and click
+      the &lt;/code&gt;&lt;code&gt;Next``&lt;/code&gt; button.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;On the &lt;code&gt;&lt;code&gt;Deployment Configuration &amp;amp; Scalability&lt;/code&gt;&lt;/code&gt; dialog, click the &lt;code&gt;&lt;code&gt;`Next&lt;/code&gt;&lt;/code&gt; button.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;On the &lt;code&gt;&lt;code&gt;Service &amp;amp; Routing Settings&lt;/code&gt;&lt;/code&gt;, select the &lt;code&gt;&lt;code&gt;8778-tcp&lt;/code&gt;&lt;/code&gt; port and click
+      the &lt;code&gt;&lt;code&gt;Edit&lt;/code&gt;&lt;/code&gt; button, change the 8787 value to 8080:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;spring boot inner loop21&quot; src=&quot;https://tools.jboss.org/documentation/whatsnew/openshift/images/spring-boot-inner-loop21.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Click the &lt;code&gt;&lt;code&gt;OK&lt;/code&gt;&lt;/code&gt; button then the &lt;code&gt;&lt;code&gt;Finish&lt;/code&gt;&lt;/code&gt; button.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;The list of OpenShift resources created will be displayed by a dialog:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;spring boot inner loop22&quot; src=&quot;https://tools.jboss.org/documentation/whatsnew/openshift/images/spring-boot-inner-loop22.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Click the &lt;code&gt;&lt;code&gt;OK&lt;/code&gt;&lt;/code&gt; button to dismiss it and when asked to import the application
+      code, click the &lt;code&gt;&lt;code&gt;Cancel&lt;/code&gt;&lt;/code&gt; button as we already have the source code.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;After the build is run (this may takes several minutes as the Maven build will download
+      lots of dependencies), you should see a running pod:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;spring boot inner loop23&quot; src=&quot;https://tools.jboss.org/documentation/whatsnew/openshift/images/spring-boot-inner-loop23.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect4&quot;&gt;
+      &lt;h5 id=&quot;inner-loop-setup&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#inner-loop-setup&quot;&gt;&lt;/a&gt;Inner loop setup&lt;/h5&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;We are going to synchronize the local Eclipse project with the remote OpenShift pod. Each time a file
+      will be modified locally, then the pod will be updated accordingly.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Select the running pod in the &lt;code&gt;&lt;code&gt;OpenShift explorer&lt;/code&gt;&lt;/code&gt;, right click the &lt;code&gt;&lt;code&gt;Server Adapter…​&lt;/code&gt;&lt;/code&gt; menu
+      item, the following dialog will be displayed:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;spring boot inner loop24&quot; src=&quot;https://tools.jboss.org/documentation/whatsnew/openshift/images/spring-boot-inner-loop24.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Click the &lt;code&gt;&lt;code&gt;OK&lt;/code&gt;&lt;/code&gt; button, the initial synchronization will be started and
+      the &lt;code&gt;&lt;code&gt;Servers&lt;/code&gt;&lt;/code&gt; view will be displayed:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;spring boot inner loop25&quot; src=&quot;https://tools.jboss.org/documentation/whatsnew/openshift/images/spring-boot-inner-loop25.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;We’ve not setup the synchronization between our local Eclipse project and the remote
+      OpenShift project. Each modification done locally will be reported on the remote
+      OpenShift cluster.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Let’s modify our local application code and see the changes applied almost
+      instantly:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Edit the file &lt;code&gt;&lt;code&gt;src/main/java/io/openshift/booster/service/Greeting.java&lt;/code&gt;&lt;/code&gt;
+      in the &lt;code&gt;&lt;code&gt;myfirstrestapp&lt;/code&gt;&lt;/code&gt; project and change the &lt;code&gt;&lt;code&gt;FORMAT&lt;/code&gt;&lt;/code&gt; string
+      value from &lt;code&gt;&lt;code&gt;Hello, %s!&lt;/code&gt;&lt;/code&gt; to &lt;code&gt;&lt;code&gt;Hello, Mr %s!&lt;/code&gt;&lt;/code&gt; and save the file.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;The file should be now:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;listingblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;pre class=&quot;prettyprint highlight&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;/*
+       * Copyright 2016-2017 Red Hat, Inc, and individual contributors.
+       *
+       * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       * http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */
+      package io.openshift.booster.service;
+      
+      // tag::snippet-greeting[]
+      public class Greeting {
+      
+          public static final String FORMAT = &quot;Hello, Mr %s!&quot;;
+      
+          private final String content;
+      
+          public Greeting() {
+              this.content = null;
+          }
+      
+          public Greeting(String content) {
+              this.content = content;
+          }
+      
+          public String getContent() {
+              return content;
+          }
+      }
+      // end::snippet-greeting[]&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Then, in the &lt;code&gt;ÒpenShift explorer&lt;/code&gt;` view, select the &lt;code&gt;&lt;code&gt;myfirstrestapp&lt;/code&gt;&lt;/code&gt; deployment
+      and select the &lt;code&gt;&lt;code&gt;`Show In → Web Browser&lt;/code&gt;&lt;/code&gt; menu item and once the web browser is
+      displayed, ckick the &lt;code&gt;&lt;code&gt;Invoke&lt;/code&gt;&lt;/code&gt; button, you should see the following view:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;spring boot inner loop26&quot; src=&quot;https://tools.jboss.org/documentation/whatsnew/openshift/images/spring-boot-inner-loop26.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;You’ve just experienced the inner loop on your Spring Boot application: any change done
+      locally is reported and testable almost immedialtely on your OpenShift cluster.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;You can restart the deployment in debug mode and you’ll be able to remote debug your
+      Spring Boot application. Amazing, no ?&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect2&quot;&gt;
+      &lt;h3 id=&quot;server-tools&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#server-tools&quot;&gt;&lt;/a&gt;Server tools&lt;/h3&gt;
+      &lt;div class=&quot;sect3&quot;&gt;
+      &lt;h4 id=&quot;wildfly-14-server-adapter&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#wildfly-14-server-adapter&quot;&gt;&lt;/a&gt;Wildfly 14 Server Adapter&lt;/h4&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;A server adapter has been added to work with Wildfly 14. It adds support for Java EE 8.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect2&quot;&gt;
+      &lt;h3 id=&quot;hibernate-tools&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#hibernate-tools&quot;&gt;&lt;/a&gt;Hibernate Tools&lt;/h3&gt;
+      &lt;div class=&quot;sect3&quot;&gt;
+      &lt;h4 id=&quot;runtime-provider-updates&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#runtime-provider-updates&quot;&gt;&lt;/a&gt;Runtime Provider Updates&lt;/h4&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;The Hibernate 5.3 runtime provider now incorporates Hibernate Core version 5.3.6.Final and Hibernate Tools version 5.3.6.Final.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;The Hibernate 5.2 runtime provider now incorporates Hibernate Core version 5.2.17.Final and Hibernate Tools version 5.2.11.Final.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;The Hibernate 5.1 runtime provider now incorporates Hibernate Core version 5.1.16.Final and Hibernate Tools version 5.1.10.Final.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect2&quot;&gt;
+      &lt;h3 id=&quot;fuse-tooling&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#fuse-tooling&quot;&gt;&lt;/a&gt;Fuse Tooling&lt;/h3&gt;
+      &lt;div class=&quot;sect3&quot;&gt;
+      &lt;h4 id=&quot;rest-viewer-becoming-an-editor&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#rest-viewer-becoming-an-editor&quot;&gt;&lt;/a&gt;REST Viewer becoming an editor&lt;/h4&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Previously, there was a REST editor which was read-only. It is useful to have a great overview of already defined Camel REST DSL definitions. Now the editor and its related properties tab are also providing editing capabilities allowing to develop faster.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;Fully Editable REST Editor&quot; src=&quot;https://tools.jboss.org/documentation/whatsnew/fusetools/images/fuse-editor-rest-tab-properties-11.1.0.am2.jpg&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;You can now:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;ulist&quot;&gt;
+      &lt;ul&gt;
+      &lt;li&gt;
+      &lt;p&gt;Create and delete REST Configurations&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+      &lt;p&gt;Create and delete new REST Elements&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+      &lt;p&gt;Create and delete new REST Operations&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+      &lt;p&gt;Edit properties for a selected REST Element in the Properties view&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+      &lt;p&gt;Edit properties for a selected REST Operation in the Properties view&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;/ul&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;In addition, we’ve improved the look and feel by fixing the scrolling capabilities of the REST Element and REST Operations lists.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect2&quot;&gt;
+      &lt;h3 id=&quot;java-developement-tools-jdt&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#java-developement-tools-jdt&quot;&gt;&lt;/a&gt;Java Developement Tools (JDT)&lt;/h3&gt;
+      &lt;div class=&quot;sect3&quot;&gt;
+      &lt;h4 id=&quot;java-editor&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#java-editor&quot;&gt;&lt;/a&gt;Java Editor&lt;/h4&gt;
+      &lt;div class=&quot;sect4&quot;&gt;
+      &lt;h5 id=&quot;improved-breadcrumb-for-dark-theme&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#improved-breadcrumb-for-dark-theme&quot;&gt;&lt;/a&gt;Improved Breadcrumb for Dark theme&lt;/h5&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;The &lt;strong&gt;Breadcrumb&lt;/strong&gt; in the &lt;strong&gt;Java Editor&lt;/strong&gt; now uses a dark background in the Dark theme.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;breadcrumb dark and light&quot; src=&quot;https://www.eclipse.org/eclipse/news/4.9/images/breadcrumb_dark_and_light.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;In the Light theme, the &lt;strong&gt;Breadcrumb&lt;/strong&gt; uses a flat look style instead of a gradient.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect4&quot;&gt;
+      &lt;h5 id=&quot;quick-fix-to-create-abstract-methods&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#quick-fix-to-create-abstract-methods&quot;&gt;&lt;/a&gt;Quick fix to create abstract methods&lt;/h5&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;The existing quick fix to create missing methods has been improved to create abstract
+      method declarations. The option only appears when the target class is an abstract class.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;quickfix create abstract method 1&quot; src=&quot;https://www.eclipse.org/eclipse/news/4.9/images/quickfix_create_abstract_method_1.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect4&quot;&gt;
+      &lt;h5 id=&quot;quick-fix-to-convert-to-static-import&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#quick-fix-to-convert-to-static-import&quot;&gt;&lt;/a&gt;Quick fix to convert to static import&lt;/h5&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;A new quick fix has been implemented that allows the user to convert static field accesses
+      and static methods to use a static import. It’s also possible to replace all occurrences at
+      the same time.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;quickfix convert to static import&quot; src=&quot;https://www.eclipse.org/eclipse/news/4.9/images/quickfix_convert_to_static_import.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect3&quot;&gt;
+      &lt;h4 id=&quot;java-code-generation&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#java-code-generation&quot;&gt;&lt;/a&gt;Java Code Generation&lt;/h4&gt;
+      &lt;div class=&quot;sect4&quot;&gt;
+      &lt;h5 id=&quot;improved-hashcode-and-equals-generation&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#improved-hashcode-and-equals-generation&quot;&gt;&lt;/a&gt;Improved hashCode() and equals() generation&lt;/h5&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;A new option in the &lt;strong&gt;Source &amp;gt; Generate hashCode() and equals()…​&lt;/strong&gt; tool allows you to create
+      implementations using the Java 7 &lt;code&gt;&lt;code&gt;Objects.equals&lt;/code&gt;&lt;/code&gt; and &lt;code&gt;&lt;code&gt;Objects.hash&lt;/code&gt;&lt;/code&gt; methods.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;hashcode equals dialog&quot; src=&quot;https://www.eclipse.org/eclipse/news/4.9/images/hashcode-equals-dialog.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;The above setup generates the following code:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;hashcode equals generation&quot; src=&quot;https://www.eclipse.org/eclipse/news/4.9/images/hashcode-equals-generation.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Additionally, arrays are handled more cleverly. The generation prefers the &lt;code&gt;&lt;code&gt;Arrays.deepHashCode&lt;/code&gt;&lt;/code&gt;
+      and &lt;code&gt;&lt;code&gt;Arrays.deepEquals&lt;/code&gt;&lt;/code&gt; methods when dealing with &lt;code&gt;&lt;code&gt;Object[]&lt;/code&gt;&lt;/code&gt;, &lt;code&gt;&lt;code&gt;Serializable[]&lt;/code&gt;&lt;/code&gt;
+      and &lt;code&gt;&lt;code&gt;Cloneable[]&lt;/code&gt;&lt;/code&gt; or any type variables extending these types.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect3&quot;&gt;
+      &lt;h4 id=&quot;java-views-and-dialogs&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#java-views-and-dialogs&quot;&gt;&lt;/a&gt;Java Views and Dialogs&lt;/h4&gt;
+      &lt;div class=&quot;sect4&quot;&gt;
+      &lt;h5 id=&quot;quick-fix-for-jre-compiler-compliance-problem-marker&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#quick-fix-for-jre-compiler-compliance-problem-marker&quot;&gt;&lt;/a&gt;Quick Fix for JRE Compiler Compliance Problem Marker&lt;/h5&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;A new quick fix is provided on the &lt;strong&gt;JRE Compiler Compilance&lt;/strong&gt; problem marker which is created
+      when the compiler compliance does not match the JRE being used. This quick fix provides the
+      option of opening the &lt;strong&gt;Compiler Compliance&lt;/strong&gt; page of the project to fix the issue.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;quickfix open cc page&quot; src=&quot;https://www.eclipse.org/eclipse/news/4.9/images/quickfix_open_cc_page.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Selecting this option opens the &lt;strong&gt;Compiler Compliance&lt;/strong&gt; property page for the specified project
+      as shown below.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;quickfix cc page&quot; src=&quot;https://www.eclipse.org/eclipse/news/4.9/images/quickfix_cc_page.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect4&quot;&gt;
+      &lt;h5 id=&quot;open-type-dialog-now-always-shows-the-full-path&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#open-type-dialog-now-always-shows-the-full-path&quot;&gt;&lt;/a&gt;Open Type dialog now always shows the full path&lt;/h5&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;The &lt;strong&gt;Open Type&lt;/strong&gt; dialog now always shows the full path of all the matching items.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;open type full path&quot; src=&quot;https://www.eclipse.org/eclipse/news/4.9/images/open_type_full_path.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect3&quot;&gt;
+      &lt;h4 id=&quot;java-formatter&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#java-formatter&quot;&gt;&lt;/a&gt;Java Formatter&lt;/h4&gt;
+      &lt;div class=&quot;sect4&quot;&gt;
+      &lt;h5 id=&quot;keep-simple-loops-in-one-line&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#keep-simple-loops-in-one-line&quot;&gt;&lt;/a&gt;Keep simple loops in one line&lt;/h5&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;New formatter settings have been added that make it possible to keep the bodies
+      of simple loops (without braces) in the same line as their headers, similar to
+      previously existing setting for simple &amp;amp;aposif&amp;amp;apos statements. Different kind of loops
+      (&amp;amp;aposfor&amp;amp;apos, &amp;amp;aposwhile&amp;amp;apos, &amp;amp;aposdo while&amp;amp;apos) can be controlled independently.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;The settings can be found in the profile editor under
+      &lt;strong&gt;New Lines &amp;gt; In control statements &amp;gt; Simple Loops&lt;/strong&gt;.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;formatter compact loops&quot; src=&quot;https://www.eclipse.org/eclipse/news/4.9/images/formatter-compact-loops.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;There’s also a new setting to control how these loops should be handled if they
+      exceed the maximum line width. It’s located under
+      &lt;strong&gt;Line Wrapping &amp;gt; Wrapping settings &amp;gt; Statements &amp;gt; Compact loops (&amp;amp;aposfor&amp;amp;apos, &amp;amp;aposwhile&amp;amp;apos, &amp;amp;aposdo while&amp;amp;apos)&lt;/strong&gt;.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;formatter compact loops wrap&quot; src=&quot;https://www.eclipse.org/eclipse/news/4.9/images/formatter-compact-loops-wrap.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect4&quot;&gt;
+      &lt;h5 id=&quot;align-items-in-columns&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#align-items-in-columns&quot;&gt;&lt;/a&gt;Align items in columns&lt;/h5&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;A feature previously known as &lt;strong&gt;align fields in columns&lt;/strong&gt; has been expanded and
+      can now be used for &lt;strong&gt;variable declarations&lt;/strong&gt; and &lt;strong&gt;assignment statements&lt;/strong&gt; as well.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;An option has also been added to always &lt;strong&gt;align with spaces&lt;/strong&gt;, even if tabs are
+      used for general indentation. This is very similar to the &lt;strong&gt;Use spaces to indent wrapped lines&lt;/strong&gt;
+      option and is useful to make the code look good in editors with differing tab width.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;All the settings related to aligning are now in the new preferences subsection:
+       &lt;strong&gt;Indentation &amp;gt; Align items in columns&lt;/strong&gt;.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;formatter align in columns&quot; src=&quot;https://www.eclipse.org/eclipse/news/4.9/images/formatter-align-in-columns.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect3&quot;&gt;
+      &lt;h4 id=&quot;debug&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#debug&quot;&gt;&lt;/a&gt;Debug&lt;/h4&gt;
+      &lt;div class=&quot;sect4&quot;&gt;
+      &lt;h5 id=&quot;timeout-for-result-of-step-operation&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#timeout-for-result-of-step-operation&quot;&gt;&lt;/a&gt;Timeout for result of step operation&lt;/h5&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Observing the result of step operations may slow down execution, which may be
+      unusable if the step takes long already. Therefore a timeout (default: 7000 ms)
+      has been introduced after which the observation mechanism is disabled until the
+      end of the step operation.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;result timeout 537142&quot; src=&quot;https://www.eclipse.org/eclipse/news/4.9/images/result_timeout_537142.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;The timeout can be configured
+      in &lt;strong&gt;Preferences &amp;gt; Java &amp;gt; Debug &amp;gt; Don’t show if step operation takes longer than (ms)&lt;/strong&gt;.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect4&quot;&gt;
+      &lt;h5 id=&quot;option-to-hide-running-threads-in-debug-view&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#option-to-hide-running-threads-in-debug-view&quot;&gt;&lt;/a&gt;Option to hide running threads in Debug view&lt;/h5&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;A new option has been introduced in the &lt;strong&gt;Debug&lt;/strong&gt; view to show or hide running threads.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Hiding running threads can be useful when debugging heavily multithreaded application,
+      when it is difficult to find threads stopped at breakpoints among hundreds or thousands
+      of running threads.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;hide running threads&quot; src=&quot;https://www.eclipse.org/eclipse/news/4.9/images/hide-running-threads.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect4&quot;&gt;
+      &lt;h5 id=&quot;show-command-line-button-in-launch-configuration&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#show-command-line-button-in-launch-configuration&quot;&gt;&lt;/a&gt;Show Command Line button in Launch Configuration&lt;/h5&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;A new button &lt;strong&gt;Show Command Line&lt;/strong&gt; has been added in the &lt;strong&gt;Java Launch Configuration&lt;/strong&gt;
+      dialog.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;show command line&quot; src=&quot;https://www.eclipse.org/eclipse/news/4.9/images/show_command_line.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Clicking the button will open a dialog to show the command line used for launching
+      the application.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;show command line detail&quot; src=&quot;https://www.eclipse.org/eclipse/news/4.9/images/show_command_line_detail.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect4&quot;&gt;
+      &lt;h5 id=&quot;option-to-disable-thread-name-changes-in-debug-view&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#option-to-disable-thread-name-changes-in-debug-view&quot;&gt;&lt;/a&gt;Option to disable thread name changes in Debug View&lt;/h5&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Thread name changes in the debuggee JVM are reflected in the &lt;strong&gt;Debug&lt;/strong&gt; View.
+      A VM option can now be used to disable this behavior, in case the JVM communication
+      necessary for the name updates is not desired.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;The functionality can be disabled by specifying the following VM option&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;listingblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;pre class=&quot;prettyprint highlight&quot;&gt;&lt;code&gt;-Dorg.eclipse.jdt.internal.debug.core.model.ThreadNameChangeListener.disable=true&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect4&quot;&gt;
+      &lt;h5 id=&quot;support-for-long-classpath-modulepath&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#support-for-long-classpath-modulepath&quot;&gt;&lt;/a&gt;Support for long classpath/modulepath&lt;/h5&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Classpath and/or modulepath are now shortened if they are longer than current
+      operating system limits.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;If a temporary jar is needed to shorten the classpath (Java 8 and previous versions),
+      a dialog is shown asking for confirmation.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;enable classpathonly dialog&quot; src=&quot;https://www.eclipse.org/eclipse/news/4.9/images/enable-classpathonly-dialog.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;The option &lt;strong&gt;Use temporary jar to specify classpath (to avoid classpath length limitations)&lt;/strong&gt;
+      is available in the &lt;strong&gt;Classpath&lt;/strong&gt; tab of the &lt;strong&gt;Run/Debug Configuration&lt;/strong&gt; dialog.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;enable classpathonly option&quot; src=&quot;https://www.eclipse.org/eclipse/news/4.9/images/enable-classpathonly-option.png&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect2&quot;&gt;
+      &lt;h3 id=&quot;and-more&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#and-more&quot;&gt;&lt;/a&gt;And more…​&lt;/h3&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;You can find more noteworthy updates in on &lt;a href=&quot;https://tools.jboss.org/documentation/whatsnew/jbosstools/4.9.0.Final.html&quot;&gt;this page&lt;/a&gt;.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect1&quot;&gt;
+      &lt;h2 id=&quot;what-is-next&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#what-is-next&quot;&gt;&lt;/a&gt;What is next?&lt;/h2&gt;
+      &lt;div class=&quot;sectionbody&quot;&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Having JBoss Tools 4.9.0 and Red Hat Developer Studio 12.9 out we are already working on the next release for Eclipse 2018-12.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Enjoy!&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Jeff Maury&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;&lt;/div&gt;</description>
+	<pubDate>Tue, 09 Oct 2018 09:17:08 +0000</pubDate>
+</item>
+<item>
+	<title>Maximilian and Jonas: EclipseSource Oomph Profile – updated to 2018-09</title>
+	<guid isPermaLink="false">https://eclipsesource.com/?p=39980</guid>
+	<link>https://eclipsesource.com/blogs/2018/10/09/eclipsesource-oomph-profile-updated-to-2018-09/</link>
+	<description>&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;In September, Eclipse 2018-09 has been released, a new version of the Eclipse IDE and platform. It contains many useful improvements, so it is worth to update. It is the first release following the new release cycle with four equal releases per year. &lt;/span&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;One of many noteworthy extensions is the new minimap view, which provides a complete overview of opened documents. It allows to browser files more efficiently and due to showing the selection, also identifying occurrences of certain expressions, e.g. usages of fields.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;EclipseSource Oomph Profile - updated to 2018-09&quot; class=&quot;alignnone wp-image-39981 size-full&quot; height=&quot;500&quot; src=&quot;https://eclipsesource.com/wp-content/uploads/2018/10/image1.png&quot; width=&quot;967&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;Further general improvements of the Eclipse 2018-09 IDE are summarized in the following video, Git and Platform improvements in a separate video below.  Both are provided by Holger Voormann, whom we want to thank you once again for this great work!&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;As always, in case you use our EclipseSource Oomph profile (see &lt;/span&gt;&lt;a href=&quot;https://eclipsesource.com/blogs/2015/08/17/introducing-the-eclipsesource-oomph-profile/&quot;&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;here&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt; for more details), you should get a notification and Oomph will apply the update automatically. If you do not get the notification, just navigate to the menu entry “Help” =&amp;gt; “Perform Set-Up Task”.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;This will automatically update all plugins to Photon, but keep all existing settings untouched.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;Have fun with Eclipse 2018-09!&lt;/span&gt;&lt;/p&gt;</description>
+	<pubDate>Tue, 09 Oct 2018 08:10:18 +0000</pubDate>
+</item>
+<item>
+	<title>Thabang Mashologu: Welcome Jameka</title>
+	<guid isPermaLink="false">https://blogs.eclipse.org/6649 at https://blogs.eclipse.org</guid>
+	<link>https://blogs.eclipse.org/post/thabang-mashologu/welcome-jameka</link>
+	<description>&lt;div class=&quot;field field-name-body field-type-text-with-summary field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;p&gt;I am thrilled to announce that Jameka Woodberry has joined the Eclipse Foundation as a Marketing Specialist based in Europe.&lt;/p&gt;
+
+&lt;p&gt;Jameka comes to us from SAP, where she managed marketing programs for the EMEA region. Jameka has an MA in Business Psychology and an MBA in International Business with a focus on Marketing and Communications. Her wonderful personality and ample experience will be great assets to the Eclipse community.&lt;/p&gt;
+
+&lt;p&gt;Jameka is originally from California and is currently based in Wiesloch, Germany.  &lt;/p&gt;
+
+&lt;p&gt;Please join me in welcoming Jameka to the Eclipse Foundation marketing team.&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description>
+	<pubDate>Fri, 05 Oct 2018 18:29:06 +0000</pubDate>
+</item>
+<item>
+	<title>Wayne Beaton: Jakarta EE @EclipseFdn: Getting it done</title>
+	<guid isPermaLink="false">http://waynebeaton.wordpress.com/?p=5448</guid>
+	<link>https://waynebeaton.wordpress.com/2018/10/03/jakarta-ee-eclipsefdn-getting-it-done/</link>
+	<description>&lt;p&gt;To say that bringing Jakarta EE to life at the Eclipse Foundation was a massive undertaking is a gross understatement.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.eclipse.org/community/eclipse_newsletter/2018/april/images/jakartaee_newsletter.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;We started this effort in early 2018. Today, we have 39 open source projects (as part of the &lt;a href=&quot;https://projects.eclipse.org/projects/ee4j&quot;&gt;EE4J Top Level Project&lt;/a&gt;) representing 14% of our overall project space. These projects collectively have 99 Git repositories (most of which are hosted in the &lt;a href=&quot;https://github.com/eclipse-ee4j&quot;&gt;eclipse-ee4j&lt;/a&gt; GitHub organization; a small number are hosted on Eclipse Foundation infrastructure) representing 8% of the repositories created and managed by the Eclipse Foundation’s IT team. We have 162 committers working on these projects, representing 10% of our total active committer community. These projects have made a combined 440 requests to the Eclipse Foundation’s IP Team to review intellectual property, representing 17% of the work done by the team. The Jakarta EE projects have 53 distinct CI instances running (or in the planning stages to run) on Eclipse Foundation &lt;a href=&quot;https://ci.eclipse.org/&quot;&gt;build infrastructure&lt;/a&gt;, representing 30% of our work there (on the topic of build, if you have some spare cycles and want to contribute, &lt;a href=&quot;https://github.com/orgs/eclipse-ee4j/projects/1&quot;&gt;we can use your help&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Added to the all of the project-related work, we’ve also been doing a lot of other work to  stand up the new &lt;a href=&quot;https://jakarta.ee&quot;&gt;Jakarta EE Working Group&lt;/a&gt;, bootstrap the new &lt;a href=&quot;https://projects.eclipse.org/projects/ee4j/who&quot;&gt;EE4J PMC&lt;/a&gt;, manage related trademarks and various legal agreements, recruit participants, build websites, improve infrastructure, hire and train new staff, and more.&lt;/p&gt;
+&lt;p&gt;By way of comparison, the work that we do with &lt;a href=&quot;https://projects.eclipse.org/projects/iot&quot;&gt;Eclipse IoT&lt;/a&gt; is at about the same scale, but grew more organically (one open source project at a time) over &lt;em&gt;six years&lt;/em&gt;. Jakarta EE happened &lt;em&gt;all at once&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;While we engaged in this enormous chunk of work, we still did everything that we’ve always done. In just the first nine months of 2018, for example, the Eclipse Intellectual Property Team has already received and processed 30% more requests for reviews than they did in all of 2017! And the number of new project proposals, committers, and contributions (not including those that are related to Jakarta EE) that we’ve added in 2018 are on an upward trend compared with past years.&lt;/p&gt;
+&lt;p&gt;This has been an all-hands-on-deck sort of effort for the Eclipse Foundation staff. Even those of us who have not been directly involved in the work, have helped by taking on extra burdens so that those of use who were directly involved could stay focused.&lt;/p&gt;
+&lt;p&gt;This is not to say that we’ve done this alone: this has been a &lt;em&gt;ginormous&lt;/em&gt; shared effort. We’ve had a lot of help from the Eclipse Foundation member companies that have contributed many talented people to the migration effort, and—of course—the members of our community who have stepped up.&lt;/p&gt;
+&lt;p&gt;I really want to name names, but the probability of me missing somebody is so high that I dare not. If you want to meet some of the key players, join us at &lt;a href=&quot;https://www.eclipsecon.org/europe2018&quot;&gt;EclipseCon Europe&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.eclipsecon.org/europe2018&quot;&gt;&lt;img alt=&quot;Home&quot; class=&quot; aligncenter&quot; src=&quot;https://www.eclipsecon.org/sites/all/themes/solstice/_themes/solstice_eclipsecon_europe2018/logo.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</description>
+	<pubDate>Wed, 03 Oct 2018 18:31:06 +0000</pubDate>
+</item>
+<item>
+	<title>Tanja Obradovic: My first 100 days at the Eclipse Foundation</title>
+	<guid isPermaLink="false">https://blogs.eclipse.org/6647 at https://blogs.eclipse.org</guid>
+	<link>https://blogs.eclipse.org/post/tanja-obradovic/my-first-100-days-eclipse-foundation</link>
+	<description>&lt;div class=&quot;field field-name-body field-type-text-with-summary field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;p dir=&quot;ltr&quot;&gt;I made it to my first 100 days at the Eclipse Foundation! New beginnings are always exciting. It has been a blast and a challenge at the same time. Many twists and turns, but steady progress nevertheless for both Jakarta EE and me!&lt;/p&gt;
+
+&lt;p dir=&quot;ltr&quot;&gt;My experience at the Eclipse Foundation started with EclipseCon France 2018 in the amazing Toulouse. Clearly, I was always a strong believer in open source as a movement, but meeting people from different companies, and witnessing their enthusiasm in person is something different. As the Eclipse Foundation hosts over 350 different open source projects, the conference attracted not only technology developers, but different industries using them as well. Their presence and interest demonstrated the importance of open source in software development. Jakarta EE, naturally, was one of the highlights of the conference, clearly indicating huge interest of the community in evolving Java EE technology and making it ready for cloud-native Java application development.&lt;/p&gt;
+
+&lt;p dir=&quot;ltr&quot;&gt;At the time, mid-June 2018, it was still very early days for us both. So early that it was hard to contemplate the concrete first steps for Jakarta EE. We hadn’t yet completed migrating the necessary Java EE contributions from Oracle to the Eclipse Foundation, and still struggling with all the legal aspects required in the process. We had initial conversations on the new Specification Process that will fill the role of the Java Community Process, and started looking into the new world with open source TCKs and requirements for the Jakarta EE implementations. And for me, getting familiar with the working group members and its committees, the community members, the existing Eclipse Foundation processes already in use, the processes that need to be defined, and figuring out what to focus on first was a challenge for sure!&lt;/p&gt;
+
+&lt;p dir=&quot;ltr&quot;&gt;Jumping to the fall, not everything is ready, but steady progress has been made. The majority of the Java EE code, including TCKs and GlassFish, found a new home at the Eclipse Foundation. New processes are being developed and the first drafts are ready for internal review. Name spaces are being discussed and even some specifications are being suggested as possible first components under the Jakarta EE specification umbrella. And yes, another Eclipse Foundation conference is just around the corner. &lt;a href=&quot;https://www.eclipsecon.org/europe2018&quot;&gt;EclipseCon Europe 2018&lt;/a&gt; is being actively planned. If you haven’t already, please register! &lt;a href=&quot;https://www.eclipsecon.org/europe2018/jakarta-ee-and-microprofile&quot;&gt;Jakarta EE and MicroProfile Community Day&lt;/a&gt; is taking shape and we need your presence and participation.&lt;/p&gt;
+
+&lt;p dir=&quot;ltr&quot;&gt;I am looking forward to finding out what the next 100 days will bring!&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-field-blog-tags field-type-taxonomy-term-reference field-label-above&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Tags: &lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;a href=&quot;https://blogs.eclipse.org/blog-tags/eclipsecon&quot;&gt;EclipseCon&lt;/a&gt;&lt;/div&gt;&lt;div class=&quot;field-item odd&quot;&gt;&lt;a href=&quot;https://blogs.eclipse.org/blog-tags/jakartaee-0&quot;&gt;JakartaEE&lt;/a&gt;&lt;/div&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;a href=&quot;https://blogs.eclipse.org/blog-tags/eclipse-foundation&quot;&gt;Eclipse Foundation&lt;/a&gt;&lt;/div&gt;&lt;div class=&quot;field-item odd&quot;&gt;&lt;a href=&quot;https://blogs.eclipse.org/blog-tags/glassfish&quot;&gt;GlassFish&lt;/a&gt;&lt;/div&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;a href=&quot;https://blogs.eclipse.org/blog-tags/eclipse-glassfish&quot;&gt;Eclipse GlassFish&lt;/a&gt;&lt;/div&gt;&lt;div class=&quot;field-item odd&quot;&gt;&lt;a href=&quot;https://blogs.eclipse.org/blog-tags/eclipseconeurope&quot;&gt;EclipseConEurope&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description>
+	<pubDate>Wed, 03 Oct 2018 13:22:59 +0000</pubDate>
+</item>
+<item>
+	<title>vert.x project: Eclipse Vert.x 3.5.4</title>
+	<guid isPermaLink="true">https://vertx.io/blog/eclipse-vert-x-3-5-4</guid>
+	<link>https://vertx.io/blog/eclipse-vert-x-3-5-4</link>
+	<description>&lt;article&gt;&lt;p&gt;We have just released Vert.x 3.5.4, a bug fix release of Vert.x 3.5.x.&lt;/p&gt;
+&lt;p&gt;Since the release of Vert.x 3.5.3, quite a few bugs have been reported. We would like to thank you all for reporting these issues.&lt;/p&gt;
+&lt;p&gt;Three CVE have also been reported and fixed in this release:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/eclipse-vertx/vert.x/issues/2648&quot;&gt;CVE-2018-12541&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/vert-x3/vertx-web/issues/1025&quot;&gt;CVE-2018-12542&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/vert-x3/vertx-web/issues/1021&quot;&gt;CVE-2018-12544&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Vert.x 3.5.4 release notes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/vert-x3/wiki/wiki/3.5.4-Release-Notes&quot;&gt;https://github.com/vert-x3/wiki/wiki/3.5.4-Release-Notes&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The event bus client using the SockJS bridge are available from NPM, Bower and as a WebJar:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.npmjs.com/package/vertx3-eventbus-client&quot;&gt;https://www.npmjs.com/package/vertx3-eventbus-client&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/vert-x3/vertx-bus-bower&quot;&gt;https://github.com/vert-x3/vertx-bus-bower&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.webjars.org/&quot;&gt;http://www.webjars.org/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Docker images are also available on the &lt;a href=&quot;https://hub.docker.com/u/vertx/&quot;&gt;Docker Hub&lt;/a&gt;. The Vert.x distribution is also available from &lt;a href=&quot;http://sdkman.io/index.html&quot;&gt;SDKMan&lt;/a&gt; and &lt;a href=&quot;http://brew.sh/&quot;&gt;HomeBrew&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The artifacts have been deployed to &lt;a href=&quot;http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22io.vertx%22%20AND%20v%3A%223.5.4%22&quot;&gt;Maven Central&lt;/a&gt; and you can get the distribution on &lt;a href=&quot;https://bintray.com/vertx/downloads/distribution/3.5.4/view&quot;&gt;Bintray&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Happy coding and see you soon on our user or dev &lt;a href=&quot;https://vertx.io/community&quot;&gt;channels&lt;/a&gt;.&lt;/p&gt;
+&lt;/article&gt;</description>
+	<pubDate>Wed, 03 Oct 2018 00:00:00 +0000</pubDate>
+</item>
+<item>
+	<title>EclipseCon Europe 2018: Thorntail - A Micro implementation of Eclipse MicroProfile</title>
+	<guid isPermaLink="false">https://www.eclipsecon.org/news/743 at https://www.eclipsecon.org</guid>
+	<link>https://www.eclipsecon.org/europe2018/news/thorntail-micro-implementation-eclipse-microprofile</link>
+	<description>&lt;div class=&quot;field field-name-body field-type-text-with-summary field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;h4&gt;by Ken Finnigan&lt;/h4&gt;
+
+&lt;p&gt;In this article we introduce some of the topics Michal Szynkiewicz, from the Thorntail team, will be presenting during his EclipseCon session &lt;a href=&quot;https://www.eclipsecon.org/europe2018/sessions/invited-talk-thorntail-micro-implementation-eclipse-microprofile&quot;&gt;Thorntail - A Micro Implementation of Eclipse MicroProfile&lt;/a&gt;. Be sure to come by his session to learn all the details on Eclipse MicroProfile and how to use it in Thorntail!&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-field-news-image field-type-image field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;a href=&quot;https://www.eclipsecon.org/europe2018/news/thorntail-micro-implementation-eclipse-microprofile&quot;&gt;&lt;img alt=&quot;&quot; class=&quot;img-responsive block-center&quot; height=&quot;250&quot; src=&quot;https://www.eclipsecon.org/sites/default/files/styles/solstice_news_-_default_-_thumbnail/public/news/Thorntail%20logo.png?itok=hq_61S5i&quot; width=&quot;250&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description>
+	<pubDate>Tue, 02 Oct 2018 14:38:56 +0000</pubDate>
+</item>
+<item>
+	<title>Eclipse Announcements: Case Study: How Bosch Is Succeeding with Open Source at Eclipse IoT</title>
+	<guid isPermaLink="true">http://feedproxy.google.com/~r/eclipse/fnews/~3/RS679nuKZkQ/</guid>
+	<link>http://feedproxy.google.com/~r/eclipse/fnews/~3/RS679nuKZkQ/</link>
+	<description>How is it that a 150-year-old, 400,000 employee industrial conglomerate is competing and winning in the rapidly involving IoT software industry?&lt;img alt=&quot;&quot; height=&quot;1&quot; src=&quot;http://feeds.feedburner.com/~r/eclipse/fnews/~4/RS679nuKZkQ&quot; width=&quot;1&quot; /&gt;</description>
+	<pubDate>Tue, 02 Oct 2018 14:00:00 +0000</pubDate>
+</item>
+<item>
+	<title>Mike Milinkovich: Case Study: How Bosch Is Succeeding with Open Source at Eclipse IoT</title>
+	<guid isPermaLink="false">http://mmilinkov.wordpress.com/?p=1464</guid>
+	<link>https://eclipse-foundation.blog/2018/10/02/how-bosch-is-succeeding-with-open-source/</link>
+	<description>&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;How is it that a 150-year-old, 400,000 employee industrial conglomerate is competing and winning in the rapidly involving IoT software industry? We’ve just published a &lt;a href=&quot;https://iot.eclipse.org/case-studies/bosch-leadership-in-eclipse-iot/&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;case study&lt;/a&gt; in which &lt;a href=&quot;https://www.bosch.com/&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;Bosch&lt;/a&gt; shares how open collaboration at the Eclipse Foundation factors into that success. This case study is required reading for any organization considering pursuing an open source strategy. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;This case study is yet another proof point that open source has won. No single company can deliver innovation at the pace and scale of open source. For industrial companies in particular, broadly adopted open technologies and standards are critical for success in the digital economy. It’s a case of disrupt or be disrupted — and open source holds the key for rapid and sustainable innovation in the digital age. The team at Bosch recognized all of this several years ago. When the time came for creating an IoT platform for themselves and their customers, Bosch chose open source to compete with proprietary vendors. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;At the Eclipse Foundation, Bosch is successfully executing a long-term strategy to create a widely adopted open source platform for IoT. Having previously been a long-term Solutions member of the Eclipse Foundation, Bosch increased its membership level in the Eclipse Foundation to become a Strategic member and joined the Eclipse IoT Working Group in 2015. Beyond IoT, Bosch is an active participant in the Eclipse Foundation’s Automotive Industry community.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;Some of the highlights from the case study (&lt;a href=&quot;https://iot.eclipse.org/case-studies/bosch-leadership-in-eclipse-iot/&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;html&lt;/a&gt;) (&lt;a href=&quot;https://iot.eclipse.org/resources/case-studies/Eclipse%20IoT%20Success%20Story%20-%20Bosch.pdf&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;pdf&lt;/a&gt;):&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;Bosch’s leadership in the Eclipse IoT community has helped position the company as a leader in the IoT industry.&lt;/span&gt;&lt;/b&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;Bosch has created six different IoT open source projects since joining the Eclipse IoT community. In addition, Bosch contributes to many other Eclipse IoT projects.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;Bosch has contributed around 1.5 million lines of code to Eclipse projects. At present, over 60 Bosch developers work on Eclipse IoT projects.&lt;/span&gt;&lt;/li&gt;
+&lt;li style=&quot;font-weight: 400;&quot;&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;Many of the &lt;a href=&quot;https://www.bosch-si.com/corporate/home/homepage.html&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;Bosch IoT Suite&lt;/a&gt; commercial products are now based on Eclipse IoT projects. The open development process used by the Eclipse projects has been adopted by Bosch Software Innovations’ product development teams. The open source development model helps Bosch provide more transparency for their customers, and aids in recruiting new developers keen to work on open source.&lt;/span&gt;&lt;/li&gt;
+&lt;li style=&quot;font-weight: 400;&quot;&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;The Eclipse Foundation’s clear, vendor-neutral rules for intellectual property sharing and decision-making make it easy to collaborate with other organizations on driving rapid innovation. The Foundation’s legal processes provide Bosch with the legal assurance that they can successfully embed open source technology into their commercial products.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;We are thrilled that Bosch is seeing the benefits of their open source strategy and participation in the Eclipse community. Thanks to the contributions of Bosch engineers and many other developers within the Eclipse community, all can benefit from runtimes and frameworks creating a open, vendor-neutral platform for IoT. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;To learn more about the Eclipse IoT community, head over to the &lt;/span&gt;&lt;a href=&quot;https://iot.eclipse.org/working-group/&quot;&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;Eclipse IoT Working Group website&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;</description>
+	<pubDate>Tue, 02 Oct 2018 12:04:01 +0000</pubDate>
+</item>
+<item>
+	<title>Eclipse Announcements: Eclipse CBI - Common Build Infrastructure changes</title>
+	<guid isPermaLink="true">http://feedproxy.google.com/~r/eclipse/fnews/~3/xnwBaw3lZDg/eclipse-cbi-common-build-infrastructure-changes</guid>
+	<link>http://feedproxy.google.com/~r/eclipse/fnews/~3/xnwBaw3lZDg/eclipse-cbi-common-build-infrastructure-changes</link>
+	<description>The Eclipse CBI, which traces its roots back to 2006, has undergone some important changes recently, including a new Kubernetes+Docker-powered environment at https://jenkins.eclipse.org that re announced previously.&lt;img alt=&quot;&quot; height=&quot;1&quot; src=&quot;http://feeds.feedburner.com/~r/eclipse/fnews/~4/xnwBaw3lZDg&quot; width=&quot;1&quot; /&gt;</description>
+	<pubDate>Fri, 28 Sep 2018 20:00:00 +0000</pubDate>
+</item>
+
+</channel>
+</rss>

@@ -1,0 +1,148 @@
+com.sinpo.xnfc.NFCard -> com.sinpo.xnfc.NFCard:
+    android.nfc.NfcAdapter nfcAdapter -> a
+    android.app.PendingIntent pendingIntent -> b
+    android.content.res.Resources res -> c
+    android.widget.TextView board -> d
+    void onCreate(android.os.Bundle) -> onCreate
+    boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
+    boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
+    void onPause() -> onPause
+    void onResume() -> onResume
+    void onNewIntent(android.content.Intent) -> onNewIntent
+    void onClick(android.view.View) -> onClick
+    void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+    void refreshStatus() -> a
+    void showData(java.lang.String) -> a
+    void showHelp(int) -> a
+    void showHint() -> b
+    void handleTag(boolean,java.lang.String,android.text.Editable,org.xml.sax.XMLReader) -> handleTag
+    android.graphics.drawable.Drawable getDrawable(java.lang.String) -> getDrawable
+com.sinpo.xnfc.NFCard$ContentType -> com.sinpo.xnfc.a:
+    com.sinpo.xnfc.NFCard$ContentType HINT -> a
+    com.sinpo.xnfc.NFCard$ContentType DATA -> b
+    com.sinpo.xnfc.NFCard$ContentType MSG -> c
+com.sinpo.xnfc.Util -> com.sinpo.xnfc.b:
+    char[] HEX -> a
+    int toInt(byte[],int,int) -> a
+    int toIntR$1cf967b1(byte[],int) -> a
+    java.lang.String toHexString(byte[],int,int) -> b
+    java.lang.String toHexStringR$55a39fc4(byte[],int) -> b
+    int parseInt$44bd8e92(java.lang.String) -> a
+    java.lang.String toAmountString(float) -> a
+com.sinpo.xnfc.card.CardManager -> com.sinpo.xnfc.a.a:
+    java.lang.String[][] TECHLISTS -> a
+    android.content.IntentFilter[] FILTERS -> b
+    java.lang.String buildResult(java.lang.String,java.lang.String,java.lang.String,java.lang.String) -> a
+    java.lang.String load(android.os.Parcelable,android.content.res.Resources) -> a
+com.sinpo.xnfc.card.OctopusCard -> com.sinpo.xnfc.a.b:
+    android.nfc.tech.IsoDep nfcTag -> a
+    com.sinpo.xnfc.tech.Iso7816$ID id -> b
+    java.lang.String parseBalance(float[],int,android.content.res.Resources) -> a
+    com.sinpo.xnfc.tech.Iso7816$Response getBalance(boolean) -> a
+    com.sinpo.xnfc.tech.Iso7816$Response readRecord(int,int) -> a
+    com.sinpo.xnfc.tech.Iso7816$Response readBinary(int) -> a
+    com.sinpo.xnfc.tech.Iso7816$Response selectByID(byte[]) -> a
+    com.sinpo.xnfc.tech.Iso7816$Response selectByName(byte[]) -> b
+    byte[] transceive(byte[]) -> c
+    java.lang.String load(android.nfc.tech.NfcV,android.content.res.Resources) -> a
+    java.lang.String parseSzlibData$5b14f51a(int,byte[],android.content.res.Resources) -> a
+com.sinpo.xnfc.card.pboc.BeijingMunicipal -> com.sinpo.xnfc.a.a.a:
+    com.sinpo.xnfc.card.pboc.BeijingMunicipal load$5731cd70(com.sinpo.xnfc.card.OctopusCard,android.content.res.Resources) -> a
+    com.sinpo.xnfc.card.pboc.BeijingMunicipal load$4871312a(com.sinpo.xnfc.card.OctopusCard,android.content.res.Resources) -> b
+    byte[] selectAID$678a5658(com.sinpo.xnfc.card.OctopusCard,byte[]) -> a
+    java.util.ArrayList findAIDs$302ae698(com.sinpo.xnfc.card.OctopusCard) -> b
+    com.sinpo.xnfc.tech.Iso7816$Response getBalance$7f95ae6(com.sinpo.xnfc.card.OctopusCard) -> c
+com.sinpo.xnfc.card.pboc.ChanganTong -> com.sinpo.xnfc.a.a.b:
+    byte[] DFN_SRV -> j
+    com.sinpo.xnfc.card.pboc.ChanganTong load$7f1152dc(com.sinpo.xnfc.card.OctopusCard,android.content.res.Resources) -> a
+com.sinpo.xnfc.card.pboc.PbocCard -> com.sinpo.xnfc.a.a.c:
+    byte[] DFI_MF -> a
+    byte[] DFI_EP -> b
+    byte[] DFN_PSE -> c
+    byte[] DFN_PXX -> d
+    java.lang.String name -> e
+    java.lang.String serl -> f
+    java.lang.String version -> g
+    java.lang.String date -> h
+    java.lang.String count -> i
+    java.lang.String cash -> j
+    java.lang.String log -> k
+    java.lang.String load(android.nfc.tech.IsoDep,android.content.res.Resources) -> a
+    void parseInfo(com.sinpo.xnfc.tech.Iso7816$Response,int,boolean) -> a
+    boolean addLog(com.sinpo.xnfc.tech.Iso7816$Response,java.util.ArrayList) -> a
+    java.util.ArrayList readLog$255b338f$4d72b409(com.sinpo.xnfc.card.OctopusCard) -> a
+    void parseLog(java.util.ArrayList[]) -> a
+    void parseBalance(com.sinpo.xnfc.tech.Iso7816$Response) -> a
+com.sinpo.xnfc.card.pboc.ShenzhenTong -> com.sinpo.xnfc.a.a.d:
+    byte[] DFN_SRV -> j
+    com.sinpo.xnfc.card.pboc.ShenzhenTong load$3a1d48a5(com.sinpo.xnfc.card.OctopusCard,android.content.res.Resources) -> a
+com.sinpo.xnfc.card.pboc.WuhanTong -> com.sinpo.xnfc.a.a.e:
+    byte[] DFN_SRV -> j
+    com.sinpo.xnfc.card.pboc.WuhanTong load$3b65f107(com.sinpo.xnfc.card.OctopusCard,android.content.res.Resources) -> a
+com.sinpo.xnfc.card.pboc.YangchengTong -> com.sinpo.xnfc.a.a.f:
+    byte[] DFN_SRV -> j
+    byte[] DFN_SRV_S1 -> k
+    byte[] DFN_SRV_S2 -> l
+    com.sinpo.xnfc.card.pboc.YangchengTong load$1b66b0e6(com.sinpo.xnfc.card.OctopusCard,android.content.res.Resources) -> a
+com.sinpo.xnfc.tech.FeliCa -> com.sinpo.xnfc.b.a:
+    byte[] EMPTY -> a
+    byte[] data -> b
+    byte[] getBytes() -> a
+    java.lang.String toString() -> toString
+com.sinpo.xnfc.tech.FeliCa$Command -> com.sinpo.xnfc.b.b:
+    int length -> c
+    com.sinpo.xnfc.tech.FeliCa$IDm idm -> d
+    byte[] getBytes() -> a
+com.sinpo.xnfc.tech.FeliCa$IDm -> com.sinpo.xnfc.b.c:
+    byte[] EMPTY -> c
+com.sinpo.xnfc.tech.FeliCa$PMm -> com.sinpo.xnfc.b.d:
+    byte[] EMPTY -> c
+com.sinpo.xnfc.tech.FeliCa$ReadResponse -> com.sinpo.xnfc.b.e:
+    byte[] EMPTY -> c
+    byte[] blockData -> d
+    byte[] getBlockData() -> b
+    boolean isOkey() -> c
+com.sinpo.xnfc.tech.FeliCa$Response -> com.sinpo.xnfc.b.f:
+    int toInt(byte[]) -> a
+com.sinpo.xnfc.tech.FeliCa$ServiceCode -> com.sinpo.xnfc.b.g:
+    byte[] EMPTY -> c
+com.sinpo.xnfc.tech.FeliCa$Tag -> com.sinpo.xnfc.b.h:
+    android.nfc.tech.NfcF nfcTag -> a
+    int sys -> b
+    com.sinpo.xnfc.tech.FeliCa$IDm idm -> c
+    com.sinpo.xnfc.tech.FeliCa$PMm pmm -> d
+    java.lang.String toString() -> toString
+    byte[] transceive(com.sinpo.xnfc.tech.FeliCa$Command) -> a
+com.sinpo.xnfc.tech.Iso7816 -> com.sinpo.xnfc.b.i:
+    byte[] EMPTY -> b
+    byte[] data -> a
+    boolean match(byte[],int) -> a
+    boolean match(byte) -> a
+    int size() -> a
+    byte[] getBytes() -> b
+    java.lang.String toString() -> toString
+com.sinpo.xnfc.tech.Iso7816$BerL -> com.sinpo.xnfc.b.j:
+    int val -> b
+    int test(byte[],int) -> b
+    int calc(byte[],int) -> c
+com.sinpo.xnfc.tech.Iso7816$BerT -> com.sinpo.xnfc.b.k:
+    com.sinpo.xnfc.tech.Iso7816$BerT CLASS_DFN -> b
+    com.sinpo.xnfc.tech.Iso7816$BerT CLASS_ADO -> c
+    com.sinpo.xnfc.tech.Iso7816$BerT CLASS_AID -> d
+    int test(byte[],int) -> b
+    com.sinpo.xnfc.tech.Iso7816$BerT read(byte[],int) -> c
+    boolean hasChild() -> c
+com.sinpo.xnfc.tech.Iso7816$BerTLV -> com.sinpo.xnfc.b.l:
+    com.sinpo.xnfc.tech.Iso7816$BerT t -> b
+    com.sinpo.xnfc.tech.Iso7816$BerV v -> c
+    com.sinpo.xnfc.tech.Iso7816$BerTLV read(com.sinpo.xnfc.tech.Iso7816) -> a
+    com.sinpo.xnfc.tech.Iso7816$BerTLV read(byte[],int) -> b
+    com.sinpo.xnfc.tech.Iso7816$BerTLV getChildByTag(com.sinpo.xnfc.tech.Iso7816$BerT) -> a
+com.sinpo.xnfc.tech.Iso7816$BerV -> com.sinpo.xnfc.b.m:
+com.sinpo.xnfc.tech.Iso7816$ID -> com.sinpo.xnfc.b.n:
+com.sinpo.xnfc.tech.Iso7816$Response -> com.sinpo.xnfc.b.o:
+    byte[] EMPTY -> c
+    byte[] ERROR -> b
+    boolean isOkey() -> c
+    int size() -> a
+    byte[] getBytes() -> b

@@ -1,0 +1,913 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+
+<channel>
+	<title>Planet Eclipse</title>
+	<link>http://planeteclipse.org/planet/</link>
+	<language>en</language>
+	<description>Planet Eclipse - http://planeteclipse.org/planet/</description>
+
+<item>
+	<title>Jens Reimann: Leveraging the power of Apache Camel in Eclipse Kura</title>
+	<guid isPermaLink="false">https://dentrassi.de/?p=3969</guid>
+	<link>https://dentrassi.de/2018/09/14/the-power-of-apache-camel-in-eclipse-kura/</link>
+	<description>&lt;p&gt;With the upcoming version of &lt;a href=&quot;https://eclipse.org/kura&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;Eclipse Kura&lt;/a&gt; 4, we will see some nice new features for the embedded &lt;a href=&quot;https://camel.apache.org&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;Apache Camel&lt;/a&gt; runtime. This tutorial walks you through the Camel integration of Kura wires, which allows you to bridge both technologies, and leverage the power of Apache Camel for your solutions on the IoT gateway.&lt;/p&gt;
+&lt;p&gt;Kura Wires is a graph-oriented programming model of Eclipse Kura. It allows wiring up different components, like a Modbus client to the internal Kura Cloud Service. It is similar to &lt;a href=&quot;https://nodered.org/&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;Node-RED&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Apache Camel is a message-oriented integration platform with a rule-based routing approach. It has a huge eco-system of components, allowing to integrate numerous messaging endpoints, data formats, and scripting languages.&lt;/p&gt;
+&lt;p&gt;A graphical approach, like Kura Wires may be interesting for a single instance, which is manually administered. But assume that you want to re-deploy the same solution multiple times. In this case you would want to locally develop and test it. Have proper tooling like validation and debugging. And then you want to automatically package it and run a set of unit and integration tests. And only after that you would want to deploy this. This model is supported when you are using Apache Camel. There is a lot of tooling available, tutorials, training, books on how to work with Apache Camel. And you can make use of the over 100 components which Camel itself provides. In addition to that, you have a whole ecosystem around Apache Camel, which can extend this even more. So it is definitely worth a look.&lt;/p&gt;
+&lt;h2&gt;Prerequisites&lt;/h2&gt;
+&lt;p&gt;As a prerequisite, you will need an instance of Kura 4. As this is currently not yet released, you can also use a snapshot build of Kura 3.3, which will later become Kura 4.&lt;/p&gt;
+&lt;p&gt;If you don’t want to set up a dedicated device just for playing around, you can always use the Kura container image and it e.g. with Docker. There is a short introduction on how to get started with this at the DockerHub repository: &lt;a href=&quot;https://hub.docker.com/r/ctron/kura/&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;https://hub.docker.com/r/ctron/kura/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Starting a new Kura instance is as easy as:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker run -ti ctron/kura:develop -p 8080:8080&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The following tutorial assumes that you have already set up Kura, and started with a fresh instance.&lt;/p&gt;
+&lt;h2&gt;Baby Steps&lt;/h2&gt;
+&lt;p&gt;The first step we take is to create a very simple, empty, Camel Context and hook and directly hook up a Camel endpoint without further configuration.&lt;/p&gt;
+&lt;h3&gt;New Camel Context&lt;/h3&gt;
+&lt;p&gt;As a first step, we create a new XML Router Camel context:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Open the Kura Web UI&lt;/li&gt;
+&lt;li&gt;Click on the “+” button next to the services search box&lt;/li&gt;
+&lt;li&gt;Select the &lt;code&gt;org.eclipse.kura.camel.xml.XmlRouterComponent&lt;/code&gt; factory&lt;/li&gt;
+&lt;li&gt;Enter the name &lt;code&gt;camel1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Press “Submit”&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt=&quot;New Camel Context Component&quot; class=&quot;aligncenter size-full wp-image-3990&quot; height=&quot;320&quot; src=&quot;https://dentrassi.de/wp-content/uploads/Selection_524.png&quot; width=&quot;619&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;A new service should appear in the left side navigation area. Sometimes it happens that the service does not show up, but reloading the Web UI will reveal the newly created service.&lt;/p&gt;
+&lt;p&gt;Now select the service and edit the newly created context. Clear out the “Router XML” and only leave the root element:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;xml&quot;&gt;&amp;lt;routes xmlns=&quot;http://camel.apache.org/schema/spring&quot;&amp;gt;
+&amp;lt;/routes&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In the field “Required Camel Components” add the &lt;code&gt;stream&lt;/code&gt; component. Click on “Apply” to activate the changes. This will configure the Camel context to have no routes, but wait for the &lt;code&gt;stream&lt;/code&gt; component to be present in the OSGi runtime. The &lt;code&gt;stream&lt;/code&gt; component is a default component, provided by the Eclipse Kura Camel runtime. The Camel context should be ready immediately and will be registered as an OSGi service for others to consume.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; class=&quot;aligncenter size-full wp-image-3993&quot; height=&quot;608&quot; src=&quot;https://dentrassi.de/wp-content/uploads/Selection_525.png&quot; width=&quot;824&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;The Wires Graph&lt;/h3&gt;
+&lt;p&gt;The next step is to configure the Kura Wires graph:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Switch to “Wire Graph” in the navigation pane&lt;/li&gt;
+&lt;li&gt;Add a new “Timer” component named &lt;code&gt;timer1&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Configure the component to fire every second&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Add a new “Camel Producer” named &lt;code&gt;producer1&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Set the Context ID field of the component to &lt;code&gt;camel1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Set the endpoint URI to &lt;code&gt;stream:out&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Connect the nodes &lt;code&gt;timer1&lt;/code&gt; and &lt;code&gt;producer1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Click on &lt;code&gt;Apply&lt;/code&gt; to activate the changes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; class=&quot;aligncenter size-full wp-image-3994&quot; height=&quot;506&quot; src=&quot;https://dentrassi.de/wp-content/uploads/Selection_526.png&quot; width=&quot;1092&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;If you look at the console of the Kura instance, then you should see something like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;shell&quot;&gt;org.eclipse.kura.wire.WireEnvelope@bdc823c
+org.eclipse.kura.wire.WireEnvelope@5b1f50f4
+org.eclipse.kura.wire.WireEnvelope@50851555
+org.eclipse.kura.wire.WireEnvelope@34cce95d
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; If you are running Kura on an actual device, then the output might be in the file &lt;code&gt;/var/log/kura-console.log&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;What is happening is, that the Kura wires timer component will trigger a Wires event every second. That event is passed along to the Camel endpoint &lt;code&gt;stream:out&lt;/code&gt; in the Camel context &lt;code&gt;camel1&lt;/code&gt;. This isn’t using any Camel routes yet. But this is a basic integration, which allows you to access all available Camel endpoints directly from Kura Wires.&lt;/p&gt;
+&lt;h2&gt;Producer, Consumer, Processor&lt;/h2&gt;
+&lt;p&gt;In addition to the “Producer” component, it is also possible to use the “Consumer”, or the “Processor”. The Consumer takes events from the Camel context and forwards them to the Kura Wires graph. While the “Processor” takes an event from the Wire Graph, processes it using Camel, and passes along the result to Wires again:&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; class=&quot;aligncenter size-full wp-image-3996&quot; height=&quot;429&quot; src=&quot;https://dentrassi.de/wp-content/uploads/drawing_1.png&quot; width=&quot;1680&quot; /&gt;&lt;br /&gt;
+&lt;img alt=&quot;&quot; class=&quot;aligncenter size-full wp-image-3999&quot; height=&quot;429&quot; src=&quot;https://dentrassi.de/wp-content/uploads/drawing_2.png&quot; width=&quot;1680&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;For Producer and Consumer, this would be a unidirectional message exchange from a Camel point of view. The Processor component would use an “in”/”out” message exchange, which is more like “request/response”. Of course that only makes sense when you have an endpoint which actually hands back a response, like the HTTP client endpoint.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; class=&quot;aligncenter size-full wp-image-4000&quot; height=&quot;737&quot; src=&quot;https://dentrassi.de/wp-content/uploads/drawing_3.png&quot; width=&quot;1680&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;In the following sections, we will see that in most cases there will be a more complex route set up that the Camel Wire component would interact with, proxied by a &lt;code&gt;seda&lt;/code&gt; Camel component. Still, the “in”, “out” flow of the Camel message exchange would be end-to-end between whatever endpoint you have and the Wires graph.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; class=&quot;aligncenter size-full wp-image-4001&quot; height=&quot;601&quot; src=&quot;https://dentrassi.de/wp-content/uploads/drawing_4.png&quot; width=&quot;1680&quot; /&gt;&lt;/p&gt;
+&lt;h2&gt;Getting professional&lt;/h2&gt;
+&lt;p&gt;Apache Camel mostly uses the concept of routes. And while accessing an endpoint directly from the Kura Camel component technically works, I wouldn’t recommend it. Mainly due to the fact that you would be missing an abstraction layer, there is no way to inject anything between the Kura Wires component and the final destination at the Camel endpoint. You directly hook up Kura Wires with the endpoint and thus lose all ways that Camel allows you to work with your data.&lt;/p&gt;
+&lt;p&gt;So as a first step, let’s decouple the Camel endpoint from Kura Wires and provide an API for our Camel Context.&lt;/p&gt;
+&lt;p&gt;In the &lt;code&gt;camel1&lt;/code&gt; configurations screen, change the “Router XML” to:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;xml&quot;&gt;&amp;lt;routes xmlns=&quot;http://camel.apache.org/schema/spring&quot;&amp;gt;
+    &amp;lt;route&amp;gt;
+        &amp;lt;from uri=&quot;seda:input1&quot;/&amp;gt;
+        &amp;lt;to uri=&quot;stream:out&quot;/&amp;gt;
+    &amp;lt;/route&amp;gt;
+&amp;lt;/routes&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then configure the &lt;code&gt;producer1&lt;/code&gt; component in the Wire Graph to use the “Endpoint URI” &lt;code&gt;seda:input1&lt;/code&gt; instead of directly using &lt;code&gt;stream:out&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;If everything is right, then you should still see the same output on the Kura console, but now Wires and Camel are decoupled and properly interfaced using an internal event queue, which allows us to use Camel routes for the following steps.&lt;/p&gt;
+&lt;p&gt;One benefit of this approach also is that you can now take the XML route definitions outside of Kura and test them in your local IDE. There are various IDE extensions for Eclipse, IntelliJ and Visual Studio, which can help to work with Camel XML route definitions. And of course, there are the JBoss Tools as well ;-). So you can easily test the routes outside of a running Kura instance and feed in emulated Kura Wires events using the &lt;code&gt;seda&lt;/code&gt; endpoints.&lt;/p&gt;
+&lt;h2&gt;To JSON&lt;/h2&gt;
+&lt;p&gt;This first example already shows a common problem, when working with data, and even so for IoT use cases. The output of &lt;code&gt;org.eclipse.kura.wire.WireEnvelope@3e0cef10&lt;/code&gt; is definitely not what is of much use. But Camel is great a converting data, so let’s make use of that.&lt;/p&gt;
+&lt;p&gt;As a first step we need to enable the JSON support for Camel:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Navigate to “Packages”&lt;/li&gt;
+&lt;li&gt;Click on “Install/Upgrade”&lt;/li&gt;
+&lt;li&gt;Enter the URL: &lt;code&gt;https://repo1.maven.org/maven2/de/dentrassi/kura/addons/de.dentrassi.kura.addons.camel.gson/0.6.0/de.dentrassi.kura.addons.camel.gson-0.6.0.dp&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Click on “Submit”&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;After a while, the package &lt;code&gt;de.dentrassi.kura.addons.gson&lt;/code&gt; should appear in the list of installed packages. It may happen that the list doesn’t properly refresh. Clicking on “refresh” or reloading the Web page will help.&lt;/p&gt;
+&lt;p&gt;Instead of downloading the package directly to the Kura installation you can also download the file to your local machine and then upload it by providing the file in the “Install/Upgrade” dialog box.&lt;/p&gt;
+&lt;p&gt;As a next step, you need to change the “Router XML” of the Camel context &lt;code&gt;camel1&lt;/code&gt; to the following configuration:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;xml&quot;&gt;&amp;lt;routes xmlns=&quot;http://camel.apache.org/schema/spring&quot;&amp;gt;
+    &amp;lt;route&amp;gt;
+        &amp;lt;from uri=&quot;seda:input1&quot;/&amp;gt;
+        &amp;lt;marshal&amp;gt;&amp;lt;json library=&quot;Gson&quot;/&amp;gt;&amp;lt;/marshal&amp;gt;
+        &amp;lt;transform&amp;gt;&amp;lt;simple&amp;gt;${body}\n&amp;lt;/simple&amp;gt;&amp;lt;/transform&amp;gt;
+        &amp;lt;to uri=&quot;stream:out&quot;/&amp;gt;
+    &amp;lt;/route&amp;gt;
+&amp;lt;/routes&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In the Kura console you will now see that we successfully transformed the internal Kura Wires data format to simple JSON:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;json&quot;&gt;{&quot;value&quot;:[{&quot;properties&quot;:{&quot;TIMER&quot;:{}}}],&quot;identification&quot;:&quot;org.eclipse.kura.wire.Timer-1536913933101-5&quot;,&quot;scope&quot;:&quot;WIRES&quot;}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This change did intercept the internal Kura wires objects and serialized them into proper JSON structures. The following step simply appends the content with a “newline” character in order to have a more readable output on the command line.&lt;/p&gt;
+&lt;h2&gt;Transforming data&lt;/h2&gt;
+&lt;p&gt;Depending on your IoT use case, transforming data can become rather complex. Camel is good at handling this. Transforming, filtering, splitting, aggregating, … for this tutorial I want to stick to a rather simple example, in order to focus in the integration between Kura and Camel, and less on the powers of Camel itself.&lt;/p&gt;
+&lt;p&gt;As the next step will use the “Groovy” script language to transform data, we will need to install an additional package using the same way as before: &lt;code&gt;https://repo1.maven.org/maven2/de/dentrassi/kura/addons/de.dentrassi.kura.addons.camel.groovy/0.6.0/de.dentrassi.kura.addons.camel.groovy-0.6.0.dp&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Then go ahead and modify the “Router XML” to include a transformation step, add the following content before the JSON conversion:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;xml&quot;&gt;&amp;lt;transform&amp;gt;&amp;lt;groovy&amp;gt;
+return  [&quot;value&quot;: new Random().nextInt(10), &quot;timer&quot;: request.body.identification ];
+&amp;lt;/groovy&amp;gt;&amp;lt;/transform&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The full XML context should now be:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;xml&quot;&gt;&amp;lt;routes xmlns=&quot;http://camel.apache.org/schema/spring&quot;&amp;gt;
+    &amp;lt;route&amp;gt;
+        &amp;lt;from uri=&quot;seda:input1&quot;/&amp;gt;
+        &amp;lt;transform&amp;gt;&amp;lt;groovy&amp;gt;
+        return  [&quot;value&quot;: new Random().nextInt(10), &quot;timer&quot;: request.body.identification ];
+        &amp;lt;/groovy&amp;gt;&amp;lt;/transform&amp;gt;
+        &amp;lt;marshal&amp;gt;&amp;lt;json library=&quot;Gson&quot;/&amp;gt;&amp;lt;/marshal&amp;gt;
+        &amp;lt;transform&amp;gt;&amp;lt;simple&amp;gt;${body}\n&amp;lt;/simple&amp;gt;&amp;lt;/transform&amp;gt;
+        &amp;lt;to uri=&quot;stream:out&quot;/&amp;gt;
+    &amp;lt;/route&amp;gt;
+&amp;lt;/routes&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;After applying the changes, the output on the console should change to something like:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;json&quot;&gt;{&quot;value&quot;:2,&quot;timer&quot;:&quot;org.eclipse.kura.wire.Timer-1536913933101-5&quot;}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As you can see, we now created a new data structure, based on generated content and based on the original Kura Wires event information.&lt;/p&gt;
+&lt;h2&gt;Off to the Eclipse Hono HTTP Adapter&lt;/h2&gt;
+&lt;p&gt;Printing out JSON to the console is nice, but let’s get a bit more professional. Yes, Kura allows you to use its Kura specific MQTT data format. But what we want to send this piece of JSON to some HTTP endpoint, like the &lt;a href=&quot;https://www.eclipse.org/hono&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;Eclipse Hono&lt;/a&gt; HTTP protocol adapter?&lt;/p&gt;
+&lt;p&gt;Camel has a huge variety of endpoints for connecting to various APIs, transport mechanisms and protocols. I doubt you directly would like your IoT gateway to contact Salesforce or Twitter, but using &lt;a href=&quot;https://dentrassi.de/2017/04/27/opc-ua-with-apache-camel/&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;OPC UA&lt;/a&gt;, MQTT, HTTP, &lt;a href=&quot;https://dentrassi.de/2017/02/17/iec-60870-5-104-with-apache-camel/&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;IEC 60870&lt;/a&gt;, might be a reasonable use case for IoT.&lt;/p&gt;
+&lt;p&gt;As a first step, we need to install Camel HTTP endpoint support: &lt;code&gt;https://repo1.maven.org/maven2/de/dentrassi/kura/addons/de.dentrassi.kura.addons.camel.http/0.6.0/de.dentrassi.kura.addons.camel.http-0.6.0.dp&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;The next step requires an instance of Eclipse Hono, thankfully there is a &lt;a href=&quot;https://www.eclipse.org/hono/sandbox/&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;Hono sandbox server&lt;/a&gt; running at &lt;code&gt;hono.eclipse.org&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;In the XML Router we need two steps for this. You can add them after the &lt;code&gt;to&lt;/code&gt; element, so that we still see the JSON on the command line:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;xml&quot;&gt;&amp;lt;setHeader headerName=”Content-Type”&amp;gt;&amp;lt;constant&amp;gt;application/json&amp;lt;/constant&amp;gt;&amp;lt;/setHeader&amp;gt;
+&amp;lt;to uri=&quot;https4://hono.eclipse.org:28080/telemetry?authenticationPreemptive=true&amp;amp;amp;authUsername=sensor1@DEFAULT_TENANT&amp;amp;amp;authPassword=hono-secret&quot;/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The first step sets the content type to &lt;code&gt;application/json&lt;/code&gt;, which is passed along by Hono to the AMQP network.&lt;/p&gt;
+&lt;p&gt;Yes, it really is &lt;code&gt;http4://&lt;/code&gt;, this is not a typo but the Camel endpoint using Apache HttpClient 4.&lt;/p&gt;
+&lt;p&gt;You may need to register the device with Hono before actually publishing data to the instance. Also, it is necessary that a consumer is attached, which receives the data. Hono rejects devices publish data if no consumer is attached. Also see: &lt;a href=&quot;https://www.eclipse.org/hono/getting-started/#publishing-data&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;https://www.eclipse.org/hono/getting-started/#publishing-data&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;If you are using a custom deployment of Hono using the &lt;a href=&quot;https://www.eclipse.org/hono/deployment/openshift_s2i/&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;OpenShift S2I&lt;/a&gt; approach, then the &lt;code&gt;to&lt;/code&gt; URL would look more like:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;xml&quot;&gt;&amp;lt;to uri=&quot;https4://hono-adapter-http-vertx-sec-hono.my.openshift.cluster/telemetry?authenticationPreemptive=true&amp;amp;amp;authUsername=sensor1@DEFAULT_TENANT&amp;amp;amp;authPassword=hono-secret&quot;/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Wrapping it up&lt;/h2&gt;
+&lt;p&gt;What we have seen so far is that, with a few lines of XML, it is possible to interface with Kura Wires, and start processing data that was originally not supported by Kura, sending to a target that also isn’t supported by Kura. On for that we only used a few lines of XML.&lt;/p&gt;
+&lt;p&gt;In addition to that, you can test and develop everything in a local, confined space. Without having to worry too much about actually running a Kura instance.&lt;/p&gt;
+&lt;p&gt;In Part #2 of this tutorial, we will continue with this approach and develop a Camel based solution, which can run inside of Kura, as well as outside, including actual unit tests.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://dentrassi.de/2018/09/14/the-power-of-apache-camel-in-eclipse-kura/&quot; rel=&quot;nofollow&quot;&gt;Leveraging the power of Apache Camel in Eclipse Kura&lt;/a&gt; appeared first on &lt;a href=&quot;https://dentrassi.de&quot; rel=&quot;nofollow&quot;&gt;ctron's blog&lt;/a&gt;.&lt;/p&gt;</description>
+	<pubDate>Fri, 14 Sep 2018 13:52:25 +0000</pubDate>
+</item>
+<item>
+	<title>Eclipse Announcements: An $8.7 Billion Shared Investment: Sizing the Economic Value of Eclipse Community Collaboration</title>
+	<guid isPermaLink="true">http://feedproxy.google.com/~r/eclipse/fnews/~3/33mHMN-pth4/87-billion-shared-investment-sizing-economic-value-eclipse-community</guid>
+	<link>http://feedproxy.google.com/~r/eclipse/fnews/~3/33mHMN-pth4/87-billion-shared-investment-sizing-economic-value-eclipse-community</link>
+	<description>What is the value of the code contributed by the Eclipse community? We estimate that the roughly 162 million total physical source lines of code in Eclipse repositories represent a $8.7 billion USD shared technology investment by our community.&lt;img alt=&quot;&quot; height=&quot;1&quot; src=&quot;http://feeds.feedburner.com/~r/eclipse/fnews/~4/33mHMN-pth4&quot; width=&quot;1&quot; /&gt;</description>
+	<pubDate>Thu, 13 Sep 2018 14:30:00 +0000</pubDate>
+</item>
+<item>
+	<title>JBoss Tools Team: JBoss Tools 4.9.0.AM3 for Eclipse 2018-09 M2</title>
+	<guid isPermaLink="true">https://tools.jboss.org/blog/4.9.0.am3.html</guid>
+	<link>https://tools.jboss.org/blog/4.9.0.am3.html</link>
+	<description>&lt;div&gt;&lt;div id=&quot;preamble&quot;&gt;
+      &lt;div class=&quot;sectionbody&quot;&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Happy to announce 4.9.0.AM3 (Developer Milestone 3) build for Eclipse 2018-09 M2.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Downloads available at &lt;a href=&quot;https://tools.jboss.org/downloads/jbosstools/2018-09/4.9.0.AM3.html&quot;&gt;JBoss Tools 4.9.0 AM3&lt;/a&gt;.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect1&quot;&gt;
+      &lt;h2 id=&quot;what-is-new&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#what-is-new&quot;&gt;&lt;/a&gt;What is New?&lt;/h2&gt;
+      &lt;div class=&quot;sectionbody&quot;&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Full info is at &lt;a href=&quot;https://tools.jboss.org/documentation/whatsnew/jbosstools/4.9.0.AM3.html&quot;&gt;this page&lt;/a&gt;. Some highlights are below.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect2&quot;&gt;
+      &lt;h3 id=&quot;general&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#general&quot;&gt;&lt;/a&gt;General&lt;/h3&gt;
+      
+      &lt;/div&gt;
+      &lt;div class=&quot;sect2&quot;&gt;
+      &lt;h3 id=&quot;server-tools&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#server-tools&quot;&gt;&lt;/a&gt;Server Tools&lt;/h3&gt;
+      &lt;div class=&quot;sect3&quot;&gt;
+      &lt;h4 id=&quot;wildfly-14-server-adapter&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#wildfly-14-server-adapter&quot;&gt;&lt;/a&gt;Wildfly 14 Server Adapter&lt;/h4&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;A server adapter has been added to work with Wildfly 14. It adds support for Java EE 8.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect2&quot;&gt;
+      &lt;h3 id=&quot;forge-tools&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#forge-tools&quot;&gt;&lt;/a&gt;Forge Tools&lt;/h3&gt;
+      &lt;div class=&quot;sect3&quot;&gt;
+      &lt;h4 id=&quot;forge-runtime-updated-to-3-9-1-final&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#forge-runtime-updated-to-3-9-1-final&quot;&gt;&lt;/a&gt;Forge Runtime updated to 3.9.1.Final&lt;/h4&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;The included Forge runtime is now 3.9.1.Final. Read the official announcement &lt;a href=&quot;https://forge.jboss.org/news/jboss-forge-3.9.1.final-is-here&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect2&quot;&gt;
+      &lt;h3 id=&quot;fuse-tooling&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#fuse-tooling&quot;&gt;&lt;/a&gt;Fuse Tooling&lt;/h3&gt;
+      &lt;div class=&quot;sect3&quot;&gt;
+      &lt;h4 id=&quot;know-issues&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#know-issues&quot;&gt;&lt;/a&gt;Know issues&lt;/h4&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;A regression has been introduced touching all functionalities using Jaxb. It includes:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;ulist&quot;&gt;
+      &lt;ul&gt;
+      &lt;li&gt;
+      &lt;p&gt;Variable content display in debug&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+      &lt;p&gt;Data Transformation wizard&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+      &lt;p&gt;Tracing Camel route via Jolokia Connection&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;/ul&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;It may affect other functionalities. In this case, you will have this kind of error in log:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;literalblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;pre&gt;java.lang.NullPointerException
+          at javax.xml.bind.ContextFinder.handleClassCastException(ContextFinder.java:95)&lt;/pre&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Please note that it has been already fixed on &lt;a href=&quot;http://tools.jboss.org/downloads/jbosstools/2018-09/4.9.x.Nightly.html&quot;&gt;nightly build&lt;/a&gt;&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Enjoy!&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Jeff Maury&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;&lt;/div&gt;</description>
+	<pubDate>Thu, 13 Sep 2018 09:39:15 +0000</pubDate>
+</item>
+<item>
+	<title>EclipseCon Europe 2018: Introducing our keynote speakers</title>
+	<guid isPermaLink="false">https://www.eclipsecon.org/news/710 at https://www.eclipsecon.org</guid>
+	<link>https://www.eclipsecon.org/europe2018/news/introducing-our-keynote-speakers</link>
+	<description>&lt;div class=&quot;field field-name-body field-type-text-with-summary field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;p&gt;Hirash Pillay, Global Head, Community Architecture and Leadership at RedHat - Lessons on Open Source&lt;em&gt; from a 25-Year-Old Company&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Tony Walsh, European Space Agency - &lt;em&gt;Flying to Jupiter with OSGi&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Amanda Whaley, Director of Developer Experience &amp;amp; Developer Advocacy for Cisco DevNet -  &lt;em&gt;Marie Curie, Open Source, Kickstarter, and Women in Tech&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-field-news-image field-type-image field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;a href=&quot;https://www.eclipsecon.org/europe2018/news/introducing-our-keynote-speakers&quot;&gt;&lt;img alt=&quot;&quot; class=&quot;img-responsive block-center&quot; height=&quot;250&quot; src=&quot;https://www.eclipsecon.org/sites/default/files/styles/solstice_news_-_default_-_thumbnail/public/news/Keynotes.png?itok=nViEJQZF&quot; width=&quot;250&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description>
+	<pubDate>Wed, 12 Sep 2018 10:04:47 +0000</pubDate>
+</item>
+<item>
+	<title>EclipseCon Europe 2018: Sponsor Testimonial: Renesas</title>
+	<guid isPermaLink="false">https://www.eclipsecon.org/news/709 at https://www.eclipsecon.org</guid>
+	<link>https://www.eclipsecon.org/europe2018/news/sponsor-testimonial-renesas</link>
+	<description>&lt;div class=&quot;field field-name-body field-type-text-with-summary field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Renesas has been developing our own Eclipse based IDE product now for over 8 years for Embedded Developers using Renesas hardware. Last year was our first with a booth and this gave us a great opportunity to show the attendees what we are doing and really get to meet members of the community. Be sure to visit our booth this year for a look at our OpenADx autonomous driving simulation technology demonstrator!&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-field-news-image field-type-image field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;a href=&quot;https://www.eclipsecon.org/europe2018/news/sponsor-testimonial-renesas&quot;&gt;&lt;img alt=&quot;&quot; class=&quot;img-responsive block-center&quot; height=&quot;250&quot; src=&quot;https://www.eclipsecon.org/sites/default/files/styles/solstice_news_-_default_-_thumbnail/public/news/Renesas.png?itok=cuoHuF_o&quot; width=&quot;250&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description>
+	<pubDate>Wed, 12 Sep 2018 09:50:55 +0000</pubDate>
+</item>
+<item>
+	<title>Maximilian and Jonas: How to deploy Eclipse Theia on a Raspberry Pi</title>
+	<guid isPermaLink="false">https://eclipsesource.com/?p=39870</guid>
+	<link>https://eclipsesource.com/blogs/2018/09/12/how-to-deploy-eclipse-theia-on-a-raspberry-pi/</link>
+	<description>&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;Eclipse Theia is a platform to create IDEs and custom (modeling) tools based on  web technology (Typescript, CSS and HTML). Please see &lt;/span&gt;&lt;a href=&quot;https://eclipsesource.com/de/blogs/2018/06/20/welcome-at-eclipse-theia/&quot;&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;this article for details about this new Eclipse project&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;One advantage of using web technology and more in particular Eclipse Theia is that the tool can then be accessed directly in the browser without any installation or client set-up. However, this only works, if the tool based on Theia has been deployed somewhere. This could be a cloud server, a docker container, or in our case a Raspberry Pi! You might wonder why you would want to deploy a browser tool on a Raspberry Pi. First of all, a Raspberry is probably the cheapest server you can imagine, so if, for whatever reason, you cannot deploy and access your tool in the cloud, a Raspberry still allows a local client/server deployment. More interestingly, Raspberry Pis are often used to control or orchestrate embedded use cases. That means, the Raspberry executes some software which can control devices that are connected to it. In this scenario, having the tooling to develop this software running on the Raspberry provides a very consistent set-up. You could then ship a Raspberry which includes the software and the tooling –  all on one device.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;Anyway, since when do we need a reason to deploy something on a Raspberry Pi? It is just fun, so let us get going!&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;How to deploy Eclipse Theia on a Raspberry Pi&quot; class=&quot;alignnone wp-image-39871 size-full&quot; height=&quot;143&quot; src=&quot;https://eclipsesource.com/wp-content/uploads/2018/09/image1.png&quot; width=&quot;624&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;At this point we assume that you already installed the runtime dependencies of Theia, namingly Node.js v8 and Yarn.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;The main issue we will have to deal with is a mismatch of processor architectures. The Raspberry Pi is powered by an ARM processor, while your development machine is likely an x86 based architecture. While it is certainly possible to build Theia directly on the Raspberry, you might want to instead use your regular computer for this. Doings so will save you the hassle of setting up the full build environment on the Raspberry and compilation will also be much faster.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;However, you cannot simply copy your Theia build from a x86 based machine onto the Raspberry. This might seem odd at first because after all it is JavaScript based. However, Theia uses certain interfaces to make use of native OS functionality. For example, the terminal feature is based on the node-pty module, which forks native OS processes in the background and redirects their output. These interfaces include some C or C++ code, which must be compiled for the architecture Theia is running on. To be able to build code for the ARM architecture on your regular x86 machine you need a so called “cross-compiler”. As the name implies it will allow you to compile code for a target architecture that is different from the architecture the building machine itself is running on. The Raspberry Linaro provides a cross-compiler which you can find &lt;/span&gt;&lt;a href=&quot;https://github.com/raspberrypi/tools/tree/master/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian&quot;&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;here&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;. Clone this repository as a preparation and point the paths to it later (see below).&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;First, compile Theia as usual using &lt;/span&gt;&lt;/p&gt;
+&lt;pre class=&quot;EnlighterJSRAW&quot;&gt;yarn install&lt;/pre&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;This will build Theia for your current architecture (x86). Now we need to re-compile the native bits using our cross compiler. To do that we have to set two environment variables, defining the C and CPP compiler to use. You can set them like so:&lt;/span&gt;&lt;/p&gt;
+&lt;pre class=&quot;EnlighterJSRAW&quot;&gt;export CC=/opt/gcc-linaro-arm-linux-gnueabihf-raspbian/bin/arm-linux-gnueabihf-gcc
+export CXX=/opt/gcc-linaro-arm-linux-gnueabihf-raspbian/bin/arm-linux-gnueabihf-g++&lt;/pre&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;Make sure to accordingly adapt the locations to your installation.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;Afterwards, you need to run the following command line in the Theia project root directory to re-compile the native code parts for a&lt;/span&gt;&lt;/p&gt;
+&lt;pre class=&quot;EnlighterJSRAW&quot;&gt;npm rebuild --target_arch=arm&lt;/pre&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;Finally, unset the cross-compiler using:&lt;/span&gt;&lt;/p&gt;
+&lt;pre class=&quot;EnlighterJSRAW&quot;&gt;unset CC CXX&lt;/pre&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;That’s it! Copy your project directory onto your Raspberry and start it as usual:&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;Note: There is currently a time out issue when running Theia on a slow machine like a Raspberry Pi. You can avoid this problem by appending &lt;/span&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;–no-cluster to the yarn start command. With this option, everything will run in the same process rather than separate worker processes. The progress of this issue is being tracked &lt;/span&gt;&lt;a href=&quot;https://github.com/theia-ide/theia/issues/2710&quot;&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;here&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;</description>
+	<pubDate>Wed, 12 Sep 2018 09:49:45 +0000</pubDate>
+</item>
+<item>
+	<title>JBoss Tools Team: JBoss Tools 4.9.0.AM2 for Eclipse 2018-09 M2</title>
+	<guid isPermaLink="true">https://tools.jboss.org/blog/4.9.0.am2.html</guid>
+	<link>https://tools.jboss.org/blog/4.9.0.am2.html</link>
+	<description>&lt;div&gt;&lt;div id=&quot;preamble&quot;&gt;
+      &lt;div class=&quot;sectionbody&quot;&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Happy to announce 4.9.0.AM2 (Developer Milestone 2) build for Eclipse 2018-09 M2.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Downloads available at &lt;a href=&quot;https://tools.jboss.org/downloads/jbosstools/2018-09/4.9.0.AM2.html&quot;&gt;JBoss Tools 4.9.0 AM2&lt;/a&gt;.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect1&quot;&gt;
+      &lt;h2 id=&quot;what-is-new&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#what-is-new&quot;&gt;&lt;/a&gt;What is New?&lt;/h2&gt;
+      &lt;div class=&quot;sectionbody&quot;&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Full info is at &lt;a href=&quot;https://tools.jboss.org/documentation/whatsnew/jbosstools/4.9.0.AM2.html&quot;&gt;this page&lt;/a&gt;. Some highlights are below.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect2&quot;&gt;
+      &lt;h3 id=&quot;general&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#general&quot;&gt;&lt;/a&gt;General&lt;/h3&gt;
+      &lt;div class=&quot;sect3&quot;&gt;
+      &lt;h4 id=&quot;eclipse-2018-09&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#eclipse-2018-09&quot;&gt;&lt;/a&gt;Eclipse 2018-09&lt;/h4&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;JBoss Tools is now targeting Eclipse 2018-09 M2.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect2&quot;&gt;
+      &lt;h3 id=&quot;fuse-tooling&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#fuse-tooling&quot;&gt;&lt;/a&gt;Fuse Tooling&lt;/h3&gt;
+      &lt;div class=&quot;sect3&quot;&gt;
+      &lt;h4 id=&quot;wsdl-to-camel-rest-dsl-improvements&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#wsdl-to-camel-rest-dsl-improvements&quot;&gt;&lt;/a&gt;WSDL to Camel REST DSL improvements&lt;/h4&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;The version of the library used to generate Camel REST DSL from WSDl files has been updated. It now covers more types of WSDL files. See &lt;a class=&quot;bare&quot; href=&quot;https://github.com/jboss-fuse/wsdl2rest/milestone/3?closed=1&quot;&gt;https://github.com/jboss-fuse/wsdl2rest/milestone/3?closed=1&lt;/a&gt; for the list of improvements.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;sect3&quot;&gt;
+      &lt;h4 id=&quot;rest-editor-tab-improvements&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;http://tools.jboss.org/blog/news.atom#rest-editor-tab-improvements&quot;&gt;&lt;/a&gt;REST Editor tab improvements&lt;/h4&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;In the last milestone we began adding editing capabilities to the read-only REST tab to the route editor we added in the previous release. Those efforts have continued and we now have a fully editable REST tab.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;imageblock&quot;&gt;
+      &lt;div class=&quot;content&quot;&gt;
+      &lt;img alt=&quot;Fully Editable REST Editor&quot; src=&quot;https://tools.jboss.org/documentation/whatsnew/fusetools/images/fuse-editor-rest-tab-properties-11.1.0.am2.jpg&quot; /&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;You can now:&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;ulist&quot;&gt;
+      &lt;ul&gt;
+      &lt;li&gt;
+      &lt;p&gt;Create and delete REST Configurations&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+      &lt;p&gt;Create and delete new REST Elements&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+      &lt;p&gt;Create and delete new REST Operations&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+      &lt;p&gt;Edit properties for a selected REST Element in the Properties view&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+      &lt;p&gt;Edit properties for a selected REST Operation in the Properties view&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;/ul&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;In addition, we’ve improved the look and feel by fixing the scrolling capabilities of the REST Element and REST Operations lists.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Enjoy!&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;paragraph&quot;&gt;
+      &lt;p&gt;Jeff Maury&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;&lt;/div&gt;</description>
+	<pubDate>Wed, 12 Sep 2018 06:24:40 +0000</pubDate>
+</item>
+<item>
+	<title>Donald Raab: EC by Example: InjectInto</title>
+	<guid isPermaLink="false">https://medium.com/p/923a35c3b0cd</guid>
+	<link>https://medium.com/@donraab/ec-by-example-injectinto-923a35c3b0cd?source=rss-df39b86e9f04------2</link>
+	<description>&lt;p&gt;Learn one of the most general, flexible, and least understood iteration patterns in &lt;a href=&quot;http://www.eclipse.org/collections/&quot;&gt;Eclipse Collections&lt;/a&gt;.&lt;/p&gt;&lt;figure&gt;&lt;img alt=&quot;&quot; src=&quot;https://cdn-images-1.medium.com/max/1024/1*oVENcGt-nrxKgVPBGfRBGQ.png&quot; /&gt;Grounds for Sculpture, Hamilton N.J.&lt;/figure&gt;&lt;h3&gt;Continuum Transfunctioner&lt;/h3&gt;&lt;p&gt;Like the Continuum Transfunctioner from “Dude, Where’s my car”, the method &lt;em&gt;injectInto&lt;/em&gt; is a very mysterious and powerful method, and its mystery is only exceeded by its power.&lt;/p&gt;&lt;h3&gt;So what does injectInto do?&lt;/h3&gt;&lt;p&gt;The method &lt;em&gt;injectInto&lt;/em&gt; can be used to do pretty much anything. The method injects an initial value into a two argument function along with the first element of the collection, and calculates some result. That result is then passed to the next invocation of the function as the initial value along with the next element of the collection. And so on and so forth until all elements of the collection have been visited and a final result is returned.&lt;/p&gt;&lt;p&gt;The name &lt;em&gt;injectInto&lt;/em&gt; is based on the &lt;a href=&quot;https://martinfowler.com/articles/collection-pipeline/#op-catalog&quot;&gt;&lt;em&gt;inject:into&lt;/em&gt;:&lt;/a&gt; selector from Smalltalk. &lt;em&gt;InjectInto&lt;/em&gt; is an alternative name for &lt;em&gt;foldLeft&lt;/em&gt; or &lt;em&gt;reduce&lt;/em&gt;.&lt;/p&gt;&lt;p&gt;I will illustrate ways to implement various algorithms using &lt;em&gt;injectInto&lt;/em&gt; to show how mysterious and powerful it is.&lt;/p&gt;&lt;h3&gt;Example: Min and Max&lt;/h3&gt;&lt;pre&gt;@Test&lt;br /&gt;public void injectIntoMinAndMax()&lt;br /&gt;{&lt;br /&gt;    MutableList&amp;lt;Integer&amp;gt; list = Lists.&lt;strong&gt;&lt;em&gt;mutable&lt;/em&gt;&lt;/strong&gt;.with(1, 2, 3, 4, 5);&lt;br /&gt;&lt;br /&gt;    Integer maxInt = Integer.&lt;strong&gt;&lt;em&gt;MAX_VALUE&lt;/em&gt;&lt;/strong&gt;;&lt;br /&gt;    Integer minValue = list.injectInto(maxInt, Math::&lt;em&gt;min&lt;/em&gt;);&lt;br /&gt;    Assert.&lt;em&gt;assertEquals&lt;/em&gt;(list.min(), minValue);&lt;br /&gt;&lt;br /&gt;    Integer minInt = Integer.&lt;strong&gt;&lt;em&gt;MIN_VALUE&lt;/em&gt;&lt;/strong&gt;;&lt;br /&gt;    Integer maxValue = list.injectInto(minInt, Math::&lt;em&gt;max&lt;/em&gt;);&lt;br /&gt;    Assert.&lt;em&gt;assertEquals&lt;/em&gt;(list.max(), maxValue);&lt;br /&gt;}&lt;/pre&gt;&lt;h3&gt;Example: Sum&lt;/h3&gt;&lt;pre&gt;@Test&lt;br /&gt;public void injectIntoSum()&lt;br /&gt;{&lt;br /&gt;    MutableList&amp;lt;Integer&amp;gt; list = Lists.&lt;strong&gt;&lt;em&gt;mutable&lt;/em&gt;&lt;/strong&gt;.with(1, 2, 3, 4, 5);&lt;br /&gt;&lt;br /&gt;    Integer sum = list.injectInto(Integer.&lt;em&gt;valueOf&lt;/em&gt;(0), Integer::&lt;em&gt;sum&lt;/em&gt;);&lt;/pre&gt;&lt;pre&gt;    Assert.&lt;em&gt;assertEquals&lt;/em&gt;(Integer.&lt;em&gt;valueOf&lt;/em&gt;(15), sum);&lt;br /&gt;}&lt;/pre&gt;&lt;h3&gt;Example: Product&lt;/h3&gt;&lt;pre&gt;@Test&lt;br /&gt;public void injectIntoProduct()&lt;br /&gt;{&lt;br /&gt;    MutableList&amp;lt;Integer&amp;gt; list = Lists.&lt;strong&gt;&lt;em&gt;mutable&lt;/em&gt;&lt;/strong&gt;.with(1, 2, 3, 4, 5);&lt;br /&gt;&lt;br /&gt;    Integer product =&lt;br /&gt;            list.injectInto(&lt;br /&gt;                    Integer.&lt;em&gt;valueOf&lt;/em&gt;(1), &lt;br /&gt;                    (result, each) -&amp;gt; result * each);&lt;/pre&gt;&lt;pre&gt;    Assert.&lt;em&gt;assertEquals&lt;/em&gt;(Integer.&lt;em&gt;valueOf&lt;/em&gt;(120), product);&lt;br /&gt;}&lt;/pre&gt;&lt;h3&gt;Example: Collect&lt;/h3&gt;&lt;pre&gt;@Test&lt;br /&gt;public void injectIntoCollect()&lt;br /&gt;{&lt;br /&gt;    MutableList&amp;lt;String&amp;gt; lowerCase =&lt;br /&gt;            Lists.&lt;strong&gt;&lt;em&gt;mutable&lt;/em&gt;&lt;/strong&gt;.with(&lt;strong&gt;&quot;a&quot;&lt;/strong&gt;, &lt;strong&gt;&quot;b&quot;&lt;/strong&gt;, &lt;strong&gt;&quot;c&quot;&lt;/strong&gt;, &lt;strong&gt;&quot;d&quot;&lt;/strong&gt;, &lt;strong&gt;&quot;e&quot;&lt;/strong&gt;);&lt;/pre&gt;&lt;pre&gt;    MutableList&amp;lt;Object&amp;gt; upperCase =&lt;br /&gt;            lowerCase.injectInto(&lt;br /&gt;                    Lists.&lt;strong&gt;&lt;em&gt;mutable&lt;/em&gt;&lt;/strong&gt;.empty(),&lt;br /&gt;                    (list, each) -&amp;gt; list.with(each.toUpperCase()));&lt;/pre&gt;&lt;pre&gt;    Assert.&lt;em&gt;assertEquals&lt;/em&gt;(&lt;br /&gt;            lowerCase.collect(String::toUpperCase), &lt;br /&gt;            upperCase);&lt;br /&gt;}&lt;/pre&gt;&lt;h3&gt;Example: GroupBy&lt;/h3&gt;&lt;pre&gt;@Test&lt;br /&gt;public void injectIntoGroupBy()&lt;br /&gt;{&lt;br /&gt;    MutableList&amp;lt;Integer&amp;gt; list = Lists.&lt;strong&gt;&lt;em&gt;mutable&lt;/em&gt;&lt;/strong&gt;.with(1, 2, 3, 4, 5);&lt;/pre&gt;&lt;pre&gt;    MutableListMultimap&amp;lt;Integer, Integer&amp;gt; grouped = &lt;br /&gt;            Multimaps.&lt;strong&gt;&lt;em&gt;mutable&lt;/em&gt;&lt;/strong&gt;.list.empty();&lt;/pre&gt;&lt;pre&gt;    list.injectInto(grouped, (multimap, each) -&amp;gt; {&lt;br /&gt;        multimap.put(each % 2, each);&lt;br /&gt;        return multimap;&lt;br /&gt;    });&lt;/pre&gt;&lt;pre&gt;    Assert.&lt;em&gt;assertEquals&lt;/em&gt;(list.groupBy(each -&amp;gt; each % 2), grouped);&lt;br /&gt;}&lt;/pre&gt;&lt;h3&gt;Example: Collectors.groupingBy&lt;/h3&gt;&lt;pre&gt;@Test&lt;br /&gt;public void injectIntoGroupingBy()&lt;br /&gt;{&lt;br /&gt;    MutableList&amp;lt;Integer&amp;gt; list = Lists.&lt;strong&gt;&lt;em&gt;mutable&lt;/em&gt;&lt;/strong&gt;.with(1, 2, 3, 4, 5);&lt;/pre&gt;&lt;pre&gt;    MutableMap&amp;lt;Integer, List&amp;lt;Integer&amp;gt;&amp;gt; grouped =&lt;br /&gt;            Maps.&lt;strong&gt;&lt;em&gt;mutable&lt;/em&gt;&lt;/strong&gt;.empty();&lt;/pre&gt;&lt;pre&gt;    list.injectInto(grouped, (map, each) -&amp;gt; {&lt;br /&gt;        map.getIfAbsentPut(each % 2,Lists.&lt;strong&gt;&lt;em&gt;mutable&lt;/em&gt;&lt;/strong&gt;::empty)&lt;br /&gt;                .add(each);&lt;br /&gt;        return map;&lt;br /&gt;    });&lt;/pre&gt;&lt;pre&gt;    Assert.&lt;em&gt;assertEquals&lt;/em&gt;(&lt;br /&gt;            list.stream().collect(&lt;br /&gt;                    Collectors.&lt;em&gt;groupingBy&lt;/em&gt;(each -&amp;gt; each % 2)),&lt;br /&gt;            grouped);&lt;br /&gt;}&lt;/pre&gt;&lt;h3&gt;Example: Detect&lt;/h3&gt;&lt;pre&gt;@Test&lt;br /&gt;public void injectIntoDetect()&lt;br /&gt;{&lt;br /&gt;    MutableList&amp;lt;Integer&amp;gt; list = Lists.&lt;strong&gt;&lt;em&gt;mutable&lt;/em&gt;&lt;/strong&gt;.with(1, 2, 3, 4, 5);&lt;/pre&gt;&lt;pre&gt;    Integer value = list.injectInto(&lt;br /&gt;            null,&lt;br /&gt;            (result, each) -&amp;gt;&lt;br /&gt;                    result == null &amp;amp;&amp;amp; each &amp;gt; 2 ? each : result);&lt;/pre&gt;&lt;pre&gt;    Assert.&lt;em&gt;assertEquals&lt;/em&gt;(list.detect(each -&amp;gt; each &amp;gt; 2), value);&lt;br /&gt;}&lt;/pre&gt;&lt;h3&gt;Example: Select&lt;/h3&gt;&lt;pre&gt;@Test&lt;br /&gt;public void injectIntoSelect()&lt;br /&gt;{&lt;br /&gt;    MutableList&amp;lt;Integer&amp;gt; list = Lists.&lt;strong&gt;&lt;em&gt;mutable&lt;/em&gt;&lt;/strong&gt;.with(1, 2, 3, 4, 5);&lt;/pre&gt;&lt;pre&gt;    MutableList&amp;lt;Integer&amp;gt; value = list.injectInto(&lt;br /&gt;            Lists.&lt;strong&gt;&lt;em&gt;mutable&lt;/em&gt;&lt;/strong&gt;.empty(),&lt;br /&gt;            (result, each) -&amp;gt;&lt;br /&gt;                    each % 2 == 0 ? result.with(each) : result);&lt;/pre&gt;&lt;pre&gt;    Assert.&lt;em&gt;assertEquals&lt;/em&gt;(list.select(each -&amp;gt; each % 2 == 0), value);&lt;br /&gt;}&lt;/pre&gt;&lt;h3&gt;APIs covered in the examples&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;&lt;a href=&quot;http://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/api/RichIterable.html#injectInto-IV-org.eclipse.collections.api.block.function.Function2-&quot;&gt;injectInto&lt;/a&gt; — applies a two argument function to each element of a collection using an initial value, and then injecting the result of each application of the function into the next iteration.&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;Check out this &lt;a href=&quot;http://eclipse.github.io/eclipse-collections-kata/api-design&quot;&gt;presentation&lt;/a&gt; to learn more about the origins, design and evolution of the Eclipse Collections API.&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/eclipse/eclipse-collections&quot;&gt;&lt;em&gt;Eclipse Collections&lt;/em&gt;&lt;/a&gt;&lt;em&gt; is open for &lt;/em&gt;&lt;a href=&quot;https://github.com/eclipse/eclipse-collections/blob/master/CONTRIBUTING.md&quot;&gt;&lt;em&gt;contributions&lt;/em&gt;&lt;/a&gt;&lt;em&gt;. If you like the library, you can let us know by starring it on GitHub.&lt;/em&gt;&lt;/p&gt;&lt;img height=&quot;1&quot; src=&quot;https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=923a35c3b0cd&quot; width=&quot;1&quot; /&gt;</description>
+	<pubDate>Wed, 12 Sep 2018 00:39:59 +0000</pubDate>
+</item>
+<item>
+	<title>Eclipse Announcements: Mizuho International Joins Eclipse Foundation</title>
+	<guid isPermaLink="true">http://feedproxy.google.com/~r/eclipse/fnews/~3/FqTq8dU945o/Mizuho-International-Joins-Eclipse-Foundation.html</guid>
+	<link>http://feedproxy.google.com/~r/eclipse/fnews/~3/FqTq8dU945o/Mizuho-International-Joins-Eclipse-Foundation.html</link>
+	<description>Mizuho International, the securities &amp;amp; investment banking arm of the Mizuho Financial Group, has joined the Eclipse Foundation.&lt;img alt=&quot;&quot; height=&quot;1&quot; src=&quot;http://feeds.feedburner.com/~r/eclipse/fnews/~4/FqTq8dU945o&quot; width=&quot;1&quot; /&gt;</description>
+	<pubDate>Tue, 11 Sep 2018 19:55:00 +0000</pubDate>
+</item>
+<item>
+	<title>Wayne Beaton: Lightening the Release Review Burden</title>
+	<guid isPermaLink="false">http://waynebeaton.wordpress.com/?p=5444</guid>
+	<link>https://waynebeaton.wordpress.com/2018/09/11/lightening-the-release-review-burden/</link>
+	<description>&lt;p&gt;The Eclipse Architecture Council is in the process of making a change to how the &lt;a href=&quot;http://www.eclipse.org/projects/dev_process/development_process.php&quot;&gt;Eclipse Development Process&lt;/a&gt; (EDP) defines the Reviews that Eclipse open source projects are required to engage in. Foremost on our minds is the nature of Release Reviews which the EDP current requires ahead of all major and minor releases (service releases are excused from the requirement).&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&quot;https://bugs.eclipse.org/bugs/show_bug.cgi?id=496321&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;current thinking&lt;/a&gt; is that we will decouple Releases from Reviews and instead require a regular (probably annual) equivalent to the Release Review.&lt;/p&gt;
+&lt;p&gt;This is actually not as big a departure from the current process as you might think. The EDP describes the Release Review as an opportunity “to summarize the accomplishments of the release, to verify that the IP Policy has been followed and all approvals have been received, to highlight any remaining quality and/or architectural issues, and to verify that the project is continuing to operate according to the principles and purposes of Eclipse.” That is, it is far less about the current release than it is about ensuring that the process is being followed and that the project is doing the right sorts of things to attract and grow community.&lt;/p&gt;
+&lt;p&gt;Likewise, the purpose of an IP Log is &lt;b&gt;not&lt;/b&gt; to accurately represent the contents of any particular release, but rather to provide a checkpoint to ensure that the project is correctly following the &lt;a href=&quot;https://www.eclipse.org/projects/handbook/#ip&quot;&gt;Eclipse IP Due Diligence Process&lt;/a&gt; (so project teams can continue to receive contributions or engage in other activities that might change the IP Log between the point in time when it is reviewed and approved, and the project makes a release).&lt;/p&gt;
+&lt;p&gt;Eclipse committers are required to observe the &lt;a href=&quot;http://eclipse.org/org/documents/Eclipse_IP_Policy.pdf&quot;&gt;Eclipse IP Policy&lt;/a&gt; and IP Due Diligence Process at all times, and so our open source projects must &lt;b&gt;always&lt;/b&gt; be in correct state with regard to intellectual property management.&lt;/p&gt;
+&lt;p&gt;For those of you who have made it this far, it would be great if you could weigh in on &lt;a href=&quot;https://bugs.eclipse.org/bugs/show_bug.cgi?id=534828&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;Bug 534828&lt;/a&gt; which includes an effort to more precisely define “Release”. We’re tracking all of our plans to update the EDP via &lt;a href=&quot;https://bugs.eclipse.org/bugs/show_bug.cgi?id=484593&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;Bug 484593&lt;/a&gt;. Input is welcome.&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;</description>
+	<pubDate>Tue, 11 Sep 2018 15:00:43 +0000</pubDate>
+</item>
+<item>
+	<title>Thabang Mashologu: An $8.7 Billion Shared Investment: Sizing the Economic Value of Eclipse Community Collaboration</title>
+	<guid isPermaLink="false">https://blogs.eclipse.org/6639 at https://blogs.eclipse.org</guid>
+	<link>https://blogs.eclipse.org/post/thabang-mashologu/87-billion-shared-investment-sizing-economic-value-eclipse-community</link>
+	<description>&lt;div class=&quot;field field-name-body field-type-text-with-summary field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;p&gt;What is the value of the code contributed by the Eclipse community? Inspired by a 2015 Linux Foundation study of &lt;a href=&quot;https://www.linuxfoundation.org/press-release/2015/09/the-linux-foundation-releases-first-ever-value-of-collaborative-development-report/&quot;&gt;the value of open source collaboration&lt;/a&gt;, we estimate that the roughly &lt;strong&gt;162 million total physical source lines of code&lt;/strong&gt; in Eclipse repositories represent an &lt;strong&gt;$8.7 billion USD shared technology investment&lt;/strong&gt; by our community.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt=&quot;&quot; src=&quot;https://blogs.eclipse.org/sites/default/files/users/user160/thabang_blog_imagev5.png&quot; style=&quot;height: 315px; width: 560px;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Open source has won because no single company can compete with the rate and scale of disruptive innovation delivered by collaborative ecosystems. In this post, I’ll share the details of our analysis of the economic value of open collaboration under the Eclipse governance model. As borne out by our experience, industry collaboration done properly delivers broad benefits to the ecosystem, including increased business agility, margin preservation, and the riskless sharing of intellectual property. &lt;/p&gt;
+
+&lt;h2&gt;The Strategic Value of Eclipse Collaboration&lt;/h2&gt;
+
+&lt;p&gt;Delivering sustainable software innovation at scale requires an economic investment that is unlikely to be shouldered by one company alone. Industry leaders like Bosch, Google, Amazon, and many others have embraced this reality. Increasingly, collaboration is viewed as a basis for competitive advantage. &lt;/p&gt;
+
+&lt;p&gt;The thinking goes like this: working with other industry players — even your fiercest competitors — on technology below the value line frees up scarce organizational resources to focus on delivering differentiating features faster, thereby igniting revenue growth. By pooling the development effort associated with commodity or backend capabilities, open source participants can save on headcount expenses, lower their development costs, and mitigate business risk by accelerating the market adoption of technologies and standards.&lt;/p&gt;
+
+&lt;p&gt;Consider mature industries faced with commoditization of traditional differentiators like the automotive and telecommunications sectors, where incumbents are squeezed by declining profits and the entry of digital-native disruptors like Tesla and Google. Collaborative development done right enables margin preservation and IP sharing without the threat of antitrust and regulatory challenges.&lt;/p&gt;
+
+&lt;p&gt;There are plenty of real-world examples of fierce industry rivals collaborating on open source. At the Eclipse Foundation’s &lt;a href=&quot;https://www.openmdm.org/&quot;&gt;openMDM Working Group&lt;/a&gt;, BMW, Daimler, Audi, and other automotive OEMs and supply chain partners collaborate on open technologies for the management of standardized measurement data. In the cloud space, Alibaba, Amazon, Google and Microsoft are members of the Cloud Native Computing Foundation. Commercially-friendly OSS foundations provide the even playing field for everyone to frictionlessly work together on sustainable technology, while managing risk, and extracting value.&lt;/p&gt;
+
+&lt;p&gt;The Eclipse Foundation has a proven track record of enabling open collaboration and innovation earned over 15 years. The &lt;a href=&quot;https://www.eclipse.org/org/workinggroups/&quot;&gt;Eclipse Working Groups&lt;/a&gt; provide an open and vendor-neutral governance framework for individuals and organizations to engage in collaborative development. Combined with efficient &lt;a href=&quot;https://www.eclipse.org/org/#Development&quot;&gt;development processes&lt;/a&gt; and rigorous &lt;a href=&quot;https://www.eclipse.org/org/#IP_Management&quot;&gt;intellectual property services&lt;/a&gt;, the end result is clean code that is readily built into commercial products. In essence, we help the Eclipse community deliver open source code that works and scales in the real world.&lt;/p&gt;
+
+&lt;h2&gt;What’s in a Number?&lt;/h2&gt;
+
+&lt;p&gt;My colleague Benjamin Cabé recently &lt;a href=&quot;https://blog.benjamin-cabe.com/2018/09/04/how-many-lines-of-open-source-code-are-hosted-at-the-eclipse-foundation&quot;&gt;shared the detailed methodology&lt;/a&gt; behind the count of 162 million total physical source lines of code contributed to 330 active Eclipse projects in 1,120 Git repositories (as of August 1, 2018). The goal of our economic analysis was to assess the value to the ecosystem delivered by Eclipse projects. &lt;/p&gt;
+
+&lt;p&gt;The creation of the original Eclipse project was announced in a 2001 IBM &lt;a href=&quot;https://www-03.ibm.com/press/us/en/pressrelease/1025.wss&quot;&gt;press release&lt;/a&gt; as a contribution of $40 million of software. At the time, the Eclipse community already involved more than 150 leading software tool suppliers and over 1,200 individual developers from 63 countries.&lt;/p&gt;
+
+&lt;p&gt;The Eclipse ecosystem is now supported by over 275 members and more than 1,550 committers. By sizing the software development effort to recreate the R&amp;amp;D effort over the last 14 years and now available to all, we can estimate the value provided to everyone who consumes these projects, including companies shipping this open code in commercial products.&lt;/p&gt;
+
+&lt;p&gt;The findings are remarkable:&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;Using Barry W. Boehm’s well-regarded Basic Constructive Cost Model (&lt;a href=&quot;https://en.wikipedia.org/wiki/COCOMO&quot;&gt;COCOMO&lt;/a&gt;), &lt;strong&gt;the total amount of development effort required to rebuild the R&amp;amp;D available to all is an estimated 59,246 person-years.&lt;/strong&gt;&lt;/li&gt;
+	&lt;li&gt;It would take &lt;strong&gt;1,700 developers about 35 years&lt;/strong&gt; to rebuild the 162 million total physical source lines of code in the Eclipse code repositories.&lt;/li&gt;
+	&lt;li&gt;The total economic value of this work is estimated to be &lt;strong&gt;$8.7 billion&lt;/strong&gt;. &lt;/li&gt;
+	&lt;li&gt;Coming in at 2.93 million lines of code, the development costs of &lt;a href=&quot;https://iot.eclipse.org/projects/&quot;&gt;Eclipse IoT projects&lt;/a&gt; total about $&lt;strong&gt;128 million&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Breaking Down the Math&lt;/h2&gt;
+
+&lt;p&gt;Here are the detailed results of our analysis:&lt;/p&gt;
+
+&lt;table border=&quot;1&quot; cellpadding=&quot;1&quot; cellspacing=&quot;1&quot; style=&quot;width: 590px;&quot;&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th scope=&quot;col&quot; style=&quot;width: 236px;&quot;&gt; &lt;/th&gt;
+			&lt;th scope=&quot;col&quot; style=&quot;width: 133px;&quot;&gt;Value&lt;/th&gt;
+			&lt;th scope=&quot;col&quot; style=&quot;width: 218px;&quot;&gt;Notes&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td style=&quot;width: 236px;&quot;&gt;Total Physical Source Lines of Code (SLOC)&lt;/td&gt;
+			&lt;td style=&quot;width: 133px;&quot;&gt;162,582,158&lt;/td&gt;
+			&lt;td style=&quot;width: 218px;&quot;&gt;Within the Eclipse repository as of August 2018&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td style=&quot;width: 236px;&quot;&gt;Thousands of Source Lines of Code (KSLOC)&lt;/td&gt;
+			&lt;td style=&quot;width: 133px;&quot;&gt;162,582&lt;/td&gt;
+			&lt;td style=&quot;width: 218px;&quot;&gt;(KSLOC = SLOC / 1,000)&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td style=&quot;width: 236px;&quot;&gt;Development Effort Estimate, Person-Years (Person-Months)&lt;/td&gt;
+			&lt;td style=&quot;width: 133px;&quot;&gt;710,948 (59,246)&lt;/td&gt;
+			&lt;td style=&quot;width: 218px;&quot;&gt;(Basic COCOMO model, Person-Months = 2.4 * (KSLOC**1.05))&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td style=&quot;width: 236px;&quot;&gt;Schedule Estimate, Years (Months)&lt;/td&gt;
+			&lt;td style=&quot;width: 133px;&quot;&gt;35 (418)&lt;/td&gt;
+			&lt;td style=&quot;width: 218px;&quot;&gt;(Basic COCOMO model, Months = 2.5 * (person-months**0.38))&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td style=&quot;width: 236px;&quot;&gt;Development Team Size&lt;/td&gt;
+			&lt;td style=&quot;width: 133px;&quot;&gt;1,699&lt;/td&gt;
+			&lt;td style=&quot;width: 218px;&quot;&gt;(Team Size = Effort/Schedule)&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td style=&quot;width: 236px;&quot;&gt;&lt;strong&gt;Total Estimated Cost to Develop&lt;/strong&gt;&lt;/td&gt;
+			&lt;td style=&quot;width: 133px;&quot;&gt;&lt;strong&gt;$8,735,111,546 USD&lt;/strong&gt;&lt;/td&gt;
+			&lt;td style=&quot;width: 218px;&quot;&gt;
+			&lt;p&gt;Average salary = $102,470 / year, overhead dividend = 0.695&lt;/p&gt;
+
+			&lt;p&gt;(Total Estimated Cost = Schedule Estimate, Years * Development Team Size *  $102,470 / 0.695)&lt;/p&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;strong&gt;Model Assumptions and Limitations:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;a href=&quot;https://www.bls.gov/oes/current/oes_nat.htm&quot;&gt;Salary&lt;/a&gt; and &lt;a href=&quot;https://www.bls.gov/news.release/pdf/ecec.pdf&quot;&gt;fully loaded costs&lt;/a&gt; used are courtesy of the US Bureau of Labor Statistics (March and August 2018 data). The Linux Foundation’s 2015 study used $95,280 per year for the median software developer salary and a 0.693 fully-loaded overhead factor.&lt;/li&gt;
+	&lt;li&gt;The model assumes all the software development would occur in the US. Clearly software development is global, and labor costs would vary accordingly.&lt;/li&gt;
+	&lt;li&gt;It is assumed that all lines of code have equal value. This ignores the differences in languages, functionality and quality of the code. While counting lines of code allows an estimation of the development effort required to recreate the code within these projects, the languages, problems being solved, and the resulting code within the various Eclipse projects is quite varied. Arguably, better measures of value and derived benefits are the potential or measured impact to the ecosystem and end users.&lt;/li&gt;
+	&lt;li&gt;The figures above do not include the value of the Eclipse intellectual property services. Thus the value of code of IP cleanliness — a major factor for companies building commercial products — is not captured.&lt;/li&gt;
+	&lt;li&gt;Certain Eclipse projects, most notably the Eclipse Modeling, include code generation capabilities. For instance, the Eclipse Modeling Framework (EMF) project is a modeling framework and code generation facility for building tools and other applications based on a structured data model. Modeling accounts for 27.1 million out of the 162 million total lines of code. See the analysis by Eclipse project below for additional context.&lt;/li&gt;
+	&lt;li&gt;This analysis focuses on net additions to the code base. Thus, the amount of effort tied to deleting and changing the code (not to mention modifying dependent code) is not captured in the estimate. &lt;/li&gt;
+	&lt;li&gt;For consistency with the &lt;a href=&quot;https://www.dwheeler.com/sloc/redhat71-v1/redhat71sloc.html&quot;&gt;studies by David Wheeler&lt;/a&gt; and The Linux Foundation respectively, the line counting approach ignores blank lines and comments. The case can be made that this approach undervalues code readability and maintainability.&lt;/li&gt;
+	&lt;li&gt;The analysis assumes the same COCOMO complexity factors and development constants used by Wheeler et al. in their studies.&lt;br /&gt;
+	 &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 dir=&quot;ltr&quot;&gt;&lt;strong&gt;Line Count by Project&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;table border=&quot;1&quot; cellpadding=&quot;1&quot; cellspacing=&quot;1&quot; style=&quot;width: 500px;&quot;&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th scope=&quot;col&quot;&gt;&lt;strong&gt;Top Level Project&lt;/strong&gt;&lt;/th&gt;
+			&lt;th scope=&quot;col&quot;&gt;&lt;strong&gt;Lines of Code&lt;/strong&gt;&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;a href=&quot;https://projects.eclipse.org/projects/rt&quot;&gt;Eclipse RT&lt;/a&gt;&lt;/td&gt;
+			&lt;td&gt;54,961,728&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;a href=&quot;https://projects.eclipse.org/projects/technology&quot;&gt;Eclipse Technology&lt;/a&gt;&lt;/td&gt;
+			&lt;td&gt;28,887,621&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;a href=&quot;https://projects.eclipse.org/projects/modeling&quot;&gt;Eclipse Modeling&lt;/a&gt;&lt;/td&gt;
+			&lt;td&gt;27,140,344&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;a href=&quot;https://projects.eclipse.org/projects/tools&quot;&gt;Eclipse Tools&lt;/a&gt; &lt;/td&gt;
+			&lt;td&gt;14,214,182&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;a href=&quot;https://projects.eclipse.org/projects/webtools&quot;&gt;Eclipse Web Tools&lt;/a&gt;&lt;/td&gt;
+			&lt;td&gt;9,651,900&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;a href=&quot;https://projects.eclipse.org/projects/eclipse&quot;&gt;Eclipse&lt;/a&gt;&lt;/td&gt;
+			&lt;td&gt;6,401,518&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;a href=&quot;https://projects.eclipse.org/projects/ee4j&quot;&gt;Eclipse Enterprise for Java (EE4J)&lt;/a&gt;&lt;/td&gt;
+			&lt;td&gt;5,809,126&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;a href=&quot;https://projects.eclipse.org/projects/ecd&quot;&gt;Eclipse Cloud Development&lt;/a&gt;&lt;/td&gt;
+			&lt;td&gt;3,114,768&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;a href=&quot;https://www.polarsys.org/projects/polarsys&quot;&gt;PolarSys&lt;/a&gt;&lt;/td&gt;
+			&lt;td&gt;3,105,229&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;a href=&quot;https://projects.eclipse.org/projects/iot&quot;&gt;Eclipse IoT&lt;/a&gt;&lt;/td&gt;
+			&lt;td&gt;2,930,217&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;a href=&quot;https://projects.eclipse.org/projects/birt&quot;&gt;Eclipse Business Intelligence and Reporting Tools (BIRT)&lt;/a&gt;&lt;/td&gt;
+			&lt;td&gt;2,235,624&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;a href=&quot;https://projects.eclipse.org/projects/science&quot;&gt;Eclipse Science&lt;/a&gt;&lt;/td&gt;
+			&lt;td&gt;1,670,051&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;a href=&quot;https://projects.eclipse.org/projects/tools.datatools&quot;&gt;Eclipse Data Tools&lt;/a&gt;&lt;/td&gt;
+			&lt;td&gt;939,424&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;a href=&quot;https://projects.eclipse.org/projects/mylyn&quot;&gt;Eclipse Mylyn&lt;/a&gt;&lt;/td&gt;
+			&lt;td&gt;767,652&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;a href=&quot;https://projects.eclipse.org/projects/soa&quot;&gt;Eclipse SOA&lt;/a&gt;&lt;/td&gt;
+			&lt;td&gt;752,774&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;strong&gt;Grand Total&lt;/strong&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;strong&gt;162,582,158&lt;/strong&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;h2&gt;Collaboration in the Real World&lt;/h2&gt;
+
+&lt;p&gt;The massive shared code investment by the Eclipse community is a testament to the power of collaboration. More than 275 organizations and thousands of developers globally have contributed to the creation of billions of dollars of software value for the ecosystem to leverage. The Eclipse Foundation is proud to support these collective efforts.&lt;/p&gt;
+
+&lt;p&gt;Many thanks to Benjamin Cabé, Wayne Beaton, Barry W. Boehm, David Wheeler, and the authors of the various Linux Foundation studies which inspired this analysis.&lt;br /&gt;
+ &lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description>
+	<pubDate>Mon, 10 Sep 2018 21:08:00 +0000</pubDate>
+</item>
+<item>
+	<title>Doug Schaefer: C++ and TypeScript - The Next Generation is Now</title>
+	<guid isPermaLink="false">https://cdtdoug.ca/2018/09/10/native-to-webview</guid>
+	<link>https://cdtdoug.ca/2018/09/10/native-to-webview.html</link>
+	<description>&lt;p&gt;We’re coming up on the 10’th anniversary of one of my favorite EclipseCon memories, Eclipse Summit Europe 2008. Something about staying up until 5 a.m. local time with a bunch of messed up Canadians and Europeans who just didn’t want to go to bed that make an event legendary. What made that special was probably the audience with a legend himself, Dave Thomas, who arguably started this all and who stayed right with us.&lt;/p&gt;
+
+&lt;p&gt;But it was his keynote, “Next Generation Embedded Software - The Imperative is Agility!” that I drew a lot of inspiration from. I can barely remember what it was about but he seemed to be bashing Java a lot so I had somewhat tuned it out. Until the last slide or so where he presented the alternative he controversially suggested would be the next generation: C++ and JavaScript. Wait, what?&lt;/p&gt;
+
+&lt;p&gt;I was probably the only person in the room who took that seriously. &lt;a href=&quot;https://www.mediacurrent.com/blog/brief-history-googles-v8-javascript-engine/&quot;&gt;It was the year that Google had introduced the V8 JavaScript virtual machine.&lt;/a&gt; I spent a little time after the conference figuring out how you’d use it with a C++ application and it definitely seemed plausible. What was missing was a user interface and that seemed like an enormous amount of work so I left it aside.&lt;/p&gt;
+
+&lt;p&gt;Fast forward a few years, we began to see people try and solve that problem by slapping node.js and browser together to create a desktop application framework. First, we had &lt;a href=&quot;https://nwjs.io&quot;&gt;NW.js&lt;/a&gt; who started with webkit but at some point switched to Chromium. Now we also have &lt;a href=&quot;https://electron.io&quot;&gt;Electron&lt;/a&gt; who have done the same but with more separation between node and Chromium to make it easier to keep up with releases of both, in theory.&lt;/p&gt;
+
+&lt;p&gt;Playing with Electron a couple of years ago I started to get the feeling that this vision was indeed coming soon, especially the first time I got Electron to load a C++ Node Addon. And now, I just used a C++ addon to solve a performance problem I was having in a VS Code extension (Electron incarnated as an IDE). That sealed it for me.&lt;/p&gt;
+
+&lt;p&gt;To show what I mean, I have taken the environment I’m using and created a really simple VS Code extension that has everything one would need to get started. It’s dumb, but it implements an asynchronous native function to add two numbers and shows the results in a VS Code webview panel. It includes a bit of messaging framework to allow for type-safe(r) messaging between the webview and the extension. &lt;a href=&quot;https://github.com/dschaefer/n2w-vscode-starter&quot;&gt;As usual, it’s available on my github to check out.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;That was a bit of a long winded introduction, but I’ll dive into the technical details for the rest of this article. Needless to say, I’m pretty excited about it.&lt;/p&gt;
+
+&lt;h2 id=&quot;believe-me-it-builds&quot;&gt;Believe Me, It Builds&lt;/h2&gt;
+
+&lt;p&gt;Figuring out the cleanest way to build this thing and bundle everything together was the most challenging part, and probably what I’m most happy with. There are three different platforms at work and I am able to build them all with a single ‘yarn compile’. And I’m able to work incrementally with minimal fuss, pretty much none, a watch, for for the extension and view and a simple incremental build for native on demand. And thanks to VS Code’s TypeScript support and the clangd C++ language server, I find errors even before I build, as it should be.&lt;/p&gt;
+
+&lt;h3 id=&quot;cmake&quot;&gt;CMake&lt;/h3&gt;
+
+&lt;p&gt;Let’s start with the native side. Everyone who knows me from my work on the Eclipse CDT know I’m all about the CMake build tool these days. After years of working with Makefiles that model the system file by file, CMake lets you work at a higher level where you specify executables and libraries and dependencies between them. It takes care of the file level dependencies for you with a lot of magic, but good magic.&lt;/p&gt;
+
+&lt;p&gt;To build against the node.js APIs, you also need to download the header files, and for Windows, a library to build against. That’s tricky to do, so I borrowed a few ideas from the interweb and created a NodeModule.cmake file under the CMake folder. It takes care of downloading the and extracting the necessary tar ball and sets up the dependencies to it. That makes the CMakeLists.txt file as simple as setting the Electron version for the tar ball, the output directory, and then defining your module.&lt;/p&gt;
+
+&lt;div class=&quot;language-cmake highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;ELECTRON_VERSION 2.0.5&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;NODE_MODULE_OUTPUT_DIR &lt;span class=&quot;si&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;CMAKE_SOURCE_DIR&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;/out&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;NodeModule&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;add_node_module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;n2wNative native.cpp&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;That places your module, n2wNative.node in this case, into a platform specific bin directory in the out directory of the project ready to import into the extension.&lt;/p&gt;
+
+&lt;h3 id=&quot;webpack&quot;&gt;Webpack&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://webpack.js.org/&quot;&gt;Webpack&lt;/a&gt; seems to be the leading build framework for web applications. I also noticed with the latest VS Code release they are using it now with it’s built-in extensions. Previously, I had a two step extension build, running webpack for client side and the TypeScript compiler for the extension. They both have file watchers but found the TypeScript one a bit flaky. So bringing them together into the same builder would make things a lot cleaner.&lt;/p&gt;
+
+&lt;p&gt;Webpack allows you to have multiple configs. I created one for the client side and one for the extension. The only real difference is the options for the TypeScript compiler to deal with the different modules systems between the browser and the extension which is running on node.js. I also chunked out the node_modules content for the clients since you are likely to have multiple of those.&lt;/p&gt;
+
+&lt;p&gt;The toughest issue I had was the ‘require’ loading the native module. It seems webpack tries to guess at location and changes the require to somewhere it thinks the module will be. But the whole idea of this module is that it’s platform specific and it needs to calculate which platform it’s on at run time. I finally ran into &lt;strong&gt;non_webpack_require&lt;/strong&gt; which is a hacky way to tell webpack to leave things alone. The TypeScript doesn’t know about that magic so it needs to be declared.&lt;/p&gt;
+
+&lt;div class=&quot;language-typescript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;declare&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;__non_webpack_require__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;any&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Promise&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;native&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;__non_webpack_require__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;`./&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;platform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/n2wNative`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;native&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The next issue I had to deal with was source maps. When I first got things running, VS Code with the Chromium debugger couldn’t figure out my breakpoints. I managed to stumble across a magic command in the Debug Output view, .script, which showed a detail view of the source maps. Webpack uses a magic URL webpack:// in the source maps it seems to be causing the confusion. Luckily, I found out you can control that.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;output&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;__dirname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'out'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'[name].js'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;libraryTarget&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'commonjs'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;devtoolModuleFilenameTemplate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'[absolute-resource-path]'&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;devtoolModuleFilenameTemplate lets you manage the path used for your source file. I guess webpack is designed more for web apps where using the absolute path is weird.&lt;/p&gt;
+
+&lt;h2 id=&quot;time-for-a-n-api&quot;&gt;Time for a N-API&lt;/h2&gt;
+
+&lt;p&gt;Node offers two API to hook up your C++ Addon, a scary one and a nice one. The scary one actually uses a lot of the V8 APIs and is heavy C++ and tends to tie you to a specific node release for some reason. Their newer simpler API introduce in version 8.0 is called N-API and thankfully VS Code finally switched to Node 8 in version 1.26. It’s a C API and is very reminiscent of Java’s JNI so I found it very easy to work with. It’s marked experimental in Node 8 but I don’t notice any major changes in version 10.&lt;/p&gt;
+
+&lt;p&gt;I didn’t originally intend to go so native. I was working on a tool that scanned a gigabyte size binary memory mapped file extracting data. I started doing that in TypeScript using node Buffers and found the performance surprisingly good, under 3 seconds to do a complete scan. But then I added an else clause to the main if statement and the time hit around 15 seconds. Really? Did I disturb something in JIT that killed performance? How do you even predict how that’s going to work.&lt;/p&gt;
+
+&lt;p&gt;Since I had written my own little memory map function using, I decided to rewrite the algorithm in C++ and ended up with around 1 seconds for the scan. Wow. Being a CDT guy, I know C++ and am pretty comfortable with it. And Modern C++ makes dealing with pointers pretty safe and collections fairly easy. For me, the performance gains were well worth it.&lt;/p&gt;
+
+&lt;p&gt;As I dug more into the features of N-API, I also discovered a hidden treasure. You can actually run your time consuming native algorithm on a worker thread and then use a JavaScript Promise to return the result when it finishes.&lt;/p&gt;
+
+&lt;p&gt;Basically, you create a struct to hold the arguments and result of the algorithm as well as the ‘work’ object the API gives you and a ‘deferred’ object that you use to resolve or reject the promise. That struct gets passed to a ‘work’ function that runs in a worker thread. When the work finishes a ‘completed’ function runs on the JavaScript main thread where you convert the result to a JavaScript value and send it out the promise through the deferred object. Easy, peasy, and pretty powerful.&lt;/p&gt;
+
+&lt;p&gt;I won’t reproduce the whole file here, but check it out at &lt;a href=&quot;https://github.com/dschaefer/n2w-vscode-starter/blob/master/src/native/native.cpp&quot;&gt;src/native/native.cpp&lt;/a&gt;. It’s a bit wordy written in C but I imagine one could wrap it in some C++ classes and generics to make it easier.&lt;/p&gt;
+
+&lt;h2 id=&quot;playing-it-safe&quot;&gt;Playing it Safe&lt;/h2&gt;
+
+&lt;p&gt;When you spend most of your life working in typed languages, first C++ then Java, the prospect of writing a serious app in a dynamically typed scripting language like JavaScript is a bit unsettling. Luckily I’m jumping into this as TypeScript is maturing. It has really helped me, especially as I learn both the VS Code API and the various npm packages I’m using thanks to the great IDE features you get with typed languages.&lt;/p&gt;
+
+&lt;p&gt;But there are two areas where you end up interacting with the raw JavaScript environment that you have to manage. The first is the native module. Most modules that you get off npm come with TypeScript definition files to make the integration easy. You have to provide something like that for the native module.&lt;/p&gt;
+
+&lt;p&gt;I already showed the TypeScript code to do this above. The require call returns a JavaScript object that you create in the module init native function. There are magic ways to give that object a type but I found it easier to start to just wrap it with a TypeScript function that manages loading the module and making the function call, at least for now.&lt;/p&gt;
+
+&lt;p&gt;The other area we need to manage is the communication channel between the extension and the code running in the webview. The webview extension API let’s you bind a OnReceivedMessage callback that gives you the message as a JavaScript object. The webview client injects ‘message’ events into the window object where you can pick them up with a listener.&lt;/p&gt;
+
+&lt;p&gt;To make the messages type safe, I leveraged TypeScript’s Discriminated Unions to declare message types in the &lt;a href=&quot;https://github.com/dschaefer/n2w-vscode-starter/blob/master/src/common/messages.ts&quot;&gt;shared messages.ts file&lt;/a&gt;. On the client side, I created &lt;a href=&quot;https://github.com/dschaefer/n2w-vscode-starter/blob/master/src/view/ServerPort.ts&quot;&gt;a ServerPort class&lt;/a&gt; to manage the client side where I declared override methods to make posting messages type safe. The server side just has a switch statement where TypeScript figures out the type based on the case.&lt;/p&gt;
+
+&lt;div class=&quot;language-typescript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;k&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;receiveMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;switch&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'addRequest'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;postMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+                    &lt;span class=&quot;na&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'addResponse'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;na&quot;&gt;token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;na&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;That’s the great thing about TypeScript. You still have the ability to do JavaScript when you need. But you have to come up with a strategy to minimize that surface area as much as possible.&lt;/p&gt;
+
+&lt;h2 id=&quot;challenges-ahead&quot;&gt;Challenges Ahead&lt;/h2&gt;
+
+&lt;p&gt;Now that I have this running in Visual Studio Code, I don’t see any reason why you couldn’t use this architecture in other environments. It is just node.js and a browser in the end.&lt;/p&gt;
+
+&lt;p&gt;For example, I could simply get my tools running directly in Electron as a stand alone offering for people who don’t want to use VS Code as an editor.&lt;/p&gt;
+
+&lt;p&gt;Web IDEs could also benefit. The Theia IDE promises to be compatible with VS Code extensions. It’ll be interesting to try since this is probably the most complex extension I can think of. But other IDEs that have node.js as a server could also work this way.&lt;/p&gt;
+
+&lt;p&gt;But one thing is clear. I’m excited! Whether other tools developers will be as excited isn’t as clear. Either way, I’ve found my next generation tools platform. It uses C++ and JavaScript/TypeScript. And that next generation is now.&lt;/p&gt;</description>
+	<pubDate>Mon, 10 Sep 2018 04:00:00 +0000</pubDate>
+</item>
+<item>
+	<title>Eclipse Announcements: How many lines of Open Source code are hosted at the Eclipse Foundation?</title>
+	<guid isPermaLink="true">http://feedproxy.google.com/~r/eclipse/fnews/~3/I9l5sgscxAs/how-many-lines-of-open-source-code-are-hosted-at-the-eclipse-foundation</guid>
+	<link>http://feedproxy.google.com/~r/eclipse/fnews/~3/I9l5sgscxAs/how-many-lines-of-open-source-code-are-hosted-at-the-eclipse-foundation</link>
+	<description>As of August 1st, there are 330 active open-source projects and 1120 Git repositories, as for lines of code...&lt;img alt=&quot;&quot; height=&quot;1&quot; src=&quot;http://feeds.feedburner.com/~r/eclipse/fnews/~4/I9l5sgscxAs&quot; width=&quot;1&quot; /&gt;</description>
+	<pubDate>Wed, 05 Sep 2018 14:30:00 +0000</pubDate>
+</item>
+<item>
+	<title>vert.x project: The RSS reader tutorial. Step 2.</title>
+	<guid isPermaLink="true">https://vertx.io/blog/the-rss-reader-tutorial-step-2</guid>
+	<link>https://vertx.io/blog/the-rss-reader-tutorial-step-2</link>
+	<description>&lt;article&gt;&lt;h1 id=&quot;quick-recap&quot;&gt;Quick recap&lt;/h1&gt;
+&lt;p&gt;In &lt;a href=&quot;https://vertx.io/blog/the-rss-reader-tutorial/&quot;&gt;the previous step&lt;/a&gt; we have successfully implemented the first endpoint 
+of the RSS reader app.&lt;/p&gt;
+&lt;p&gt;The RSS reader example assumes implementing 3 endpoints. This article is dedicated to implementing the &lt;code&gt;GET /user/{user_id}/rss_channels&lt;/code&gt; endpoint.&lt;/p&gt;
+&lt;p&gt;Before completing this step, make sure your are in the &lt;code&gt;step_2&lt;/code&gt; git branch:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs bash&quot;&gt;git checkout step_2&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&quot;implementing-the-second-endpoint&quot;&gt;Implementing the second endpoint&lt;/h1&gt;
+&lt;p&gt;The second endpoint produces an array of RSS channels by given &lt;code&gt;user_id&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;We need to execute the two following queries to:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Fetch RSS links for a given user: &lt;pre&gt;&lt;code&gt;&lt;span class=&quot;hljs-operator&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;SELECT&lt;/span&gt; rss_link &lt;span class=&quot;hljs-keyword&quot;&gt;FROM&lt;/span&gt; rss_by_user &lt;span class=&quot;hljs-keyword&quot;&gt;WHERE&lt;/span&gt; login = GIVEN_USER_ID ;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;Fetch RSS channel details for a given link: &lt;pre&gt;&lt;code&gt;&lt;span class=&quot;hljs-operator&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;SELECT&lt;/span&gt; description, title, site_link, rss_link &lt;span class=&quot;hljs-keyword&quot;&gt;FROM&lt;/span&gt; channel_info_by_rss_link &lt;span class=&quot;hljs-keyword&quot;&gt;WHERE&lt;/span&gt; rss_link = GIVEN_LINK ;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;implementation&quot;&gt;Implementation&lt;/h1&gt;
+&lt;p&gt;The endpoint allows the the front-end app to display the list of RSS feeds a user subscribed on. When the endpoint is accessed, the &lt;code&gt;AppVerticle#getRssChannels&lt;/code&gt; method is called. We can implement this method in this way:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs java&quot;&gt;&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;getRssChannels&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;(RoutingContext ctx)&lt;/span&gt; &lt;/span&gt;{
+    String userId = ctx.request().getParam(&lt;span class=&quot;hljs-string&quot;&gt;&quot;user_id&quot;&lt;/span&gt;);
+    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (userId == &lt;span class=&quot;hljs-keyword&quot;&gt;null&lt;/span&gt;) {
+        responseWithInvalidRequest(ctx);
+    } &lt;span class=&quot;hljs-keyword&quot;&gt;else&lt;/span&gt; {
+        Future&amp;gt; future = Future.future();
+        client.executeWithFullFetch(selectRssLinksByLogin.bind(userId), future);
+        future.compose(rows -&amp;gt; {
+            List links = rows.stream()
+                    .map(row -&amp;gt; row.getString(&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;))
+                    .collect(Collectors.toList());
+
+            &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; CompositeFuture.all(
+                    links.stream().map(selectChannelInfo::bind).map(statement -&amp;gt; {
+                        Future&amp;gt; channelInfoRow = Future.future();
+                        client.executeWithFullFetch(statement, channelInfoRow);
+                        &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; channelInfoRow;
+                    }).collect(Collectors.toList())
+            );
+        }).setHandler(h -&amp;gt; {
+            &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (h.succeeded()) {
+                CompositeFuture result = h.result();
+                List&amp;gt; results = result.list();
+                List list = results.stream()
+                        .flatMap(List::stream)
+                        .collect(Collectors.toList());
+                JsonObject responseJson = &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; JsonObject();
+                JsonArray channels = &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; JsonArray();
+
+                list.forEach(eachRow -&amp;gt; channels.add(
+                        &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; JsonObject()
+                                .put(&lt;span class=&quot;hljs-string&quot;&gt;&quot;description&quot;&lt;/span&gt;, eachRow.getString(&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;))
+                                .put(&lt;span class=&quot;hljs-string&quot;&gt;&quot;title&quot;&lt;/span&gt;, eachRow.getString(&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;))
+                                .put(&lt;span class=&quot;hljs-string&quot;&gt;&quot;link&quot;&lt;/span&gt;, eachRow.getString(&lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;))
+                                .put(&lt;span class=&quot;hljs-string&quot;&gt;&quot;rss_link&quot;&lt;/span&gt;, eachRow.getString(&lt;span class=&quot;hljs-number&quot;&gt;3&lt;/span&gt;))
+                ));
+
+                responseJson.put(&lt;span class=&quot;hljs-string&quot;&gt;&quot;channels&quot;&lt;/span&gt;, channels);
+                ctx.response().end(responseJson.toString());
+            } &lt;span class=&quot;hljs-keyword&quot;&gt;else&lt;/span&gt; {
+                log.error(&lt;span class=&quot;hljs-string&quot;&gt;&quot;failed to get rss channels&quot;&lt;/span&gt;, h.cause());
+                ctx.response().setStatusCode(&lt;span class=&quot;hljs-number&quot;&gt;500&lt;/span&gt;).end(&lt;span class=&quot;hljs-string&quot;&gt;&quot;Unable to retrieve the info from C*&quot;&lt;/span&gt;);
+            }
+        });
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Also, this method uses &lt;code&gt;selectChannelInfo&lt;/code&gt; and &lt;code&gt;selectRssLinksByLogin&lt;/code&gt; fields, they should be initialized in the &lt;code&gt;AppVerticle#prepareNecessaryQueries&lt;/code&gt; method:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs java&quot;&gt;&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;private&lt;/span&gt; Future &lt;span class=&quot;hljs-title&quot;&gt;prepareNecessaryQueries&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;{
+        Future selectChannelInfoPrepFuture = Future.future();
+        client.prepare(&lt;span class=&quot;hljs-string&quot;&gt;&quot;SELECT description, title, site_link, rss_link FROM channel_info_by_rss_link WHERE rss_link = ? ;&quot;&lt;/span&gt;, selectChannelInfoPrepFuture);
+
+        Future selectRssLinkByLoginPrepFuture = Future.future();
+        client.prepare(&lt;span class=&quot;hljs-string&quot;&gt;&quot;SELECT rss_link FROM rss_by_user WHERE login = ? ;&quot;&lt;/span&gt;, selectRssLinkByLoginPrepFuture);
+
+        Future insertNewLinkForUserPrepFuture = Future.future();
+        client.prepare(&lt;span class=&quot;hljs-string&quot;&gt;&quot;INSERT INTO rss_by_user (login , rss_link ) VALUES ( ?, ?);&quot;&lt;/span&gt;, insertNewLinkForUserPrepFuture);
+
+        &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; CompositeFuture.all(
+                selectChannelInfoPrepFuture.compose(preparedStatement -&amp;gt; {
+                    selectChannelInfo = preparedStatement;
+                    &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; Future.succeededFuture();
+                }),
+                selectRssLinkByLoginPrepFuture.compose(preparedStatement -&amp;gt; {
+                    selectRssLinksByLogin = preparedStatement;
+                    &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; Future.succeededFuture();
+                }),
+                insertNewLinkForUserPrepFuture.compose(preparedStatement -&amp;gt; {
+                    insertNewLinkForUser = preparedStatement;
+                    &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; Future.succeededFuture();
+                })
+        ).mapEmpty();
+    }&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+&lt;p&gt;In this part, we have successfully implemented the second endpoint, which allows the browser app to obtain channels information for a specific user. To ensure that it is working fine, point your browser to &lt;code&gt;localhost:8080&lt;/code&gt; and click to the refresh button. Channel list should appear immediately.&lt;/p&gt;
+&lt;p&gt;If you have any problems with completing this step you can checkout to &lt;code&gt;step_3&lt;/code&gt;, where you can find all changes made for completing this step:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs bash&quot;&gt;git checkout step_3&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;p&gt;Thanks for reading this. I hope you enjoyed reading this article. See you soon on our &lt;a href=&quot;https://gitter.im/eclipse-vertx/vertx-users&quot;&gt;Gitter channel&lt;/a&gt;!&lt;/p&gt;
+&lt;/article&gt;</description>
+	<pubDate>Wed, 05 Sep 2018 00:00:00 +0000</pubDate>
+</item>
+<item>
+	<title>Eclipse Announcements: Talk with your team about EclipseCon Europe 2018</title>
+	<guid isPermaLink="true">http://feedproxy.google.com/~r/eclipse/fnews/~3/IZwptI85kwQ/europe2018</guid>
+	<link>http://feedproxy.google.com/~r/eclipse/fnews/~3/IZwptI85kwQ/europe2018</link>
+	<description>Review the program - talks, keynotes and special events - and register by October 1 for the best rates!&lt;img alt=&quot;&quot; height=&quot;1&quot; src=&quot;http://feeds.feedburner.com/~r/eclipse/fnews/~4/IZwptI85kwQ&quot; width=&quot;1&quot; /&gt;</description>
+	<pubDate>Tue, 04 Sep 2018 15:00:00 +0000</pubDate>
+</item>
+<item>
+	<title>Doug Schaefer: Aliens, Go Home! VS Code-style!</title>
+	<guid isPermaLink="false">https://cdtdoug.ca/2018/08/31/aliens-vscode</guid>
+	<link>https://cdtdoug.ca/2018/08/31/aliens-vscode.html</link>
+	<description>&lt;p&gt;&lt;img src=&quot;https://cdtdoug.ca/images/aliens-vscode.png&quot; style=&quot;display: block; margin: auto; height: 400px;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Looks ridiculous, doesn’t it. There is a method to my madness though. Stick with me…&lt;/p&gt;
+
+&lt;p&gt;I make it no secret how enthusiastic I am about Visual Studio Code as an IDE platform. I have often commented on my desire to start building tools using web front end technologies (and not necessarily web back ends). I even prototyped an &lt;a href=&quot;https://cdtdoug.ca/2017/02/16/what-is-two-much-more-than-yet-another-eclipse-ide.html&quot;&gt;“Eclipse Two”&lt;/a&gt; that was built on Electron directly. In the end, the Microsoft Zurich team, who also happened to be former leaders at Eclipse, created something similar with a huge community and ecosystem of extensions and I jumped on the bandwagon.&lt;/p&gt;
+
+&lt;p&gt;Being a good code editor and debugger is one thing, in the end there’s more to life as a developer than writing code. Often the systems we work with are more complicated than can be simply represented in text. We need graphics that can abstract away some of the gory details and make system behavior and relationships easier to understand. And that includes both ends, from modeling when creating the system, to tracing when trying to see what it’s doing once we built it.&lt;/p&gt;
+
+&lt;p&gt;There’s a number of ways you can do graphics in a web front end. The first one I considered was SVG. I like it because it’s backed by a data model with API that will let you change properties programmatically. And it simply gives an object oriented approach to graphics. It’s not all good though since those objects come with a price in memory and setup time. But if you keep the number of elements you create under a thousand or so, it’s pretty quick.&lt;/p&gt;
+
+&lt;p&gt;The other advantage of being in the DOM is that React can handle SVG with it’s virtual DOM. This speeds up rendering from changes to the underlying data model and automatically calculates that for you. It’s one of the coolest things in React and why we use it for all our web UI work.&lt;/p&gt;
+
+&lt;p&gt;So I set off to google around for examples where people had done that and I quickly ran across an article series &lt;a href=&quot;https://auth0.com/blog/developing-games-with-react-redux-and-svg-part-1&quot;&gt;Developing Games with React, Redux, and SVG&lt;/a&gt;. It’s really cool and proves out my main thesis about handling changing data models. Games, of course, are all about changing data models!&lt;/p&gt;
+
+&lt;p&gt;To complete the exercise, hooked up a simple VS Code extension that opened up a webview panel and ran the game in it. I rewrote most of it using TypeScript, since I refuse to give into the typeless world of JavaScript. I also switched over to MobX which some of my colleagues were using and it’s much easier to deal with than Redux. The whole thing was a joy to work with.&lt;/p&gt;
+
+&lt;p&gt;If you’re interested, &lt;a href=&quot;https://github.com/dschaefer/aliens-vscode&quot;&gt;I have pushed up my results to my GitHub repositories&lt;/a&gt;. It does look ridiculous running in VS Code. But it shows off the power of the platform. Running in a webview means you’re running in a separate process from the rest of vscode so what ever you do there doesn’t impact the rest of the IDE. From there, you can communicate back with your extension to allow it to interact with your environment and grab data from systems and files and feed back data for rendering. I can’t wait to see where the community (and myself for that matter) take this architecture.&lt;/p&gt;</description>
+	<pubDate>Fri, 31 Aug 2018 18:01:00 +0000</pubDate>
+</item>
+<item>
+	<title>PapyrusUML: MetaModelAgent and Photon me</title>
+	<guid isPermaLink="false">http://papyrusuml.wordpress.com/?p=1117</guid>
+	<link>https://papyrusuml.wordpress.com/2018/08/30/metamodelagent-and-me/</link>
+	<description>&lt;p&gt;Adocus, a member of my industrial consortium, has released a version of &lt;a href=&quot;http://www.adocus.com/en/products/metamodelagent/&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;MetaModelAgent&lt;/a&gt;, their DSML tool, for &lt;a href=&quot;http://projects.eclipse.org/projects/modeling.mdt.papyrus/releases/4.0.0&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;my Photon edition&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;You can read more bout it on their &lt;a href=&quot;http://www.adocus.com/en/news/metamodelagent-v431-released/&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;release page&lt;/a&gt;!&lt;/p&gt;
+		&lt;div class=&quot;wpcnt&quot;&gt;
+			&lt;div class=&quot;wpa wpmrec&quot;&gt;
+				&lt;span class=&quot;wpa-about&quot;&gt;Advertisements&lt;/span&gt;
+				&lt;div class=&quot;u&quot;&gt;		&lt;div style=&quot;padding-bottom: 15px; width: 300px; height: 250px; float: left; margin-right: 5px; margin-top: 0px;&quot;&gt;
+		&lt;div id=&quot;atatags-26942-5b87ed65a545d&quot;&gt;
+			
+		&lt;/div&gt;&lt;/div&gt;		&lt;div style=&quot;padding-bottom: 15px; width: 300px; height: 250px; float: left; margin-top: 0px;&quot;&gt;
+		&lt;div id=&quot;atatags-114160-5b87ed65a545f&quot;&gt;
+			
+		&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+				
+			&lt;/div&gt;
+		&lt;/div&gt;</description>
+	<pubDate>Thu, 30 Aug 2018 13:12:16 +0000</pubDate>
+</item>
+<item>
+	<title>Eclipse Announcements: Eclipse Foundation Welcomes 16 New Members As Jakarta EE and Eclipse IoT Developer Communities Surge</title>
+	<guid isPermaLink="true">http://feedproxy.google.com/~r/eclipse/fnews/~3/RrzL-H0vxCQ/Eclipse-Foundation-Welcomes-16-New-Members-As-Jakarta-EE-and-Eclipse-IoT-Developer-Communities-Surge.html</guid>
+	<link>http://feedproxy.google.com/~r/eclipse/fnews/~3/RrzL-H0vxCQ/Eclipse-Foundation-Welcomes-16-New-Members-As-Jakarta-EE-and-Eclipse-IoT-Developer-Communities-Surge.html</link>
+	<description>Today, the Eclipse Foundation announced the addition of 16 new members.&lt;img alt=&quot;&quot; height=&quot;1&quot; src=&quot;http://feeds.feedburner.com/~r/eclipse/fnews/~4/RrzL-H0vxCQ&quot; width=&quot;1&quot; /&gt;</description>
+	<pubDate>Wed, 29 Aug 2018 20:00:00 +0000</pubDate>
+</item>
+<item>
+	<title>Maximilian and Jonas: Few seats available for the Eclipse Insight in Munich on September 3rd</title>
+	<guid isPermaLink="false">https://eclipsesource.com/?p=39851</guid>
+	<link>https://eclipsesource.com/blogs/2018/08/29/few-seats-available-for-the-eclipse-insight-in-munich-on-september-3rd/</link>
+	<description>&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;We are looking forward to host the first Eclipse Insight in Munich next week on september the 3rd (5.30 pm – 9 pm). There are a few remaining seats available, for registration please see &lt;/span&gt;&lt;a href=&quot;https://www.eventbrite.de/e/eclipse-insight-building-modeling-tools-tickets-45894598981&quot;&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;here&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;The topic of the event will be how to build modeling tools based on open source and Eclipse technology. A special focus will be on the long-term protection of investments in Modeling Tools in times of technology changes, especially regarding web technologies.&lt;/span&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;&lt;br /&gt;
+&lt;/span&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;&lt;br /&gt;
+&lt;/span&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;In the first part, there will be expert talks and demos about building a modeling tool based on the well-proven Eclipse platform and EMF. In the second part, we will give an outlook on how those tools can be migrated or directly implemented based on web technologies (e.g. based on &lt;/span&gt;&lt;a href=&quot;https://eclipsesource.com/blogs/2018/06/20/welcome-at-eclipse-theia/&quot;&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;Eclipse Theia&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;). All speakers will be available for detailed questions and discussions afterwards.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;Registration is mandatory, as seats are limited, make sure to get one of the remaining seats and register &lt;/span&gt;&lt;a href=&quot;https://www.eventbrite.de/e/eclipse-insight-building-modeling-tools-tickets-45894598981&quot;&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;here&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;. The event is free of charge including drinks and snacks.&lt;/span&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;&lt;br /&gt;
+&lt;/span&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;&lt;br /&gt;
+&lt;/span&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;Please feel free to forward this invitation to interested colleagues.&lt;/span&gt;&lt;/p&gt;</description>
+	<pubDate>Wed, 29 Aug 2018 18:10:44 +0000</pubDate>
+</item>
+<item>
+	<title>N4JS: Control flow graphs in N4JS</title>
+	<guid isPermaLink="false">tag:blogger.com,1999:blog-7569987920628430132.post-6918804310889311198</guid>
+	<link>https://n4js.blogspot.com/2018/08/control-flow-graphs-in-n4js_29.html</link>
+	<description>&lt;h4&gt;&lt;b&gt;The N4JS IDE comes with several tools to get insights into the source code such as the AST and the control flow. In this post we present the control flow graph view.&lt;/b&gt;&lt;/h4&gt;&lt;div&gt;&lt;span style=&quot;font-size: x-small; text-align: right;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;a href=&quot;https://2.bp.blogspot.com/-cAOdKALRBYk/W4Z-xpbOwvI/AAAAAAAAADQ/ifSTKJstjR82v8W2CAvcmWFKYgHl80DdgCEwYBhgL/s1600/N4JS-IDE.png&quot; style=&quot;margin-left: 1em; margin-right: 1em;&quot;&gt;&lt;img border=&quot;0&quot; src=&quot;https://2.bp.blogspot.com/-cAOdKALRBYk/W4Z-xpbOwvI/AAAAAAAAADQ/ifSTKJstjR82v8W2CAvcmWFKYgHl80DdgCEwYBhgL/s1600/N4JS-IDE.png&quot; width=&quot;450&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&lt;b&gt;&lt;br /&gt;&lt;/b&gt;&lt;/div&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;/div&gt;When learning a programming language, we probably start with a small &lt;i&gt;Hello World!&lt;/i&gt; program. From there on, we learn not only language keywords and libraries, but also get an implicit understanding in which order statements and expressions are executed. This order is called &lt;i&gt;control flow&lt;/i&gt;. For instance, we learn the effects of &lt;span&gt;if&lt;/span&gt; and &lt;span&gt;for&lt;/span&gt; statements which are also called &lt;i&gt;control statements&lt;/i&gt;, since they have a big influence on the execution order. The most difficult statement in this respect is probably the &lt;span&gt;try-finally&lt;/span&gt; control statement, which is explained later.&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;h3&gt;Hello World&lt;/h3&gt;&lt;span&gt;&lt;b&gt;&lt;span style=&quot;color: #660000;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;/b&gt;&lt;/span&gt;&lt;span&gt;&lt;b&gt;&lt;span style=&quot;color: #660000;&quot;&gt;function&lt;/span&gt;&lt;/b&gt; f() {&lt;/span&gt;&lt;br /&gt;&lt;span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;  &lt;/span&gt;console.log(&lt;span style=&quot;color: #38761d;&quot;&gt;&quot;Hello World!&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br /&gt;&lt;span&gt;}&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;Let's have a look at the &lt;i&gt;Hello World!&lt;/i&gt; from a control flow perspective, first. The source code of &lt;i&gt;Hello World!&lt;/i&gt; is simple, but it already consists of three important elements:&lt;br /&gt;&lt;ul&gt;&lt;li&gt;the method call &lt;span&gt;console.log&lt;/span&gt;,&lt;/li&gt;&lt;li&gt;the nested argument &lt;span&gt;&quot;Hello World!&quot;&lt;/span&gt;, and&lt;/li&gt;&lt;li&gt;the function body of &lt;span&gt;f()&lt;/span&gt; which contains the two elements mentioned above.&lt;/li&gt;&lt;/ul&gt;The function body is also called &lt;i&gt;control flow container&lt;/i&gt;.&lt;br /&gt;&lt;br /&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;a href=&quot;https://3.bp.blogspot.com/-qOAz5PlWg4c/W4Z-wS4-1wI/AAAAAAAAADM/jQqFTmlDPLgp-0TWRPLuh6U8VtIDTDnWACEwYBhgL/s1600/CFG_HelloWorld.png&quot; style=&quot;margin-left: 1em; margin-right: 1em;&quot;&gt;&lt;img border=&quot;0&quot; src=&quot;https://3.bp.blogspot.com/-qOAz5PlWg4c/W4Z-wS4-1wI/AAAAAAAAADM/jQqFTmlDPLgp-0TWRPLuh6U8VtIDTDnWACEwYBhgL/s1600/CFG_HelloWorld.png&quot; width=&quot;500&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;The image above shows the control flow graph of the &lt;i&gt;Hello World!&lt;/i&gt; example. The method call is separated into the receiver and its property &lt;span&gt;log&lt;/span&gt;. The next element the control flow goes to is the argument &lt;span&gt;&quot;Hello World!&quot;&lt;/span&gt; until it reaches the method call of &lt;span&gt;log&lt;/span&gt; as the final element.&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;h3&gt;Loops&lt;/h3&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;The example above showed the succeeding control flow of some code elements. This control flow gets more interesting in statements that introduce branches such as loop statements do. In the example below, the control flow of a &lt;span&gt;for&lt;/span&gt;-loop is shown. To indicate the start and end of the function, and also the body of the loop, the function calls &lt;span&gt;start()&lt;/span&gt;, &lt;span&gt;loop()&lt;/span&gt; and &lt;span&gt;end()&lt;/span&gt; are used.&lt;br /&gt;&lt;br /&gt;&lt;span&gt;&lt;b&gt;&lt;span style=&quot;color: #660000;&quot;&gt;function&lt;/span&gt;&lt;/b&gt; f() {&lt;/span&gt;&lt;br /&gt;&lt;span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;  &lt;/span&gt;start();&lt;/span&gt;&lt;br /&gt;&lt;span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;  &lt;/span&gt;&lt;span style=&quot;color: #660000; font-weight: bold;&quot;&gt;for&lt;/span&gt; (&lt;b&gt;&lt;span style=&quot;color: #660000;&quot;&gt;var&lt;/span&gt;&lt;/b&gt; &lt;span style=&quot;color: #783f04;&quot;&gt;i&lt;/span&gt;=&lt;span style=&quot;color: #0b5394;&quot;&gt;0&lt;/span&gt;; &lt;span style=&quot;color: #783f04;&quot;&gt;i&lt;/span&gt;&amp;lt;&lt;span style=&quot;color: #0b5394;&quot;&gt;2&lt;/span&gt;; &lt;span style=&quot;color: #783f04;&quot;&gt;i&lt;/span&gt;++) {&lt;/span&gt;&lt;br /&gt;&lt;span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;    &lt;/span&gt;loop();&lt;/span&gt;&lt;br /&gt;&lt;span&gt;  }&lt;/span&gt;&lt;br /&gt;&lt;span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;  &lt;/span&gt;end();&lt;/span&gt;&lt;br /&gt;&lt;span&gt;}&lt;/span&gt;&lt;br /&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;a href=&quot;https://2.bp.blogspot.com/-zC8r0Ekgkjs/W4Z-wgteq8I/AAAAAAAAADE/bCidfaEh2tQuUxrg8N0P4-yNVCvbFfajgCEwYBhgL/s1600/CFG_ForLoop.png&quot; style=&quot;margin-left: 1em; margin-right: 1em;&quot;&gt;&lt;img border=&quot;0&quot; src=&quot;https://2.bp.blogspot.com/-zC8r0Ekgkjs/W4Z-wgteq8I/AAAAAAAAADE/bCidfaEh2tQuUxrg8N0P4-yNVCvbFfajgCEwYBhgL/s1600/CFG_ForLoop.png&quot; width=&quot;450&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&lt;span&gt;&lt;br /&gt;&lt;/span&gt;&lt;br /&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;/div&gt;The control flow of the loop example shows branches and merges. After the condition &lt;span&gt;i&amp;lt;2&lt;/span&gt;, either the body is entered via the edge named &lt;i&gt;LoopEnter&lt;/i&gt;, or the loop is exited. In case the body was entered, the control flow first targets the call to &lt;span&gt;loop()&lt;/span&gt; and then goes back to the entry of the condition.&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;h3&gt;Try-Finally&lt;/h3&gt;&lt;div&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;a href=&quot;https://3.bp.blogspot.com/-lvDj2f4FAoQ/W4Z-w4agiiI/AAAAAAAAADM/OVSbV6kSJBcT0PtYYcpCPRav7RtTAYF5ACEwYBhgL/s1600/CFG_TryFinally.png&quot; style=&quot;clear: right; float: right; margin-bottom: 1em; margin-left: 1em;&quot;&gt;&lt;img border=&quot;0&quot; src=&quot;https://3.bp.blogspot.com/-lvDj2f4FAoQ/W4Z-w4agiiI/AAAAAAAAADM/OVSbV6kSJBcT0PtYYcpCPRav7RtTAYF5ACEwYBhgL/s1600/CFG_TryFinally.png&quot; width=&quot;150&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;Finally blocks have tricky semantics since they can be entered and exited in two specific ways: normally and abruptly. Abrupt control flow occurs after a &lt;span&gt;return&lt;/span&gt;, &lt;span&gt;continue&lt;/span&gt;, &lt;span&gt;break&lt;/span&gt; or &lt;span&gt;throw&lt;/span&gt; statement. These will introduce a jump that targets either the end of the function or the entry of a finally block. In case the control flow jumps to a finally block, this finally block will be executed normally. However, since the block was entered abruptly, it will exit abruptly again. This means, that there will be a second jump from the exit of the finally block to either the end of function or the entry of the next finally block.&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;The following example shows this behaviour by using some dead code elements, which have a grey background colour in the graph image. These dead code elements are not reachable, since there is no normal control flow path that exits the try block.&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;b&gt;&lt;span style=&quot;color: #660000;&quot;&gt;function&lt;/span&gt;&lt;/b&gt; t() {&lt;br /&gt;&lt;span style=&quot;color: #38761d;&quot;&gt;&lt;span style=&quot;color: #38761d;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;    &lt;/span&gt;&quot;start&quot;&lt;/span&gt;&lt;/span&gt;;&lt;br /&gt;&lt;span style=&quot;color: #660000;&quot;&gt;&lt;span style=&quot;color: #660000; white-space: pre;&quot;&gt;    &lt;/span&gt;&lt;b style=&quot;color: #660000;&quot;&gt;try&lt;/b&gt;&lt;/span&gt; {&lt;br /&gt;&lt;span style=&quot;color: #0b5394;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;        &lt;/span&gt;2&lt;/span&gt;;&lt;br /&gt;&lt;span style=&quot;color: #660000;&quot;&gt;&lt;span style=&quot;color: #660000; white-space: pre;&quot;&gt;        &lt;/span&gt;&lt;b style=&quot;color: #660000;&quot;&gt;return&lt;/b&gt;&lt;/span&gt;;&lt;br /&gt;&lt;span style=&quot;color: #0b5394;&quot;&gt;&lt;span style=&quot;color: #0b5394;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;        &lt;/span&gt;3&lt;/span&gt;&lt;/span&gt;;&lt;br /&gt;    } &lt;span style=&quot;color: #660000;&quot;&gt;&lt;b&gt;finally&lt;/b&gt;&lt;/span&gt; {&lt;br /&gt;&lt;span style=&quot;color: #38761d;&quot;&gt;&lt;span style=&quot;color: #38761d;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;        &lt;/span&gt;&quot;finally&quot;&lt;/span&gt;&lt;/span&gt;;&lt;br /&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;    &lt;/span&gt;}&lt;br /&gt;&lt;span style=&quot;color: #38761d;&quot;&gt;    &lt;span style=&quot;color: #38761d;&quot;&gt;&quot;end&quot;&lt;/span&gt;&lt;/span&gt;;&lt;br /&gt;}&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;h3&gt;Final catch&lt;/h3&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;In case you ever wondered how a thrown exception can be caught without using a catch block, have a look at the final example. It is true that once a finally block was entered abruptly, it can only be exited abruptly. However, the kind of abrupt control flow might be changed. In the example below, it is changed from throwing an exception to breaking the loop. Of course, after the loop was exited due to the &lt;span&gt;break&lt;/span&gt; statement, the control flow is normal again and the thrown exception remains without effect. Hence, the last statement &lt;span&gt;&quot;end&quot;&lt;/span&gt; is executed which would have been skipped otherwise.&lt;br /&gt;&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;a href=&quot;https://4.bp.blogspot.com/-E1VpO3JZ2ow/W4Z-wfHi1xI/AAAAAAAAADI/SWJFeScEQWg6WtYq9MgJvX_PekAqP7F1QCEwYBhgL/s1600/CFG_ThrowToBreak.png&quot; style=&quot;clear: right; float: right; margin-bottom: 1em; margin-left: 1em;&quot;&gt;&lt;img border=&quot;0&quot; src=&quot;https://4.bp.blogspot.com/-E1VpO3JZ2ow/W4Z-wfHi1xI/AAAAAAAAADI/SWJFeScEQWg6WtYq9MgJvX_PekAqP7F1QCEwYBhgL/s1600/CFG_ThrowToBreak.png&quot; width=&quot;360&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;b&gt;&lt;span style=&quot;color: #660000;&quot;&gt;function&lt;/span&gt;&lt;/b&gt; t() {&lt;br /&gt;&lt;span style=&quot;color: #38761d;&quot;&gt;&lt;span style=&quot;color: #38761d;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;    &lt;/span&gt;&quot;start&quot;&lt;/span&gt;&lt;/span&gt;;&lt;br /&gt;&lt;span style=&quot;color: #660000;&quot;&gt;&lt;b style=&quot;color: #660000;&quot;&gt;&lt;span style=&quot;color: #38761d; white-space: pre;&quot;&gt;    &lt;/span&gt;do&lt;/b&gt;&lt;/span&gt; {&lt;br /&gt;&lt;span style=&quot;color: #660000;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;color: #38761d; white-space: pre;&quot;&gt;   &lt;/span&gt;&lt;span style=&quot;color: #38761d; white-space: pre;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot;color: #660000;&quot;&gt;&lt;b style=&quot;color: #660000;&quot;&gt;try&lt;/b&gt;&lt;/span&gt; {&lt;br /&gt;&lt;span style=&quot;color: #0b5394;&quot;&gt;&lt;span style=&quot;color: #0b5394;&quot;&gt;&lt;span style=&quot;color: #38761d; white-space: pre;&quot;&gt;    &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;color: #38761d; white-space: pre;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot;color: #38761d; white-space: pre;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot;color: #0b5394;&quot;&gt;&lt;span style=&quot;color: #0b5394;&quot;&gt;2&lt;/span&gt;&lt;/span&gt;;&lt;br /&gt;&lt;span style=&quot;color: #660000;&quot;&gt;&lt;b style=&quot;color: #660000;&quot;&gt;&lt;span style=&quot;color: #38761d; white-space: pre;&quot;&gt;    &lt;/span&gt;&lt;/b&gt;&lt;/span&gt;&lt;span style=&quot;color: #38761d; white-space: pre;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot;color: #38761d; white-space: pre;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot;color: #660000;&quot;&gt;&lt;b style=&quot;color: #660000;&quot;&gt;throw&lt;/b&gt;&lt;/span&gt; &lt;span style=&quot;color: #38761d;&quot;&gt;&quot;exception&quot;&lt;/span&gt;;&lt;br /&gt;&lt;span style=&quot;color: #38761d; white-space: pre;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot;color: #38761d; white-space: pre;&quot;&gt;    &lt;/span&gt;} &lt;span style=&quot;color: #660000;&quot;&gt;&lt;b&gt;finally&lt;/b&gt;&lt;/span&gt; {&lt;br /&gt;&lt;span style=&quot;color: #660000;&quot;&gt;&lt;b style=&quot;color: #660000;&quot;&gt;&lt;span style=&quot;color: #38761d; white-space: pre;&quot;&gt;    &lt;/span&gt;&lt;/b&gt;&lt;/span&gt;&lt;span style=&quot;color: #38761d; white-space: pre;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot;color: #38761d; white-space: pre;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot;color: #660000;&quot;&gt;&lt;b style=&quot;color: #660000;&quot;&gt;break&lt;/b&gt;&lt;/span&gt;;&lt;br /&gt;&lt;span style=&quot;color: #38761d; white-space: pre;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot;color: #38761d; white-space: pre;&quot;&gt;    &lt;/span&gt;}&lt;br /&gt;&lt;span style=&quot;color: #38761d; white-space: pre;&quot;&gt;    &lt;/span&gt;} &lt;span style=&quot;color: #660000;&quot;&gt;&lt;b&gt;while&lt;/b&gt;&lt;/span&gt; (&lt;span style=&quot;color: #0b5394;&quot;&gt;4&lt;/span&gt;);&lt;br /&gt;&lt;span style=&quot;color: #38761d;&quot;&gt;&lt;span style=&quot;color: #38761d;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;    &lt;/span&gt;&quot;end&quot;&lt;/span&gt;&lt;/span&gt;;&lt;br /&gt;}&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;div style=&quot;text-align: right;&quot;&gt;&lt;br /&gt;&lt;/div&gt;&lt;div style=&quot;text-align: right;&quot;&gt;&lt;br /&gt;&lt;/div&gt;&lt;div style=&quot;text-align: right;&quot;&gt;&lt;br /&gt;&lt;/div&gt;&lt;div style=&quot;text-align: right;&quot;&gt;&lt;br /&gt;&lt;/div&gt;&lt;div style=&quot;text-align: right;&quot;&gt;&lt;br /&gt;&lt;/div&gt;&lt;div style=&quot;text-align: right;&quot;&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/div&gt;&lt;div style=&quot;text-align: right;&quot;&gt;&lt;br /&gt;&lt;br /&gt;&lt;/div&gt;&lt;div style=&quot;text-align: right;&quot;&gt;&lt;span style=&quot;font-size: x-small;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: right;&quot;&gt;&lt;span style=&quot;font-size: x-small;&quot;&gt;by Marcus Mews&lt;/span&gt;&lt;/div&gt;</description>
+	<pubDate>Wed, 29 Aug 2018 11:57:56 +0000</pubDate>
+	<author>noreply@blogger.com (Project N4JS)</author>
+</item>
+
+</channel>
+</rss>

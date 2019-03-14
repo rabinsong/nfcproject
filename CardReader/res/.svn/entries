@@ -1,0 +1,58 @@
+10
+
+dir
+9
+http://nfcard.googlecode.com/svn/trunk/nfcard/res
+http://nfcard.googlecode.com/svn
+
+
+
+2011-11-08T10:15:24.080301Z
+7
+sinpowei@gmail.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bf23500d-9d69-538e-5103-192fb09a5c53
+
+values
+dir
+
+xml
+dir
+
+drawable
+dir
+
+drawable-hdpi
+dir
+
+menu
+dir
+
+drawable-ldpi
+dir
+
+values-zh-rTW
+dir
+
+drawable-mdpi
+dir
+
+layout
+dir
+
+values-zh-rCN
+dir
+
